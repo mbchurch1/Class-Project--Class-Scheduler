@@ -1,0 +1,117 @@
+package edu.ncsu.csc216.pack_scheduler.io;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc217.collections.list.SortedList;
+
+/**
+ * Reads Course records from text files. Writes a set of CourseRecords to a
+ * file.
+ * 
+ * @author Sarah Heckman
+ */
+public class CourseRecordIO {
+	/**
+	 * Reads course records from a file and generates a list of valid Courses. Any
+	 * invalid Courses are ignored. If the file to read cannot be found or the
+	 * permissions are incorrect a File NotFoundException is thrown.
+	 * 
+	 * @param fileName file to read Course records from
+	 * @return a list of valid Courses
+	 * @throws FileNotFoundException if the file cannot be found or read
+	 */
+	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
+		Scanner fileReader = new Scanner(new FileInputStream(fileName));
+		SortedList<Course> courses = new SortedList<Course>();
+		while (fileReader.hasNextLine()) {
+			try {
+				Course course = readCourse(fileReader.nextLine());
+				boolean duplicate = false;
+				for (int i = 0; i < courses.size(); i++) {
+					Course current = courses.get(i);
+					if (course.getName().equals(current.getName())
+							&& course.getSection().equals(current.getSection())) {
+						duplicate = true;
+						break;
+					}
+
+				}
+				if (!duplicate) {
+					courses.add(course);
+				}
+			} catch (IllegalArgumentException e) {
+				// Line is invalid, skip
+			}
+		}
+		fileReader.close();
+		return courses;
+	}
+
+	private static Course readCourse(String nextLine) {
+		Scanner scan = new Scanner(nextLine);
+		scan.useDelimiter(",");
+		String name = null;
+		String title = null;
+		String section = null;
+		int creditHours = 0;
+		String instructorId = null;
+		int enrollmentCap = 0;
+		String meetingDays = null;
+		int startTime = 0;
+		int endTime = 0;
+		try {
+			name = scan.next();
+			title = scan.next();
+			section = scan.next();
+			creditHours = scan.nextInt();
+			instructorId = scan.next();
+			enrollmentCap = scan.nextInt();
+			meetingDays = scan.next();
+			if (scan.hasNext()) {
+				if ("A".equals(meetingDays)) {
+					scan.close();
+					throw new IllegalArgumentException("Invalid course record");
+				} else {
+					startTime = scan.nextInt();
+					endTime = scan.nextInt();
+				}
+			}
+			scan.close();
+		} catch (NoSuchElementException e) {
+			throw new IllegalArgumentException("Invalid course record");
+		}
+		if ("A".equals(meetingDays)) {
+			Course arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
+			return arrangedCourse;
+		} else {
+			Course onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays, startTime,
+					endTime);
+			return onCampus;
+		}
+	}
+
+	/**
+	 * Writes the given list of Courses to a chosen file. Throws an
+	 * IllegalArgumentException if the file cannot be written.
+	 * 
+	 * @param fileName file to write schedule of Courses to
+	 * @param courses  list of Courses to write
+	 * @throws IOException if cannot write to file
+	 */
+
+	public static void writeCourseRecords(String fileName, SortedList<Course> courses) throws IOException {
+		PrintStream fileWriter = new PrintStream(new File(fileName));
+		for (int i = 0; i < courses.size(); i++) {
+			fileWriter.println(courses.get(i).toString());
+		}
+		fileWriter.close();
+	}
+
+}

@@ -1,0 +1,5 @@
+CSC116,Intro to Programming - Java,001,3,jdyoung2,10,MW,0910,1100
+CSC101,learn stuff,001,5,mbchurch,10,A
+CSC102,build stuff,001,5,mbchurch,10,A
+CSC103,test stuff,001,5,mbchurch,10,A
+CSC104,learn more stuff,001,2,mbchurch,10,A
