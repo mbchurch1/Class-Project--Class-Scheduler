@@ -11,6 +11,13 @@ package edu.ncsu.csc216.pack_scheduler.util;
  */
 public class ArrayStack<E> implements Stack<E> {
 
+	/** Generic ArrayStack */
+	private ArrayList list;
+	
+	public ArrayStack() {
+		list = new ArrayList<E>();
+	}
+		
 	@Override
 	public void push(E element) {
 		// TODO Auto-generated method stub
