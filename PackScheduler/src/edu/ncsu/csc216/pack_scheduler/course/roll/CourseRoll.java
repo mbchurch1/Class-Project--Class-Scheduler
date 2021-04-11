@@ -32,10 +32,8 @@ public class CourseRoll {
 	 * @param enrollmentCap the Course enrollment cap 
 	 */
 	public CourseRoll(int enrollmentCap) {
-		setEnrollmentCap(enrollmentCap);
 		roll = new LinkedAbstractList<Student>(enrollmentCap);
-		//Not sure what to set the enrollmentCap to in the constructor
-		
+		setEnrollmentCap(enrollmentCap);		
 	}
 	
 	/**
@@ -58,7 +56,8 @@ public class CourseRoll {
 			throw new IllegalArgumentException("Invalid enrollment capacity.");
 		}
 		
-		this.enrollmentCap = enrollmentCap;
+		roll.setCapacity(enrollmentCap);
+		this.enrollmentCap = roll.getCapacity();
 	}
 	
 	/**
