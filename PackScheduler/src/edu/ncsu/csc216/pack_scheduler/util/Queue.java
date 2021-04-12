@@ -12,15 +12,35 @@ package edu.ncsu.csc216.pack_scheduler.util;
  */
 public interface Queue<E> {
 	
-	public void enqueue(E element);
+	/**
+	 * Adds the element to the back of the Queue
+	 * @param element the element being added to Queue
+	 */
+	void enqueue(E element);
 	
-	public E dequeue();
+	/**
+	 * Removes the element from the front of the Queue
+	 * @return the element being removed from the Queue
+	 */
+	E dequeue();
 	
-	public boolean isEmpty();
+	/**
+	 * Determines if the queue is empty
+	 * @return true if the queue is empty
+	 */
+	boolean isEmpty();
 	
-	public int size();
+	/**
+	 * Determines the number of elements in the Queue
+	 * @return the number of elements in the Queue
+	 */
+	int size();
 	
-	public void setCapacity(int capacity);
+	/**
+	 * Sets the Queue's capacity
+	 * @param capacity the maximum number of elements that can be added to Queue
+	 */
+	void setCapacity(int capacity);
 	
 
 }
