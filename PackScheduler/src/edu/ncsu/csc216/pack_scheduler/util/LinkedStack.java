@@ -1,6 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-
+import java.util.EmptyStackException;
 
 /**
  * LinkedStack class for CourseRoll waitlist
@@ -22,32 +22,38 @@ public class LinkedStack<E> implements Stack<E> {
 	
 	@Override
 	public void push(E element) {
-		// TODO Auto-generated method stub
-		
+		if(list.size() >= list.getCapacity()) {
+			throw new IllegalArgumentException("Cannot add to list.");
+		}
+		((Stack<E>) list).push(element);
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		if(list.isEmpty()) {
+			throw new EmptyStackException();
+		}
+		return ((Stack<E>) list).pop();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return list.isEmpty();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return list.size();
 	}
 
 	@Override
 	public void setCapacity(int capacity) {
-		// TODO Auto-generated method stub
-		
+		if(capacity < 0 || capacity < list.size()) {
+			throw new IllegalArgumentException("Invalid capacity.");
+		}
+		list.setCapacity(capacity);
 	}
 
 }

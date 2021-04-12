@@ -1,6 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-
+import java.util.EmptyStackException;
 
 /**
  * LinkedQueue class for CourseRoll waitlist
@@ -15,28 +15,40 @@ public class LinkedQueue<E> {
 	/** Generic ArrayStack */
 	private LinkedAbstractList<E> list;
 	
+	
 	public LinkedQueue(int capacity) {
+		
 		list = new LinkedAbstractList<E>(capacity);
 	}
 	
 	public void enqueue(E element) {
-		
+		if(list.size() >= list.getCapacity()) {
+			throw new IllegalArgumentException("Cannot add to list.");
+		}
+		list.add(element);
 	}
 	
 	public E dequeue() {
-		return null;
+		if(list.isEmpty()) {
+			throw new EmptyStackException();
+		}
+		return list.remove(0);
 	}
 	
 	public boolean isEmpty() {
-		return false;
+		
+		return list.isEmpty();
 	}
 	
 	public int size() {
-		return 0;
+		return list.size();
 	}
 	
 	public void setCapacity(int capacity) {
-		
+		if(capacity < 0 || capacity < list.size()) {
+			throw new IllegalArgumentException("Invalid capacity.");
+		}
+		list.setCapacity(capacity);
 	}
 	
 	

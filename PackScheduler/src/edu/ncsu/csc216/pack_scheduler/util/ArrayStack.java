@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.EmptyStackException;
 
 /**
  * ArrayStack class for CourseRoll waitlist
@@ -20,32 +21,40 @@ public class ArrayStack<E> implements Stack<E> {
 		
 	@Override
 	public void push(E element) {
-		// TODO Auto-generated method stub
+		//need to check if list has has room to add an element
 		
+		((Stack<E>) list).push(element);
 	}
 
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		return null;
+		if(list.isEmpty()) {
+			throw new EmptyStackException();
+		}
+		return ((Stack<E>) list).pop();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return list.isEmpty();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return list.size();
 	}
 
 	@Override
 	public void setCapacity(int capacity) {
-		// TODO Auto-generated method stub
+		if(capacity < 0 || capacity < list.size()) {
+			throw new IllegalArgumentException("Invalid capacity.");
+		}
+		
+		//Need to implement setCapacity in ArrayStack, not ArrayList class.
 		
 	}
+
 
 }
