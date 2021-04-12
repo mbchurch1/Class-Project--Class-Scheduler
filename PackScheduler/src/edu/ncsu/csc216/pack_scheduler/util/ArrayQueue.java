@@ -35,7 +35,7 @@ public class ArrayQueue<E> {
 	
 	public boolean isEmpty() {
 		
-		return list.isEmpty();
+		return list.size() == 0;
 	}
 	
 	public int size() {

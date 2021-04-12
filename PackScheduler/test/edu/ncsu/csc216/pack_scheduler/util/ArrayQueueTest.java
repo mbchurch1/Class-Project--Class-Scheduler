@@ -2,6 +2,9 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
+import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 
 
@@ -16,32 +19,38 @@ public class ArrayQueueTest {
 
 	@Test
 	public void testArrayQueue() {
-		fail("Not yet implemented");
+		ArrayQueue list = new ArrayQueue();
+		assertTrue(list.isEmpty());
+		list.enqueue("Test");
+		list.enqueue("Test2");
+		assertEquals(2, list.size());
+		assertEquals("Test", list.dequeue());
+		
 	}
 
-	@Test
-	public void testEnqueue() {
-		fail("Not yet implemented");
-	}
 
 	@Test
-	public void testDequeue() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsEmpty() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSize() {
-		fail("Not yet implemented");
+	public void testDequeueEmptyQueue() {
+		ArrayQueue list = new ArrayQueue();
+		assertTrue(list.isEmpty());
+		try {
+			list.dequeue();
+		} catch (NoSuchElementException e) {
+			assertEquals("List is empty.", e.getMessage());
+		}
 	}
 
 	@Test
 	public void testSetCapacity() {
-		fail("Not yet implemented");
+		ArrayQueue list = new ArrayQueue();
+		assertTrue(list.isEmpty());
+		//Try setting invalid capacity
+		try {
+			list.setCapacity(-1);
+		} catch(IllegalArgumentException e) {
+			assertEquals("Invalid capacity.", e.getMessage());
+		}
+		
 	}
 
 }
