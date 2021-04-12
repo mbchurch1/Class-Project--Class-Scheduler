@@ -18,12 +18,14 @@ public class ArrayStack<E> implements Stack<E> {
 	public ArrayStack() {
 		list = new ArrayList<E>();
 	}
-		
+		 
 	@Override
 	public void push(E element) {
 		//need to check if list has has room to add an element
+		list.add(element);
 		
-		((Stack<E>) list).push(element);
+		//To be used when we implement Stacks
+		//((Stack<E>) list).push(element);
 	}
 
 	@Override
@@ -31,13 +33,20 @@ public class ArrayStack<E> implements Stack<E> {
 		if(list.isEmpty()) {
 			throw new EmptyStackException();
 		}
-		return ((Stack<E>) list).pop();
+		E value = (E) list.get(list.size() - 1);
+		list.remove(list.size() - 1);
+		return value;
+		
+		
+		//To be used when we implement Stacks
+		//return ((Stack<E>) list).pop();
 	}
 
 	@Override
 	public boolean isEmpty() {
+		return list.size() == 0;
 		
-		return list.isEmpty();
+		//return list.isEmpty();
 	}
 
 	@Override
@@ -58,3 +67,4 @@ public class ArrayStack<E> implements Stack<E> {
 
 
 }
+
