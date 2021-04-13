@@ -107,7 +107,7 @@ public class CourseRollTest {
 			d1.enroll(s11);
 			fail("The class is full, but the student was enrolled anyway.");
 		} catch (IllegalArgumentException e) {
-			assertEquals("Student cannot be added.", e.getMessage());
+			assertEquals("Student cannot be enrolled.", e.getMessage());
 		}
 		
 	}

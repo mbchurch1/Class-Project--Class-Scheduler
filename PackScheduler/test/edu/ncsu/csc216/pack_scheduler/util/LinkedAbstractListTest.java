@@ -75,11 +75,15 @@ public class LinkedAbstractListTest {
 		LinkedAbstractList<Object> list = new LinkedAbstractList<Object>(10);
 		list.add(0, "Test");
 		assertEquals("Test", list.get(0));
+		assertEquals(1, list.size());
 		list.add(0, "Test2");
+		assertEquals(2, list.size());
 		assertEquals("Test2", list.get(0));
 		assertEquals("Test", list.get(1));
 		list.set(0, "Test3");
 		assertEquals("Test3", list.get(0));
+		assertEquals(2, list.size());
+		assertEquals("Test", list.get(1));
 	}
 
 	/**
