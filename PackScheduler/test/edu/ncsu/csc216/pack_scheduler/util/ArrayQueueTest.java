@@ -17,6 +17,10 @@ import org.junit.Test;
  */
 public class ArrayQueueTest {
 
+	
+	/**
+	 * Testing the constructor, enqueue and size methods
+	 */
 	@Test
 	public void testArrayQueue() {
 		ArrayQueue list = new ArrayQueue(10);
@@ -29,6 +33,9 @@ public class ArrayQueueTest {
 	}
 
 
+	/**
+	 * Testing the dequeue method
+	 */
 	@Test
 	public void testDequeueEmptyQueue() {
 		ArrayQueue list = new ArrayQueue(10);
@@ -40,6 +47,9 @@ public class ArrayQueueTest {
 		}
 	}
 
+	/**
+	 * Testing the setCapacity method
+	 */
 	@Test
 	public void testSetCapacity() {
 		ArrayQueue list = new ArrayQueue(10);
@@ -68,6 +78,9 @@ public class ArrayQueueTest {
 		assertFalse(list.isEmpty());
 	}
 	
+	/**
+	 * Testing enqueue to add an element at max capacity
+	 */
 	@Test
 	public void testEnqueue() {
 		ArrayQueue list = new ArrayQueue(10);

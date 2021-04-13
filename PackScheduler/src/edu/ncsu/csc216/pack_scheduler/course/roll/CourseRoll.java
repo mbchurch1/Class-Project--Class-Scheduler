@@ -9,7 +9,7 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
-import edu.ncsu.csc216.pack_scheduler.util.Queue;
+//import edu.ncsu.csc216.pack_scheduler.util.Queue;
 
 /**
  * 

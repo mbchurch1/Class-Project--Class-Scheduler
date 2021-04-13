@@ -16,6 +16,9 @@ import org.junit.Test;
  */
 public class LinkedStackTest {
 
+	/**
+	 * Testing the constructor, push, pop, isEmpty and size methods
+	 */
 	@Test
 	public void testLinkedStack() {
 		LinkedStack list = new LinkedStack(10);
@@ -28,6 +31,9 @@ public class LinkedStackTest {
 	}
 
 
+	/**
+	 * Testing the isEmpty method
+	 */
 	@Test
 	public void testIsEmpty() {
 		LinkedStack list = new LinkedStack(10);
@@ -35,6 +41,9 @@ public class LinkedStackTest {
 		assertTrue(list.isEmpty());
 	}
 
+	/**
+	 * Testing the pop method from an empty list
+	 */
 	@Test
 	public void testRemoveFromEmptyList() {
 		LinkedStack list = new LinkedStack(10);
@@ -47,6 +56,9 @@ public class LinkedStackTest {
 		}
 	}
 	
+	/**
+	 * Testing the setCapacity method with valid and invalid values
+	 */
 	@Test
 	public void testSetCapacity() {
 		LinkedStack list = new LinkedStack(10);
@@ -64,6 +76,9 @@ public class LinkedStackTest {
 		
 	}
 	
+	/**
+	 * Testing the push method to a full list
+	 */
 	@Test
 	public void testAddingToAFullList() {
 		LinkedStack list = new LinkedStack(2);

@@ -30,6 +30,11 @@ public class ArrayQueue<E> implements Queue<E> {
 		this.capacity = amount;
 	}
 	
+	/**
+	 * Enqueue method to add an element to the queue
+	 * @param element Element to be added
+	 * @throws IllegalArgumentException  if element cannot be added
+	 */
 	public void enqueue(E element) {
 		//need to check if list has has room to add an element
 		if ((size + 1) > capacity) {
@@ -39,6 +44,11 @@ public class ArrayQueue<E> implements Queue<E> {
 		size++;
 	}
 	
+	/**
+	 * Dequeue method to remove an element from the queue
+	 * @return element that was removed
+	 * @throws NoSuchElementException if list is empty
+	 */
 	public E dequeue() {
 		if(list.isEmpty()) {
 			throw new NoSuchElementException("List is empty.");
@@ -47,16 +57,29 @@ public class ArrayQueue<E> implements Queue<E> {
 		return list.remove(0);
 	}
 	
+	/**
+	 * isEmpty method to return true if list is empty
+	 * @return boolean  true or false if list is empty
+	 */
 	public boolean isEmpty() {
 		
 		return list.size() == 0;
 	}
 	
+	/**
+	 * Size method to return the size of the list
+	 * @return size of the list
+	 */
 	public int size() {
 		
 		return list.size();
 	}
 	
+	/**
+	 * setCapacity method to set the capacity of the waitlist
+	 * @param capacity  Capacity of the waitlist
+	 * @throws IllegalArgumentException if capacity is less than zero or greater than size
+	 */
 	public void setCapacity(int capacity) {
 		if(capacity < 0 || capacity < list.size()) {
 			throw new IllegalArgumentException("Invalid capacity.");

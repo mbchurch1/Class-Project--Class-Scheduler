@@ -19,17 +19,30 @@ public class ArrayStack<E> implements Stack<E> {
 	/** The maximum number of elements that can be added to ArrayStack */
 	private int capacity;
 	
+	/**
+	 * Constructor for ArrayStack using amount for the capacity
+	 * @param amount  Integer to set capacity to
+	 */
 	public ArrayStack(int amount) {
 		list = new ArrayList<E>();
 		size = 0;
 		capacity = amount;
 	}
+	
+	/**
+	 * Constructor using default values
+	 */
 	public ArrayStack() {
 		list = new ArrayList<E>();
 		size = 0;
 		capacity = 10;
 	}
 		 
+	/**
+	 * Push method to add an element to the Stack
+	 * @param element  Element to be added
+	 * @throws IllegalArgumentException if no room is left to add to the list
+	 */
 	@Override
 	public void push(E element) {
 		//need to check if list has has room to add an element
@@ -42,6 +55,11 @@ public class ArrayStack<E> implements Stack<E> {
 		//((Stack<E>) list).push(element);
 	}
 
+	/**
+	 * Pop method to remove an element off the top of the Stack
+	 * @return value  Value of the element that is removed
+	 * @throws EmptyStackException if the list is empty
+	 */
 	@Override
 	public E pop() {
 		if(list.isEmpty()) {
@@ -59,6 +77,10 @@ public class ArrayStack<E> implements Stack<E> {
 		//return ((Stack<E>) list).pop();
 	}
 
+	/**
+	 * isEmpty method to return true or false if the list is empty
+	 * @return boolean  true or false if list is empty
+	 */
 	@Override
 	public boolean isEmpty() {
 		return list.size() == 0;
@@ -66,12 +88,21 @@ public class ArrayStack<E> implements Stack<E> {
 		//return list.isEmpty();
 	}
 
+	/**
+	 * Size method to return the size of the list
+	 * @return Size of the list
+	 */
 	@Override
 	public int size() {
 		
 		return list.size();
 	}
 
+	/**
+	 * setCapacity method to set the capacity of the wait list
+	 * @param capacity  Capacity of the wait list
+	 * @throws IllegalArgumentException if capacity is less than zero or less than the list size
+	 */
 	@Override
 	public void setCapacity(int capacity) {
 		if(capacity < 0 || capacity < list.size()) {
