@@ -136,7 +136,9 @@ public class CourseRoll {
 			}
 		}
 		if (!waitlist.isEmpty()) {
-			enroll(waitlist.dequeue());
+			Student s = waitlist.dequeue();
+			enroll(s);
+			s.getSchedule().addCourseToSchedule(course);
 		}
 		
 //		try {
