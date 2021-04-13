@@ -10,30 +10,35 @@ import java.util.EmptyStackException;
  *
  * @param <E> List of generic objects
  */
-public class LinkedQueue<E> {
+public class LinkedQueue<E> implements Queue<E> {
 
 	/** Generic ArrayStack */
 	private LinkedAbstractList<E> list;
+	/** The index at which an element should be added to the LinkedAbstractList */
+	private int indexForAdding;
 	
 	
 	public LinkedQueue(int capacity) {
-		
 		list = new LinkedAbstractList<E>(capacity);
 		setCapacity(capacity);
+		indexForAdding = 0;
 	}
 	
 	public void enqueue(E element) {
 		if(list.size() >= list.getCapacity()) {
 			throw new IllegalArgumentException("Cannot add to list.");
 		}
-		list.add(element);
+		list.add(indexForAdding, element);
+		indexForAdding++;
 	}
 	
 	public E dequeue() {
 		if(list.isEmpty()) {
 			throw new EmptyStackException();
+		} else {
+			indexForAdding--;
+			return list.remove(0);
 		}
-		return list.remove(0);
 	}
 	
 	public boolean isEmpty() {

@@ -13,7 +13,7 @@ import java.util.EmptyStackException;
 public class ArrayStack<E> implements Stack<E> {
 
 	/** Generic ArrayStack */
-	private ArrayList list;
+	private ArrayList<E> list;
 	/** The number of elements in the ArrayStack */
 	private int size;
 	/** The maximum number of elements that can be added to ArrayStack */
@@ -28,7 +28,7 @@ public class ArrayStack<E> implements Stack<E> {
 	@Override
 	public void push(E element) {
 		//need to check if list has has room to add an element
-		list.add(element);
+		list.add(0, element);
 		
 		//To be used when we implement Stacks
 		//((Stack<E>) list).push(element);
@@ -41,8 +41,9 @@ public class ArrayStack<E> implements Stack<E> {
 		}
 		//I don't think we need to cast this as E 
 		// I think 
-		E value = (E) list.get(list.size() - 1);
-		list.remove(list.size() - 1);
+		//E value = (E) list.get(list.size() - 1);
+		E value = (E) list.get(0);
+		list.remove(0);
 		return value;
 		
 		

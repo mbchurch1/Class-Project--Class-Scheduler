@@ -15,11 +15,11 @@ import java.util.EmptyStackException;
 public class LinkedStack<E> implements Stack<E> {
 
 	/** Generic LinkedList */
-	private LinkedAbstractList  list;
+	private LinkedAbstractList<E>  list;
 
 	
 	public LinkedStack(int capacity) {
-		list = new LinkedAbstractList(capacity);
+		list = new LinkedAbstractList<E>(capacity);
 		setCapacity(capacity);
 	}
 	
@@ -29,7 +29,7 @@ public class LinkedStack<E> implements Stack<E> {
 		if(list.size() >= list.getCapacity()) {
 			throw new IllegalArgumentException("Cannot add to list.");
 		}
-		list.add(element);
+		list.add(0, element);
 		//((Stack<E>) list).push(element);
 	}
 
@@ -38,7 +38,7 @@ public class LinkedStack<E> implements Stack<E> {
 		if(list.isEmpty()) {
 			throw new EmptyStackException();
 		}
-		return (E) list.remove(list.size() - 1);
+		return list.remove(0);
 		//return ((Stack<E>) list).pop();
 	}
 

@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  *
  * @param <E> List of generic objects
  */
-public class ArrayQueue<E> {
+public class ArrayQueue<E> implements Queue<E> {
 
 	/** Generic ArrayStack */
 	private ArrayList<E> list;
