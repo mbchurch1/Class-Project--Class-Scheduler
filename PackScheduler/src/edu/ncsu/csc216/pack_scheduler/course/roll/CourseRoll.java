@@ -103,7 +103,7 @@ public class CourseRoll {
 			waitlist.enqueue(student);
 		} else {
 			roll.add(roll.size(), student);
-			student.getSchedule().addCourseToSchedule(course);
+			//student.getSchedule().addCourseToSchedule(course);
 //			rm.login(student.getId(), student.getPassword());
 //			rm.enrollStudentInCourse(course);
 		}
