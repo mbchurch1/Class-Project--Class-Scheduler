@@ -24,6 +24,11 @@ public class ArrayStack<E> implements Stack<E> {
 		size = 0;
 		capacity = amount;
 	}
+	public ArrayStack() {
+		list = new ArrayList<E>();
+		size = 0;
+		capacity = 10;
+	}
 		 
 	@Override
 	public void push(E element) {
