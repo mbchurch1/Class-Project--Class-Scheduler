@@ -19,6 +19,7 @@ public class LinkedQueue<E> {
 	public LinkedQueue(int capacity) {
 		
 		list = new LinkedAbstractList<E>(capacity);
+		setCapacity(capacity);
 	}
 	
 	public void enqueue(E element) {
@@ -51,6 +52,9 @@ public class LinkedQueue<E> {
 		list.setCapacity(capacity);
 	}
 	
-	
+	public int getCapacity() {
+		return list.getCapacity();
+		
+	}
 	
 }
