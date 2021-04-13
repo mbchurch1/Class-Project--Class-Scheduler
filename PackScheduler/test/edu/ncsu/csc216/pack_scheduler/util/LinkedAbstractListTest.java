@@ -52,6 +52,17 @@ public class LinkedAbstractListTest {
 			assertEquals("Element is a duplicate.", e.getMessage());
 		}
 		//ListNode string = null;
+		
+		//Test adding apple at 0, orange at 0, banana at 1 - like TS test case
+		LinkedAbstractList<Object> list2 = new LinkedAbstractList<Object>(10);
+		list2.add(0, "apple");
+		assertEquals("apple", list2.get(0));
+		list2.add(0, "orange");
+		assertEquals("orange", list2.get(0));
+		assertEquals("apple", list2.get(1));
+		list2.add(1, "banana");
+		assertEquals("banana", list2.get(1));
+		//assertEquals(3, list.size());
 	}
 	
 	/**
