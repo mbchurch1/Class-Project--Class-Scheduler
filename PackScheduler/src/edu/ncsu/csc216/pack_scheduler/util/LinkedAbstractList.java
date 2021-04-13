@@ -105,7 +105,6 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	@Override
 	public void add(int index, E e) {
 		ListNode current = front; 
-		ListNode currentBack = front;
 		if(index < 0 || index > size) {
 			throw new IndexOutOfBoundsException("List size invalid.");
 		}
@@ -131,16 +130,18 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 //			back = currentBack;
 //		}
 		
-		if(index == 0 && size == 0) {
+		//if(index == 0 && size == 0) {
+		if (front == null) {
 			front = new ListNode(e);
 		} 
-		else if (index == (size - 1) && size > 0 && index > 0) {
-			for (int i = 0; i < size - 1; i++) {
-				currentBack = currentBack.next;
-			}
-			back = currentBack;
-			back = new ListNode(e, currentBack.next);
-		} 
+//		else if (index == (size - 1) && size > 0 && index > 0) {
+//			for (int i = 0; i < size - 1; i++) {
+//				currentBack = currentBack.next;
+//			}
+//			back = currentBack;
+//			
+//			back = new ListNode(e, currentBack.next);
+//		} 
 		else if(index == 0) {
 			front = new ListNode(e, front);
 		} else {
@@ -149,6 +150,10 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 				current = current.next;
 			}
 			current.next = new ListNode(e, current.next);
+			if (current.next.next == null) {
+				back = current.next;
+				back = new ListNode(e, back.next);
+			}
 		}
 		size++;
 	}
