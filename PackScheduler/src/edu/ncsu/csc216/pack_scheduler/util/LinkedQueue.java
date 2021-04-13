@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 
 /**
@@ -48,12 +49,12 @@ public class LinkedQueue<E> implements Queue<E> {
 	 * @throws EmptyStackException if list is empty
 	 */
 	public E dequeue() {
-		if(isEmpty()) {
-			throw new EmptyStackException();
-		} 
-//		if(list.isEmpty()) {
-//			throw new NoSuchElementException("List is empty.");
+//		if(isEmpty()) {
+//			throw new EmptyStackException();
 //		} 
+		if(list.isEmpty()) {
+			throw new NoSuchElementException("List is empty.");
+		} 
 		else {
 			indexForAdding--;
 			return list.remove(0);
