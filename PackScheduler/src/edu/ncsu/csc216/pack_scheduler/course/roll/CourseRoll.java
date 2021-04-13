@@ -6,6 +6,7 @@ package edu.ncsu.csc216.pack_scheduler.course.roll;
 import java.util.EmptyStackException;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
@@ -94,6 +95,7 @@ public class CourseRoll {
 	 * @param student Student to be added to a course
 	 */
 	public void enroll(Student student) {
+		//RegistrationManager rm = RegistrationManager.getInstance();
 		if (student == null || !canEnroll(student)) {
 			throw new IllegalArgumentException("Student cannot be added.");
 		}
@@ -102,6 +104,8 @@ public class CourseRoll {
 		} else {
 			roll.add(roll.size(), student);
 			student.getSchedule().addCourseToSchedule(course);
+//			rm.login(student.getId(), student.getPassword());
+//			rm.enrollStudentInCourse(course);
 		}
 	
 //		try {
