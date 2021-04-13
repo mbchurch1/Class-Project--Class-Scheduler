@@ -20,6 +20,9 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	private int capacity;
 	/** Front field for front of the list */
 	private ListNode front;
+	/** Points to the last node in the list */
+	private ListNode back;
+	
 	
 	/**
 	 * LinkedAbstractList constructor
@@ -101,6 +104,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	@Override
 	public void add(int index, E e) {
 		ListNode current = front; 
+		ListNode current2 = front;
 		if(index < 0 || index > size) {
 			throw new IndexOutOfBoundsException("List size invalid.");
 		}
@@ -118,8 +122,17 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			current = current.next;
 		}
 		
+		if(index > 0 && size > 0) {
+			for (int i = 0; i < size; i++) {
+				current2 = current2.next;
+			}
+			back = current2;
+		}
+		
 		if(index == 0 && size == 0) {
 			front = new ListNode(e);
+		} else if (index == (size - 1) && size != 0) {
+			back = new ListNode(e);
 		} else if(index == 0) {
 			front = new ListNode(e, front);
 		} else {
