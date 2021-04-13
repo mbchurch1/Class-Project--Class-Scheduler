@@ -61,7 +61,10 @@ public class LinkedAbstractListTest {
 		assertEquals("orange", list2.get(0));
 		assertEquals("apple", list2.get(1));
 		list2.add(1, "banana");
-		assertEquals("banana", list2.get(1));
+		assertEquals("orange", list2.get(0));
+		assertEquals("apple", list2.get(1));
+		//assertEquals(3, list.size());
+		assertEquals("banana", list2.get(2));
 		//assertEquals(3, list.size());
 	}
 	

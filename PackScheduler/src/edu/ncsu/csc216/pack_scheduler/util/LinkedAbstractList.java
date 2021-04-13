@@ -133,13 +133,15 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		
 		if(index == 0 && size == 0) {
 			front = new ListNode(e);
-		} else if (index == (size - 1) && size > 0 && index > 0) {
+		} 
+		else if (index == (size - 1) && size > 0 && index > 0) {
 			for (int i = 0; i < size - 1; i++) {
 				currentBack = currentBack.next;
 			}
 			back = currentBack;
 			back = new ListNode(e, currentBack.next);
-		} else if(index == 0) {
+		} 
+		else if(index == 0) {
 			front = new ListNode(e, front);
 		} else {
 			current = front;
