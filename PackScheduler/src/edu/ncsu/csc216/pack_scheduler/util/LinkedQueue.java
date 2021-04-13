@@ -34,12 +34,13 @@ public class LinkedQueue<E> implements Queue<E> {
 	}
 	
 	public E dequeue() {
-//		if(list.isEmpty()) {
-//			throw new EmptyStackException();
-//		} 
 		if(list.isEmpty()) {
-			throw new NoSuchElementException("List is empty.");
-		} else {
+			throw new EmptyStackException();
+		} 
+//		if(list.isEmpty()) {
+//			throw new NoSuchElementException("List is empty.");
+//		} 
+		else {
 			indexForAdding--;
 			return list.remove(0);
 		}
