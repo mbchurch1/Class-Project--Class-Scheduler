@@ -19,10 +19,10 @@ public class ArrayStack<E> implements Stack<E> {
 	/** The maximum number of elements that can be added to ArrayStack */
 	private int capacity;
 	
-	public ArrayStack() {
+	public ArrayStack(int amount) {
 		list = new ArrayList<E>();
 		size = 0;
-		capacity = 0;
+		capacity = amount;
 	}
 		 
 	@Override
