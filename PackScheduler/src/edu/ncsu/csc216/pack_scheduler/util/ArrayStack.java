@@ -33,6 +33,9 @@ public class ArrayStack<E> implements Stack<E> {
 	@Override
 	public void push(E element) {
 		//need to check if list has has room to add an element
+		if(list.size() >= capacity) {
+			throw new IllegalArgumentException("Cannot add to list.");
+		}
 		list.add(0, element);
 		
 		//To be used when we implement Stacks
