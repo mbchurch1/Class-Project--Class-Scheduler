@@ -3,6 +3,7 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import static org.junit.Assert.*;
 
 import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
@@ -55,8 +56,8 @@ public class LinkedQueueTest {
 		assertTrue(list.isEmpty());
 		try {
 			list.dequeue();
-		} catch(EmptyStackException e) {
-			assertEquals(null, e.getMessage());
+		} catch(NoSuchElementException e) {
+			assertEquals("List is empty.", e.getMessage());
 		}
 	}
 

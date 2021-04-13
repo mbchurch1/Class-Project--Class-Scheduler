@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 /**
  * LinkedQueue class for CourseRoll waitlist
@@ -33,8 +34,11 @@ public class LinkedQueue<E> implements Queue<E> {
 	}
 	
 	public E dequeue() {
+//		if(list.isEmpty()) {
+//			throw new EmptyStackException();
+//		} 
 		if(list.isEmpty()) {
-			throw new EmptyStackException();
+			throw new NoSuchElementException("List is empty.");
 		} else {
 			indexForAdding--;
 			return list.remove(0);
