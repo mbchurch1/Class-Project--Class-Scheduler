@@ -17,6 +17,9 @@ import org.junit.Test;
  */
 public class ArrayStackTest {
 
+	/**
+	 * Testing constructor, push and size methods
+	 */
 	@Test
 	public void testArrayStack() {
 		ArrayStack list = new ArrayStack();
@@ -26,6 +29,9 @@ public class ArrayStackTest {
 		assertEquals("Test", list.pop());
 	}
 	
+	/**
+	 * Test adding to the stack while at capacity
+	 */
 	@Test
 	public void testArrayStackInt() {
 		ArrayStack list = new ArrayStack(10);
@@ -42,6 +48,9 @@ public class ArrayStackTest {
 		}
 	}
 
+	/**
+	 * Testing pop method from an empty stack
+	 */
 	@Test
 	public void testPopEmptyStack() {
 		ArrayStack list = new ArrayStack();
@@ -53,7 +62,9 @@ public class ArrayStackTest {
 		}
 	}
 	
-	
+	/**
+	 * Testing setCapacity method
+	 */
 	@Test
 	public void testSetCapacity() {
 		ArrayStack list = new ArrayStack();
