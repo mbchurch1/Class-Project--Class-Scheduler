@@ -47,10 +47,25 @@ public class ArrayQueueTest {
 		//Try setting invalid capacity
 		try {
 			list.setCapacity(-1);
+			fail("Capacity cannot be negative.");
 		} catch(IllegalArgumentException e) {
 			assertEquals("Invalid capacity.", e.getMessage());
 		}
 		
+		list.enqueue("Test1");
+		list.enqueue("Test2");
+		list.enqueue("Test3");
+		assertEquals(3, list.size());
+		
+		try {
+			list.setCapacity(2);
+			fail("Capacity cannot be less than size of ArrayQueue.");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid capacity.", e.getMessage());
+		}
+		
+		list.setCapacity(50);
+		assertFalse(list.isEmpty());
 	}
 
 }
