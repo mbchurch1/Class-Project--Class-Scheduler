@@ -28,7 +28,7 @@ public class CourseRoll {
 	/** Enrollment capacity field */
 	private int enrollmentCap;
 	/** the course waitlist */
-	private Queue<Student> waitlist;
+	private LinkedQueue<Student> waitlist;
 	/** the course the roll is attached to */
 	private Course course;
 	/** Minimum number of enrolled students */
@@ -96,12 +96,15 @@ public class CourseRoll {
 		}
 		if (roll.size() == enrollmentCap) {
 			waitlist.enqueue(student);
-		}
-		try {
+		} else {
 			roll.add(roll.size(), student);
-		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("Student cannot be enrolled.");
 		}
+	
+//		try {
+//			roll.add(roll.size(), student);
+//		} catch (IllegalArgumentException e) {
+//			throw new IllegalArgumentException("Student cannot be enrolled.");
+//		}
 	}
 
 	/**
@@ -161,7 +164,7 @@ public class CourseRoll {
 		}
 		// implement a contains in LinkedQueue
 
-		Queue<Student> copiedWaitlist = waitlist;
+		LinkedQueue<Student> copiedWaitlist = waitlist;
 
 		return true;
 	}
