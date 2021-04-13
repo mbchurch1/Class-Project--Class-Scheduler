@@ -149,6 +149,9 @@ public class CourseRollTest {
 		assertTrue(f1.canEnroll(s2));
 	}
 	
+	/**
+	 * Test waitlist
+	 */
 	@Test 
 	public void testWaitlist() {
 		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");

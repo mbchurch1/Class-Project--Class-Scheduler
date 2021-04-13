@@ -65,11 +65,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 * @return boolean if list is empty
 	 */
 	public boolean isEmpty() {
-		if (list.size() == 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return list.size() == 0;
 	}
 	
 	/**

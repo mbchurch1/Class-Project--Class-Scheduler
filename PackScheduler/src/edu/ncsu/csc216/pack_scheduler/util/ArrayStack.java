@@ -14,19 +14,21 @@ public class ArrayStack<E> implements Stack<E> {
 
 	/** Generic ArrayStack */
 	private ArrayList<E> list;
-	/** The number of elements in the ArrayStack */
-	private int size;
+	///** The number of elements in the ArrayStack */
+	//private int size;
 	/** The maximum number of elements that can be added to ArrayStack */
 	private int capacity;
 	
+	
 	/**
-	 * Constructor for ArrayStack using amount for the capacity
-	 * @param amount  Integer to set capacity to
+	 * ArrayStack constructor using amount for the capacity
+	 * 
+	 * @param amount Integer to set capacity to
 	 */
 	public ArrayStack(int amount) {
 		list = new ArrayList<E>();
-		size = 0;
-		capacity = amount;
+		//size = 0;
+		setCapacity(amount);
 	}
 	
 	/**
@@ -34,8 +36,8 @@ public class ArrayStack<E> implements Stack<E> {
 	 */
 	public ArrayStack() {
 		list = new ArrayList<E>();
-		size = 0;
-		capacity = 10;
+		//size = 0;
+		setCapacity(10);
 	}
 		 
 	/**

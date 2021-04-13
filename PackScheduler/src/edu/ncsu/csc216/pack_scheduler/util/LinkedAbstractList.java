@@ -153,8 +153,10 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			}
 			current.next = new ListNode(e, current.next);
 			if (current.next.next == null) {
-				back = current.next;
-				back = new ListNode(e, back.next);
+				back = new ListNode(e, current.next);
+				//Combining the two commands below
+//				back = current.next;
+//				back = new ListNode(e, back.next);
 			}
 			size++;
 		}

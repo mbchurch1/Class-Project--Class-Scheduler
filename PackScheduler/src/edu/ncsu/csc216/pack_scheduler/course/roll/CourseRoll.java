@@ -3,10 +3,10 @@
  */
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
-import java.util.EmptyStackException;
+//import java.util.EmptyStackException;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+//import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
@@ -180,7 +180,7 @@ public class CourseRoll {
 		}
 		// implement a contains in LinkedQueue
 
-		LinkedQueue<Student> copiedWaitlist = waitlist;
+		//LinkedQueue<Student> copiedWaitlist = waitlist;
 
 		return true;
 	}
