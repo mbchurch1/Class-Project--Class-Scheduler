@@ -14,9 +14,15 @@ public class ArrayStack<E> implements Stack<E> {
 
 	/** Generic ArrayStack */
 	private ArrayList list;
+	/** The number of elements in the ArrayStack */
+	private int size;
+	/** The maximum number of elements that can be added to ArrayStack */
+	private int capacity;
 	
 	public ArrayStack() {
 		list = new ArrayList<E>();
+		size = 0;
+		capacity = 0;
 	}
 		 
 	@Override
@@ -33,6 +39,8 @@ public class ArrayStack<E> implements Stack<E> {
 		if(list.isEmpty()) {
 			throw new EmptyStackException();
 		}
+		//I don't think we need to cast this as E 
+		// I think 
 		E value = (E) list.get(list.size() - 1);
 		list.remove(list.size() - 1);
 		return value;
@@ -59,6 +67,8 @@ public class ArrayStack<E> implements Stack<E> {
 	public void setCapacity(int capacity) {
 		if(capacity < 0 || capacity < list.size()) {
 			throw new IllegalArgumentException("Invalid capacity.");
+		} else {
+			this.capacity = capacity;
 		}
 		
 		//Need to implement setCapacity in ArrayStack, not ArrayList class.

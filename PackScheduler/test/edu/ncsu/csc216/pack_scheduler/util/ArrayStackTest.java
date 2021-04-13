@@ -40,7 +40,27 @@ public class ArrayStackTest {
 	
 	@Test
 	public void testSetCapacity() {
-		fail("Not yet implemented");
+		ArrayStack list = new ArrayStack();
+		try {
+			list.setCapacity(-20);
+			fail("Capacity cannot be negative.");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid capacity.", e.getMessage());
+		}
+		
+		list.push("Test1");
+		list.push("Test2");
+		list.push("Test3");
+		assertEquals(3, list.size());
+		try {
+			list.setCapacity(2);
+			fail("Capacity cannot be less than size of ArrayStack.");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid capacity.", e.getMessage());
+		}
+		
+		list.setCapacity(50);
+		assertFalse(list.isEmpty());
 	}
 
 	
