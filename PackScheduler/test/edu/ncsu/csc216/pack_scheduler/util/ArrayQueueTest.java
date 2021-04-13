@@ -67,5 +67,27 @@ public class ArrayQueueTest {
 		list.setCapacity(50);
 		assertFalse(list.isEmpty());
 	}
+	
+	@Test
+	public void testEnqueue() {
+		ArrayQueue list = new ArrayQueue(10);
+		assertTrue(list.isEmpty());
+		
+		list.setCapacity(5);
+		
+		list.enqueue("Test1");
+		list.enqueue("Test2");
+		list.enqueue("Test3");
+		list.enqueue("Test4");
+		list.enqueue("Test5");
+		assertEquals(5, list.size());
+		
+		try {
+			list.enqueue("Test6");
+			fail("Cannot add when list is at capacity.");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add to queue.", e.getMessage());
+		}
+	}
 
 }
