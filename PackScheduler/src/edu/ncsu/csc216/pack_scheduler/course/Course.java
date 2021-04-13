@@ -38,18 +38,18 @@ public class Course extends Activity implements Comparable<Course> {
 	 * Constructs a course object with values for all fields, including a name,
 	 * title, section, credits instructor Id, meeting days, and start and end times.
 	 * 
-	 * @param name         name of a course
-	 * @param title        title of a course
-	 * @param section      section of course
-	 * @param credits      course credit hours
-	 * @param instructorId course instructor ID
+	 * @param name          name of a course
+	 * @param title         title of a course
+	 * @param section       section of course
+	 * @param credits       course credit hours
+	 * @param instructorId  course instructor ID
 	 * @param enrollmentCap course enrollment capacity
-	 * @param meetingDays  course meeting days
-	 * @param startTime    course start time
-	 * @param endTime      course end time
+	 * @param meetingDays   course meeting days
+	 * @param startTime     course start time
+	 * @param endTime       course end time
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
-			int startTime, int endTime) {
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap,
+			String meetingDays, int startTime, int endTime) {
 		super(title, meetingDays, startTime, endTime);
 		setName(name);
 		setSection(section);
@@ -62,15 +62,16 @@ public class Course extends Activity implements Comparable<Course> {
 	 * Creates a Course with the given name, title, section, credits, instructorID,
 	 * and meetingDays for courses that are arranged.
 	 * 
-	 * @param name         course name
-	 * @param title        course title
-	 * @param section      course section
-	 * @param credits      course credit hours
-	 * @param instructorId course instructor ID
+	 * @param name          course name
+	 * @param title         course title
+	 * @param section       course section
+	 * @param credits       course credit hours
+	 * @param instructorId  course instructor ID
 	 * @param enrollmentCap course enrollment capacity
-	 * @param meetingDays  course meeting days as a series of characters
+	 * @param meetingDays   course meeting days as a series of characters
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap,
+			String meetingDays) {
 		this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
 		roll = new CourseRoll(this, enrollmentCap);
 	}
@@ -85,10 +86,10 @@ public class Course extends Activity implements Comparable<Course> {
 	}
 
 	/**
-	 * Sets the Course name. The name must start with 1 to 4 letters, 
-	 * followed by exactly 3 digits, followed by an optional 1 letter 
-	 * suffix, and with a total course name string length of 4 to 8
-	 * characters, otherwise an IllegalArgumentException is thrown.
+	 * Sets the Course name. The name must start with 1 to 4 letters, followed by
+	 * exactly 3 digits, followed by an optional 1 letter suffix, and with a total
+	 * course name string length of 4 to 8 characters, otherwise an
+	 * IllegalArgumentException is thrown.
 	 * 
 	 * @param name the name to set
 	 * @throws IllegalArgumentException  if the name is null
@@ -275,7 +276,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	@Override
 	public boolean isDuplicate(Activity activity) {
-		
+
 		return activity instanceof Course && name.equals(((Course) activity).getName());
 	}
 
@@ -292,8 +293,8 @@ public class Course extends Activity implements Comparable<Course> {
 			return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + ","
 					+ roll.getEnrollmentCap() + "," + getMeetingDays();
 		}
-		return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + "," + roll.getEnrollmentCap() + "," 
-				+ getMeetingDays() + "," + getStartTime() + "," + getEndTime();
+		return name + "," + getTitle() + "," + section + "," + credits + "," + instructorId + ","
+				+ roll.getEnrollmentCap() + "," + getMeetingDays() + "," + getStartTime() + "," + getEndTime();
 	}
 
 	/**
@@ -386,10 +387,11 @@ public class Course extends Activity implements Comparable<Course> {
 		longDisplay[6] = "";
 		return longDisplay;
 	}
-	
+
 	/**
-	 * Gets the CourseRoll object associated with this course and 
-	 * containing a list of students currently enrolled in the course
+	 * Gets the CourseRoll object associated with this course and containing a list
+	 * of students currently enrolled in the course
+	 * 
 	 * @return roll a CourseRoll object
 	 */
 	public CourseRoll getCourseRoll() {

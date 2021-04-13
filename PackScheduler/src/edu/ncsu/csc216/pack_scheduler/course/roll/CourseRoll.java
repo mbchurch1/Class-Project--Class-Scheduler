@@ -29,6 +29,8 @@ public class CourseRoll {
 	private int enrollmentCap;
 	/** the course waitlist */
 	private Queue<Student> waitlist;
+	/** the course the roll is attached to */
+	private Course course;
 	/** Minimum number of enrolled students */
 	private static final int MIN_ENROLLMENT = 10;
 	/** Maximum number of enrolled students */
@@ -43,12 +45,18 @@ public class CourseRoll {
 	 * @param enrollmentCap the Course enrollment cap
 	 */
 	public CourseRoll(Course course, int enrollmentCap) {
+
+		roll = new LinkedAbstractList<Student>(enrollmentCap);
+		setEnrollmentCap(enrollmentCap);
+		setCourse(course);
+		waitlist = new LinkedQueue(WAITLIST_SIZE);
+	}
+
+	private void setCourse(Course course) {
 		if (course == null) {
 			throw new IllegalArgumentException("The course cannot be null.");
 		}
-		roll = new LinkedAbstractList<Student>(enrollmentCap);
-		setEnrollmentCap(enrollmentCap);
-		waitlist = new LinkedQueue(WAITLIST_SIZE);
+		this.course = course;
 	}
 
 	/**

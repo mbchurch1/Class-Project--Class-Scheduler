@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 /**
  * Tests the CourseRoll class
@@ -41,24 +42,27 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testCourseRoll() {
-		CourseRoll a1 = new CourseRoll(15);
-		assertEquals(15, a1.getEnrollmentCap());
-		assertEquals(15, a1.getOpenSeats());
-		try {
-			CourseRoll a2 = new CourseRoll(9);
-			// do something with a2
-			a2.getEnrollmentCap();
-			fail("The CourseRoll was created, it should'nt have been");
-		} catch (IllegalArgumentException e) {
-			assertEquals("Invalid enrollment capacity.", e.getMessage());
-		}
+		Course c1 = new Course("CSC217", "SDF Lab", "601", 1, "mbchurch", 30, "A");
+		CourseRoll a1 = c1.getCourseRoll();
+		assertEquals(30, a1.getEnrollmentCap());
+		assertEquals(30, a1.getOpenSeats());
+		// essentially moot with new changes
+//		try {
+//			CourseRoll a2 = c1.getCourseRoll();
+//			// do something with a2
+//			a2.getEnrollmentCap();
+//			fail("The CourseRoll was created, it should'nt have been");
+//		} catch (IllegalArgumentException e) {
+//			assertEquals("Invalid enrollment capacity.", e.getMessage());
+//		}
 	}
 	/**
 	 * tests getEnrollmentCap()
 	 */
 	@Test
 	public void testGetEnrollmentCap() {
-		CourseRoll b1 = new CourseRoll(20);
+		Course c2 = new Course("CSC101", "Program right", "001", 3, "mbchurch", 20, "A");
+		CourseRoll b1 = c2.getCourseRoll();
 		assertEquals(20, b1.getEnrollmentCap());
 	}
 	/**
@@ -66,7 +70,8 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testSetEnrollmentCap() {
-		CourseRoll c1 = new CourseRoll(30);
+		Course c3 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 30, "A");
+		CourseRoll c1 = c3.getCourseRoll();
 		assertEquals(30, c1.getEnrollmentCap());
 		c1.setEnrollmentCap(25);
 		assertEquals(25, c1.getEnrollmentCap());
@@ -76,7 +81,8 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testEnroll() {
-		CourseRoll d1 = new CourseRoll(10);
+		Course c4 = new Course("CSC216", "Programming Concepts - Java", "001", 3, "sesmith5", 10, "A");
+		CourseRoll d1 = c4.getCourseRoll();
 		d1.enroll(s1);
 		d1.enroll(s2);
 		d1.enroll(s3);
@@ -110,7 +116,8 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testDrop() {
-		CourseRoll g1 = new CourseRoll(10);
+		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll g1 = c5.getCourseRoll();
 		g1.enroll(s1);
 		g1.enroll(s2);
 		assertEquals(8, g1.getOpenSeats());
@@ -122,7 +129,8 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testGetOpenSeats() {
-		CourseRoll e1 = new CourseRoll(10);
+		Course c6 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll e1 = c6.getCourseRoll();
 		assertEquals(10, e1.getOpenSeats());
 		e1.enroll(s1);
 		assertEquals(9, e1.getOpenSeats());
@@ -132,7 +140,8 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testCanEnroll() {
-		CourseRoll f1 = new CourseRoll(10);
+		Course c7 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll f1 = c7.getCourseRoll();
 		f1.enroll(s1);
 		assertFalse(f1.canEnroll(s1));
 		assertTrue(f1.canEnroll(s2));
