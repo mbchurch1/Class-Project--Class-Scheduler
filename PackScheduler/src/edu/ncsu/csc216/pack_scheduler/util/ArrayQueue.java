@@ -32,16 +32,18 @@ public class ArrayQueue<E> implements Queue<E> {
 	
 	public void enqueue(E element) {
 		//need to check if list has has room to add an element
-		if (size >= capacity) {
+		if ((size + 1) > capacity) {
 			throw new IllegalArgumentException("Cannot add to queue.");
 		}
 		list.add(element);
+		size++;
 	}
 	
 	public E dequeue() {
 		if(list.isEmpty()) {
 			throw new NoSuchElementException("List is empty.");
 		}
+		size--;
 		return list.remove(0);
 	}
 	
