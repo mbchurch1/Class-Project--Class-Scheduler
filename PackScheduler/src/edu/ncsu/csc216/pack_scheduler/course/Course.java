@@ -55,7 +55,7 @@ public class Course extends Activity implements Comparable<Course> {
 		setSection(section);
 		setCredits(credits);
 		setInstructorId(instructorId);
-		roll = new CourseRoll(enrollmentCap);
+		roll = new CourseRoll(this, enrollmentCap);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {
 		this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
-		roll = new CourseRoll(enrollmentCap);
+		roll = new CourseRoll(this, enrollmentCap);
 	}
 
 	/**
@@ -362,7 +362,7 @@ public class Course extends Activity implements Comparable<Course> {
 		shortDisplay[1] = section;
 		shortDisplay[2] = getTitle();
 		shortDisplay[3] = getMeetingString();
-		shortDisplay[4] = "" + roll.getOpenSeats();
+		shortDisplay[4] = "" + this.roll.getOpenSeats();
 		return shortDisplay;
 	}
 

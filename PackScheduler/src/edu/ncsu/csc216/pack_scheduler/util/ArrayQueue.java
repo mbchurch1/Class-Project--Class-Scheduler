@@ -18,12 +18,16 @@ public class ArrayQueue<E> implements Queue<E> {
 	private int size;
 	/** The maximum number of elements that can be added to ArrayStack */
 	private int capacity;
-	
-	public ArrayQueue() {
+	/**
+	 * ArrayQueue constructor
+	 * @param amount the capacity of the waitlist
+	 * 
+	 */
+	public ArrayQueue(int amount) {
 		
 		list = new ArrayList<E>();
 		size = 0;
-		capacity = 0;
+		this.capacity = amount;
 	}
 	
 	public void enqueue(E element) {

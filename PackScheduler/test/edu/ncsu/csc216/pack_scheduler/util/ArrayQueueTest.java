@@ -19,7 +19,7 @@ public class ArrayQueueTest {
 
 	@Test
 	public void testArrayQueue() {
-		ArrayQueue list = new ArrayQueue();
+		ArrayQueue list = new ArrayQueue(10);
 		assertTrue(list.isEmpty());
 		list.enqueue("Test");
 		list.enqueue("Test2");
@@ -31,7 +31,7 @@ public class ArrayQueueTest {
 
 	@Test
 	public void testDequeueEmptyQueue() {
-		ArrayQueue list = new ArrayQueue();
+		ArrayQueue list = new ArrayQueue(10);
 		assertTrue(list.isEmpty());
 		try {
 			list.dequeue();
@@ -42,7 +42,7 @@ public class ArrayQueueTest {
 
 	@Test
 	public void testSetCapacity() {
-		ArrayQueue list = new ArrayQueue();
+		ArrayQueue list = new ArrayQueue(10);
 		assertTrue(list.isEmpty());
 		//Try setting invalid capacity
 		try {
