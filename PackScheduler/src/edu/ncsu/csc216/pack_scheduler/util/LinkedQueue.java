@@ -34,7 +34,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	}
 	
 	public E dequeue() {
-		if(list.isEmpty()) {
+		if(isEmpty()) {
 			throw new EmptyStackException();
 		} 
 //		if(list.isEmpty()) {
@@ -47,8 +47,11 @@ public class LinkedQueue<E> implements Queue<E> {
 	}
 	
 	public boolean isEmpty() {
-		
-		return list.isEmpty();
+		if (list.size() == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public int size() {

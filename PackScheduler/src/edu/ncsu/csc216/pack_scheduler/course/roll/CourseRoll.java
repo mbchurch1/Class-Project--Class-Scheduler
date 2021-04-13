@@ -45,6 +45,9 @@ public class CourseRoll {
 	 * @param enrollmentCap the Course enrollment cap
 	 */
 	public CourseRoll(Course course, int enrollmentCap) {
+		if (course == null) {
+			throw new IllegalArgumentException("Invalid course.");
+		}
 
 		roll = new LinkedAbstractList<Student>(enrollmentCap);
 		setEnrollmentCap(enrollmentCap);
@@ -116,23 +119,31 @@ public class CourseRoll {
 		if (student == null || roll == null) {
 			throw new IllegalArgumentException("Student cannot be dropped.");
 		}
-		int index = -1;
+//		int index = -1;
+//		for (int i = 0; i < roll.size(); i++) {
+//			if (roll.get(i).equals(student)) {
+//				index = i;
+//			}
+//		}
 		for (int i = 0; i < roll.size(); i++) {
 			if (roll.get(i).equals(student)) {
-				index = i;
+				roll.remove(i);
 			}
 		}
-
-		try {
-			roll.remove(index);
-		} catch (IndexOutOfBoundsException e) {
-			// throw new IllegalArgumentException("Student cannot be enrolled.");
+		if (!waitlist.isEmpty()) {
+			enroll(waitlist.dequeue());
 		}
-		try {
-			roll.add(waitlist.dequeue());
-		} catch (EmptyStackException e) {
-			// doesn't add if the waitlist is empty
-		}
+		
+//		try {
+//			roll.remove(index);
+//		} catch (IndexOutOfBoundsException e) {
+//			// throw new IllegalArgumentException("Student cannot be enrolled.");
+//		}
+//		try {
+//			roll.add(waitlist.dequeue());
+//		} catch (EmptyStackException e) {
+//			// doesn't add if the waitlist is empty
+//		}
 
 	}
 
