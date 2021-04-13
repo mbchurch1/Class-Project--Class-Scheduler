@@ -148,5 +148,29 @@ public class CourseRollTest {
 		assertFalse(f1.canEnroll(s1));
 		assertTrue(f1.canEnroll(s2));
 	}
+	
+	@Test 
+	public void testWaitlist() {
+		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
+		CourseRoll g1 = c5.getCourseRoll();
+		g1.enroll(s1);
+		g1.enroll(s2);
+		g1.enroll(s3);
+		g1.enroll(s4);
+		g1.enroll(s5);
+		g1.enroll(s6);
+		g1.enroll(s7);
+		g1.enroll(s8);
+		g1.enroll(s9);
+		assertEquals(1, g1.getOpenSeats());
+		g1.enroll(s10);
+		g1.enroll(s11);
+		assertEquals(0, s11.getSchedule().getScheduleCredits());
+		assertEquals(1, g1.getNumberOnWaitlist());
+		g1.drop(s2);
+		assertEquals(0, g1.getOpenSeats());
+		assertEquals(0, g1.getNumberOnWaitlist());
+		assertEquals(4, s11.getSchedule().getScheduleCredits());
+	}
 
 }
