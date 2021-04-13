@@ -133,6 +133,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		//if(index == 0 && size == 0) {
 		if (front == null) {
 			front = new ListNode(e);
+			size++;
 		} 
 //		else if (index == (size - 1) && size > 0 && index > 0) {
 //			for (int i = 0; i < size - 1; i++) {
@@ -144,6 +145,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 //		} 
 		else if(index == 0) {
 			front = new ListNode(e, front);
+			size++;
 		} else {
 			current = front;
 			for( int i = 0; i < index - 1; i++) {
@@ -154,8 +156,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 				back = current.next;
 				back = new ListNode(e, back.next);
 			}
+			size++;
 		}
-		size++;
 	}
 	
 	/**

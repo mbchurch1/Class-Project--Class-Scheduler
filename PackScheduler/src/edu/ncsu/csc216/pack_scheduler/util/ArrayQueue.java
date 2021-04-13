@@ -18,10 +18,10 @@ public class ArrayQueue<E> implements Queue<E> {
 	private int size;
 	/** The maximum number of elements that can be added to ArrayStack */
 	private int capacity;
+	
 	/**
 	 * ArrayQueue constructor
 	 * @param amount the capacity of the waitlist
-	 * 
 	 */
 	public ArrayQueue(int amount) {
 		
@@ -32,6 +32,9 @@ public class ArrayQueue<E> implements Queue<E> {
 	
 	public void enqueue(E element) {
 		//need to check if list has has room to add an element
+		if (size >= capacity) {
+			throw new IllegalArgumentException("Cannot add to queue.");
+		}
 		list.add(element);
 	}
 	
