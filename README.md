@@ -1,6 +1,6 @@
  csc217-LLL-601-40
 # Lab 09
-   - [x] Bug Fix - John Firlet Due 4/11 **Complete**
+   - [x] Bug Fix - John Firlet Due 4/11 
    - [x] Implement Queues - John Firlet Due 4/11 
    - [x] Implement Stacks - Will Goodwin Due 4/11
    - [x] Eval RT Efficiency - John Firlet turn in, Matt Church, Will Goodwin - Due 4/11
