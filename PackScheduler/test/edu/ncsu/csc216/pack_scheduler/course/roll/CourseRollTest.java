@@ -6,8 +6,10 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 /**
  * Tests the CourseRoll class
+ * 
  * @author Matthew Church
  * @author Will Goodwin
  * @author John Firlet
@@ -15,11 +17,13 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
  */
 public class CourseRollTest {
 	/** Student 1 */
-	private Student s1 = new Student("Demetrius", "Austin", "daustin", "Curabitur.egestas.nunc@placeratorcilacus.co.uk", "pw", 18);
+	private Student s1 = new Student("Demetrius", "Austin", "daustin", "Curabitur.egestas.nunc@placeratorcilacus.co.uk",
+			"pw", 18);
 	/** Student 2 */
 	private Student s2 = new Student("Lane", "Berg", "lberg", "sociis@non.org", "pw", 14);
 	/** Student 3 */
-	private Student s3 = new Student("Raymond", "Brennan", "rbrennan", "litora.torquent@pellentesquemassalobortis.ca", "pw", 12);
+	private Student s3 = new Student("Raymond", "Brennan", "rbrennan", "litora.torquent@pellentesquemassalobortis.ca",
+			"pw", 12);
 	/** Student 4 */
 	private Student s4 = new Student("Emerald", "Frost", "efrost", "adipiscing@acipsumPhasellus.edu", "pw", 3);
 	/** Student 5 */
@@ -36,7 +40,7 @@ public class CourseRollTest {
 	private Student s10 = new Student("Griffith", "Stone", "gstone", "porta@magnamalesuadavel.net", "pw", 17);
 	/** Student 11 */
 	private Student s11 = new Student("Matt", "Church", "mbchurch", "mbchurch@ncsu.edu", "pw", 16);
-	
+
 	/**
 	 * tests CourseRoll Constructor
 	 */
@@ -56,6 +60,7 @@ public class CourseRollTest {
 //			assertEquals("Invalid enrollment capacity.", e.getMessage());
 //		}
 	}
+
 	/**
 	 * tests getEnrollmentCap()
 	 */
@@ -65,6 +70,7 @@ public class CourseRollTest {
 		CourseRoll b1 = c2.getCourseRoll();
 		assertEquals(20, b1.getEnrollmentCap());
 	}
+
 	/**
 	 * tests setEnrollmentCap()
 	 */
@@ -76,6 +82,7 @@ public class CourseRollTest {
 		c1.setEnrollmentCap(25);
 		assertEquals(25, c1.getEnrollmentCap());
 	}
+
 	/**
 	 * tests enroll()
 	 */
@@ -87,12 +94,12 @@ public class CourseRollTest {
 		d1.enroll(s2);
 		d1.enroll(s3);
 		d1.enroll(s4);
-		//test with different method
+		// test with different method
 		assertEquals(6, d1.getOpenSeats());
 		d1.enroll(s5);
 		d1.enroll(s6);
 		d1.enroll(s7);
-		
+
 		try {
 			d1.enroll(s1);
 			fail("This student should not have been enrolled.");
@@ -103,16 +110,17 @@ public class CourseRollTest {
 		d1.enroll(s9);
 		d1.enroll(s10);
 		assertEquals(0, d1.getOpenSeats());
-		d1.enroll(s11);
 		assertTrue(d1.canEnroll(s11));
+		d1.enroll(s11);
 //		try {
 //			d1.enroll(s11);
 //			fail("The class is full, but the student was enrolled anyway.");
 //		} catch (IllegalArgumentException e) {
 //			assertEquals("Student cannot be enrolled.", e.getMessage());
 //		}
-		
+
 	}
+
 	/**
 	 * tests drop
 	 */
@@ -126,6 +134,7 @@ public class CourseRollTest {
 		g1.drop(s2);
 		assertEquals(9, g1.getOpenSeats());
 	}
+
 	/**
 	 * tests getOpenSeats
 	 */
@@ -137,6 +146,7 @@ public class CourseRollTest {
 		e1.enroll(s1);
 		assertEquals(9, e1.getOpenSeats());
 	}
+
 	/**
 	 * tests canEnroll
 	 */
@@ -148,11 +158,11 @@ public class CourseRollTest {
 		assertFalse(f1.canEnroll(s1));
 		assertTrue(f1.canEnroll(s2));
 	}
-	
+
 	/**
 	 * Test waitlist
 	 */
-	@Test 
+	@Test
 	public void testWaitlist() {
 		Course c5 = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
 		CourseRoll g1 = c5.getCourseRoll();
@@ -168,6 +178,8 @@ public class CourseRollTest {
 		assertEquals(1, g1.getOpenSeats());
 		g1.enroll(s10);
 		g1.enroll(s11);
+		// test adding a duplicate to the waitlist
+		assertFalse(g1.canEnroll(s11));
 		assertEquals(0, s11.getSchedule().getScheduleCredits());
 		assertEquals(1, g1.getNumberOnWaitlist());
 		g1.drop(s2);
