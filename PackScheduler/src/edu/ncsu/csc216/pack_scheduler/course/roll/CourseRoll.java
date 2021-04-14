@@ -183,20 +183,32 @@ public class CourseRoll {
 	 * @return True or false if the student can be added
 	 */
 	public boolean canEnroll(Student student) {
+		boolean enroll = true;
 		if (roll.size() >= enrollmentCap && waitlist.size() >= WAITLIST_SIZE) {
-			return false;
+			enroll = false;
 		}
 
 		for (int i = 0; i < roll.size(); i++) {
 			if (roll.get(i).equals(student)) {
-				return false;
+				enroll = false;
 			}
 		}
 		// implement a contains in LinkedQueue
+		Queue<Student> backup = new LinkedQueue<Student>(10);
+		while (!waitlist.isEmpty()) {
+			Student search = waitlist.dequeue();
+			if (search == student) {
+				enroll = false;
+			}
+			backup.enqueue(search);
+		}
+		while (!backup.isEmpty()) {
+			waitlist.enqueue(backup.dequeue());
+		}
 
 		//LinkedQueue<Student> copiedWaitlist = waitlist;
 
-		return true;
+		return enroll;
 	}
 
 	/**
