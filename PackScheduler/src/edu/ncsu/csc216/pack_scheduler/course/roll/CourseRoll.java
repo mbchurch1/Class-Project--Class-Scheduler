@@ -10,6 +10,7 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
+import edu.ncsu.csc216.pack_scheduler.util.Queue;
 //import edu.ncsu.csc216.pack_scheduler.util.Queue;
 
 /**
@@ -139,6 +140,17 @@ public class CourseRoll {
 			Student s = waitlist.dequeue();
 			enroll(s);
 			s.getSchedule().addCourseToSchedule(course);
+		}
+		Queue<Student> backup = new LinkedQueue<Student>(10);
+		while (!waitlist.isEmpty()) {
+			Student search = waitlist.dequeue();
+			if (search == student) {
+				break;
+			}
+			backup.enqueue(search);
+		}
+		while (!backup.isEmpty()) {
+			waitlist.enqueue(backup.dequeue());
 		}
 		
 //		try {
