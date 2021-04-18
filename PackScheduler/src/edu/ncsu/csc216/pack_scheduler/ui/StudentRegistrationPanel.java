@@ -341,7 +341,6 @@ public class StudentRegistrationPanel  extends JPanel implements ActionListener 
 			borderSchedule.setTitle(schedule.getTitle());
 		}
 		
-		
 		this.repaint();
 		this.validate();
 	}

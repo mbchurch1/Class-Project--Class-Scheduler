@@ -50,7 +50,7 @@ public class FacultyDirectory {
 	 * @throws IllegalArgumentException if the file passed in from FacultyRecordIO
 	 * 		can not be found or read
 	 */
-	public void loadFacultiesFromFile(String fileName) {
+	public void loadFacultyFromFile(String fileName) {
 		try {
 			facultyDirectory = FacultyRecordIO.readFacultyRecords(fileName);
 		} catch (FileNotFoundException e) {
