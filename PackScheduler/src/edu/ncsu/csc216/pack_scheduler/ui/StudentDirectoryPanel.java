@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.pack_scheduler.ui;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -87,7 +89,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 	 * components.
 	 */
 	public StudentDirectoryPanel() {
-		super(new GridLayout(4, 1));
+		super(new GridBagLayout());
 		
 		studentDirectory = RegistrationManager.getInstance().getStudentDirectory();
 		
@@ -175,31 +177,61 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		pnlStudentForm.setBorder(boarder);
 		pnlStudentForm.setToolTipText("Student Information");
 		
-		this.add(pnlDirectoryButton);
-		this.add(scrollStudentDirectory);
-		this.add(pnlStudentButtons);
-		this.add(pnlStudentForm);
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 0;
+		c.weightx = 1;
+		c.weighty = .2;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(pnlDirectoryButton, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(scrollStudentDirectory, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		c.weightx = 1;
+		c.weighty = .5;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(pnlStudentButtons, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.fill = GridBagConstraints.BOTH;
+		this.add(pnlStudentForm, c);
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadStudentList) {
-			String fileName = getFileName(true);
+			
 			try {
+				String fileName = getFileName(true);
 				studentDirectory.loadStudentsFromFile(fileName);
 				studentDirectoryTableModel.updateData();
 				scrollStudentDirectory.revalidate();
 				scrollStudentDirectory.repaint();
 				studentDirectoryTableModel.fireTableDataChanged();
-			} catch (IllegalArgumentException iae) {
+			} catch (IllegalArgumentException | IllegalStateException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnSaveStudentList) {
-			String fileName = getFileName(false);
+			
 			try {
+				String fileName = getFileName(false);
 				studentDirectory.saveStudentDirectory(fileName);
-			} catch (IllegalArgumentException iae) {
+			} catch (IllegalArgumentException | IllegalStateException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnNewStudentList) {
@@ -286,7 +318,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		}
 		if (returnVal != JFileChooser.APPROVE_OPTION) {
 			//Error or user canceled, either way no file name.
-			throw new IllegalStateException();
+			throw new IllegalStateException("Canceled action.");
 		}
 		File catalogFile = fc.getSelectedFile();
 		return catalogFile.getAbsolutePath();

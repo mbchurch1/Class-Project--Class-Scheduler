@@ -355,6 +355,8 @@ public class PackSchedulerGUI {
 			if (e.getSource() == btnLogout) {
 				RegistrationManager.getInstance().logout();
 				cardLayout.show(panel, LOGIN_PANEL);
+				updateTables();
+				pnlLogin.repaint();
 			}
 		}
 		

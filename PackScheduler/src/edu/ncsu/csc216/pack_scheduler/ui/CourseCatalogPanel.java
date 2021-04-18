@@ -135,8 +135,8 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		pnlCatalogButton.add(btnSaveCourseCatalog);
 		
 		Border lowerEtched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
-		TitledBorder boarder = BorderFactory.createTitledBorder(lowerEtched, "Catalog Buttons");
-		pnlCatalogButton.setBorder(boarder);
+		TitledBorder border = BorderFactory.createTitledBorder(lowerEtched, "Catalog Buttons");
+		pnlCatalogButton.setBorder(border);
 		pnlCatalogButton.setToolTipText("Catalog Buttons");
 		
 		//Set up Catalog table
@@ -148,8 +148,8 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		
 		scrollCourseCatalog = new JScrollPane(tableCourseCatalog, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		boarder = BorderFactory.createTitledBorder(lowerEtched, "Course Catalog");
-		scrollCourseCatalog.setBorder(boarder);
+		border = BorderFactory.createTitledBorder(lowerEtched, "Course Catalog");
+		scrollCourseCatalog.setBorder(border);
 		scrollCourseCatalog.setToolTipText("Course Catalog");
 		
 		//Set up Course buttons
@@ -163,8 +163,8 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		pnlCourseButtons.add(btnAddCourse);
 		pnlCourseButtons.add(btnRemoveCourse);
 		
-		boarder = BorderFactory.createTitledBorder(lowerEtched, "Course Controls");
-		pnlCourseButtons.setBorder(boarder);
+		border = BorderFactory.createTitledBorder(lowerEtched, "Course Controls");
+		pnlCourseButtons.setBorder(border);
 		pnlCourseButtons.setToolTipText("Course Controls");
 		
 		//Set up Course form
@@ -303,8 +303,8 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 		pnlCourseForm.add(lblMeetingDays);
 		pnlCourseForm.add(pnlDays);
 		
-		boarder = BorderFactory.createTitledBorder(lowerEtched, "Course Information");
-		pnlCourseForm.setBorder(boarder);
+		border = BorderFactory.createTitledBorder(lowerEtched, "Course Information");
+		pnlCourseForm.setBorder(border);
 		pnlCourseForm.setToolTipText("Course Information");
 		
 		GridBagConstraints c = new GridBagConstraints();
