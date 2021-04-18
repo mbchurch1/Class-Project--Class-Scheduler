@@ -10,7 +10,9 @@ import java.util.Properties;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -31,6 +33,8 @@ public class RegistrationManager {
 	private CourseCatalog courseCatalog = new CourseCatalog();
 	/** Student Directory field */
 	private StudentDirectory studentDirectory = new StudentDirectory();
+	/** Faculty Directory field */
+	private FacultyDirectory facultyDirectory = new FacultyDirectory();
 	/** Registrar user */
 	private User registrar;
 	/** Current user field */
@@ -99,6 +103,19 @@ public class RegistrationManager {
 		return studentDirectory;
 	}
 
+	
+	/**
+	 * Returns the Faculty Directory
+	 * 
+	 * @return facultyDirectory Faculty Directory
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return facultyDirectory;
+	}
+	
+	
+	
+	
 	/**
 	 * Returns true if the ID and password match
 	 * 
@@ -121,6 +138,17 @@ public class RegistrationManager {
 				if (registrar.getPassword().equals(localHashPW)) {
 					currentUser = registrar;
 					return true;
+				}
+			} else if(facultyDirectory.getFacultyById(id) != null) {
+				Faculty f = facultyDirectory.getFacultyById(id);
+				if(f != null) {
+					MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
+					digest.update(password.getBytes());
+					String localHashPW = new String(digest.digest());
+					if (f.getPassword().equals(localHashPW)) {
+						currentUser = f;
+						return true;
+					}
 				}
 			} else if (studentDirectory.getStudentById(id) != null) {
 				Student s = studentDirectory.getStudentById(id);
