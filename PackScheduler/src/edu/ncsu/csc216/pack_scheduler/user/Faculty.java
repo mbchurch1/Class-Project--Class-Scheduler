@@ -105,7 +105,7 @@ public class Faculty extends User implements Comparable<Faculty>{
 				comparable = compareId;
 			}
 		} catch (NullPointerException e) {
-			throw new IllegalArgumentException("Student cannot be null.");
+			throw new IllegalArgumentException("Faculty cannot be null.");
 		}
 		return comparable;
 	}
