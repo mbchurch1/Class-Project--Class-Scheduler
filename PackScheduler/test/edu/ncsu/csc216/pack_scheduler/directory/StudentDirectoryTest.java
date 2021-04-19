@@ -213,6 +213,7 @@ public class StudentDirectoryTest {
 		sd.saveStudentDirectory("test-files/actual_student_records.txt");
 		checkFiles("test-files/expected_student_records.txt", "test-files/actual_student_records.txt");
 	}
+	
 	/**
 	 * Test the getStudentByID
 	 */
