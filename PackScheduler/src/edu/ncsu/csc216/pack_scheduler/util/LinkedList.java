@@ -26,16 +26,22 @@ public class LinkedList<E> extends AbstractSequentialList  {
 	private ListNode front;
 	/** Points to the last node in the list */
 	private ListNode back;
+	/** Dummy node at the beginning of the linkedList */
+	private ListNode dummyFront;
+	/** Dummy node at the end of the linkedList */
+	private ListNode dummyBack;
 	/** Size of the list */
 	private int size;
 	
 	
 	
 	public LinkedList() {
-		front = null;
+		dummyFront = new ListNode(null, null, dummyBack);
+		dummyBack = new ListNode(null, dummyFront, null);
+		front = dummyFront;
+		back = dummyBack;
 		front.next = back;
-		back = null;
-		back.next = front;
+		back.prev = front;
 		size = 0;
 	}
 	
@@ -51,20 +57,15 @@ public class LinkedList<E> extends AbstractSequentialList  {
 
 
 	@Override
-	public ListIterator<E> listIterator(int index) {
+	public ListIterator<E> listIterator(int index) throws IndexOutOfBoundsException {
 		
-		return new LinkedListIterator(0);
+		return new LinkedListIterator(index);
 	}
 
 	@Override
 	public int size() {
 		return size;
 	}
-
-	
-	
-	
-	
 	
 	private class LinkedListIterator implements ListIterator<E> {
 
@@ -78,19 +79,19 @@ public class LinkedList<E> extends AbstractSequentialList  {
 		public int previousIndex;
 		/** Last ListNode that was returned */
 		public ListNode lastRetrieved;
-		/** Current ListNode */
-		private ListNode current;
-		
-		
 		
 		public LinkedListIterator(int index) {
 			
 			if(index < 0 || index > size) {
 				throw new IndexOutOfBoundsException("Index out of bounds.");
 			}
-			current = front;
-			previous = (LinkedList<E>.ListNode) get(index - 1);
-			next = (LinkedList<E>.ListNode) next();
+			//previous = (LinkedList<E>.ListNode) get(index - 1);
+			//next = (LinkedList<E>.ListNode) next();
+			
+			//Need to traverse through to index - 1
+			previous = front;
+			//Need to traverse through to index
+			next = front.next();
 			previousIndex = previousIndex();
 			nextIndex = nextIndex();
 			lastRetrieved = null;
