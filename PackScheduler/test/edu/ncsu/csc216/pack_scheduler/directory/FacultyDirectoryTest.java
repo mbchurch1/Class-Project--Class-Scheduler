@@ -2,18 +2,24 @@ package edu.ncsu.csc216.pack_scheduler.directory;
 
 import static org.junit.Assert.*;
 
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-
+/**
+ * tests FacultyDirectory 
+ * @author Matthew Church
+ * @author Will Goodwin
+ * @author John Firlet
+ *
+ */
 public class FacultyDirectoryTest {
 
 	/** Valid course records */
@@ -232,26 +238,26 @@ public class FacultyDirectoryTest {
 
 	
 
-	/**
-	 * Helper method to compare two files for the same contents
-	 * 
-	 * @param expFile expected output
-	 * @param actFile actual output
-	 */
-	private void checkFiles(String expFile, String actFile) {
-		try {
-			Scanner expScanner = new Scanner(new FileInputStream(expFile));
-			Scanner actScanner = new Scanner(new FileInputStream(actFile));
-
-			while (expScanner.hasNextLine()) {
-				assertEquals(expScanner.nextLine(), actScanner.nextLine());
-			}
-
-			expScanner.close();
-			actScanner.close();
-		} catch (IOException e) {
-			fail("Error reading files.");
-		}
-	}
+//	/**
+//	 * Helper method to compare two files for the same contents
+//	 * 
+//	 * @param expFile expected output
+//	 * @param actFile actual output
+//	 */
+//	private void checkFiles(String expFile, String actFile) {
+//		try {
+//			Scanner expScanner = new Scanner(new FileInputStream(expFile));
+//			Scanner actScanner = new Scanner(new FileInputStream(actFile));
+//
+//			while (expScanner.hasNextLine()) {
+//				assertEquals(expScanner.nextLine(), actScanner.nextLine());
+//			}
+//
+//			expScanner.close();
+//			actScanner.close();
+//		} catch (IOException e) {
+//			fail("Error reading files.");
+//		}
+//	}
 
 }

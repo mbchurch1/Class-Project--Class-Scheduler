@@ -2,20 +2,26 @@ package edu.ncsu.csc216.pack_scheduler.io;
 
 import static org.junit.Assert.*;
 
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
+
 
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
-import edu.ncsu.csc217.collections.list.SortedList;
 
+import edu.ncsu.csc217.collections.list.SortedList;
+/**
+ * Tests FacultyRecordIO
+ * @author Matthew Church
+ * @author Will Goodwin
+ * @author John Firlet
+ *
+ */
 public class FacultyRecordIOTest {
 
 	/** Valid file for testing */
@@ -147,34 +153,34 @@ public class FacultyRecordIOTest {
 	
 	
 	
-	/**
-	 * Compares two files to confirm they contain the same information. This method is a companion method 
-	 * that helps ensure that writeStudentFiles is writing the correct information to file by comparing 
-	 * contents of a sample file against a file in which the structure of the contents is known.
-	 * 
-	 * @param expFile the expected file
-	 * @param actFile program output file
-	 */
-	private void checkFiles(String expFile, String actFile) {
-		try {
-			Scanner expScanner = new Scanner(new FileInputStream(expFile));
-			Scanner actScanner = new Scanner(new FileInputStream(actFile));
-			while (expScanner.hasNextLine() && actScanner.hasNextLine()) {
-				String exp = expScanner.nextLine();
-				String act = actScanner.nextLine();
-				assertEquals("Expected: " + exp + "Actual: " + act, exp, act);
-			}
-			if (expScanner.hasNextLine()) {
-				fail("The expected results expect another line " + expScanner.nextLine());
-			}
-			if (actScanner.hasNextLine()) {
-				fail("The actual results has an extra, unexpected line: " + actScanner.nextLine());
-			}
-			expScanner.close();
-			actScanner.close();
-		} catch (IOException e) {
-			fail("Error reading file");
-		}
-	}
+//	/**
+//	 * Compares two files to confirm they contain the same information. This method is a companion method 
+//	 * that helps ensure that writeStudentFiles is writing the correct information to file by comparing 
+//	 * contents of a sample file against a file in which the structure of the contents is known.
+//	 * 
+//	 * @param expFile the expected file
+//	 * @param actFile program output file
+//	 */
+//	private void checkFiles(String expFile, String actFile) {
+//		try {
+//			Scanner expScanner = new Scanner(new FileInputStream(expFile));
+//			Scanner actScanner = new Scanner(new FileInputStream(actFile));
+//			while (expScanner.hasNextLine() && actScanner.hasNextLine()) {
+//				String exp = expScanner.nextLine();
+//				String act = actScanner.nextLine();
+//				assertEquals("Expected: " + exp + "Actual: " + act, exp, act);
+//			}
+//			if (expScanner.hasNextLine()) {
+//				fail("The expected results expect another line " + expScanner.nextLine());
+//			}
+//			if (actScanner.hasNextLine()) {
+//				fail("The actual results has an extra, unexpected line: " + actScanner.nextLine());
+//			}
+//			expScanner.close();
+//			actScanner.close();
+//		} catch (IOException e) {
+//			fail("Error reading file");
+//		}
+//	}
 
 }
