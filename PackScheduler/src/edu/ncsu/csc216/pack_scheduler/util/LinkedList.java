@@ -5,8 +5,6 @@ import java.util.AbstractSequentialList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList.ListNode;
-
 //import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList.ListNode;
 
 
@@ -54,9 +52,15 @@ public class LinkedList<E> extends AbstractSequentialList  {
 		
 		// TODO Auto-generated method stub
 		super.add(index, element);
+		size++;
 	}
 
 
+	public E set(int index, Object element) {
+		
+		//TODO Implement set
+		return null;
+	}
 
 	@Override
 	public ListIterator<E> listIterator(int index) throws IndexOutOfBoundsException {
@@ -81,6 +85,8 @@ public class LinkedList<E> extends AbstractSequentialList  {
 		public int previousIndex;
 		/** Last ListNode that was returned */
 		public ListNode lastRetrieved;
+		
+		
 		
 		public LinkedListIterator(int index) {
 			
@@ -114,11 +120,64 @@ public class LinkedList<E> extends AbstractSequentialList  {
 			lastRetrieved = null;
 			   
 			}
+
+
+            if(index < 0 || index > size) {
+                throw new IndexOutOfBoundsException("Index out of bounds.");
+            }
+            //previous = (LinkedList<E>.ListNode) get(index - 1);
+            //next = (LinkedList<E>.ListNode) next();
+
+            previousIndex = -1;
+            nextIndex = 0;
+            //Need to traverse through to index - 1
+            previous = dummyFront;
+            //Need to traverse through to index
+            next = dummyFront.next;
+            //Traversing next to point to index & previous to point to index - 1
+            //TODO: May need a check in here so that it doesn't traverser out of bounds
+            //   Bounds are indicated when previous.data == null and next.data == null
+            //   But since the iterator starts at these spots, I'm not sure when the check should factor in
+            for (int i = 0; i < index; i++) {
+                next = next.next;
+                nextIndex++;
+                if (i < index - 1) {
+                    previous = previous.next;
+                    previousIndex++;
+                }
+            }
+
+//            previousIndex = previousIndex();
+//            nextIndex = nextIndex();
+            lastRetrieved = null;
+
+            }
+		
+		
+		
+//		public LinkedListIterator(int index) {
+//			
+//			if(index < 0 || index > size) {
+//				throw new IndexOutOfBoundsException("Index out of bounds.");
+//			}
+//			//previous = (LinkedList<E>.ListNode) get(index - 1);
+//			//next = (LinkedList<E>.ListNode) next();
+//			
+//			//Need to traverse through to index - 1
+//			previous = front;
+//			//Need to traverse through to index
+//			next = front.next();
+//			previousIndex = previousIndex();
+//			nextIndex = nextIndex();
+//			lastRetrieved = null;
+//			   
+//			}
+>>>>>>> 3226ea21e52cb2a7b03581a656d4d58cf4ce093c
 		
 		@Override
 		public boolean hasNext() {
 			
-			return current != null;
+			return next.next != null;
 		}
 
 		@Override
@@ -126,9 +185,9 @@ public class LinkedList<E> extends AbstractSequentialList  {
 			if(!hasNext()) {
 				throw new NoSuchElementException("Invalid element.");
 			}
-			E rtn = current.data;
-			lastRetrieved = current;
-			current = current.next;
+			E rtn = next.data;
+			lastRetrieved = next;
+			next = next.next;
 			previousIndex++;
 			nextIndex++;
 			
@@ -146,13 +205,13 @@ public class LinkedList<E> extends AbstractSequentialList  {
 			if(!hasPrevious()) {
 				throw new NoSuchElementException("Invalid element.");
 			}
-			E rtn = current.data;
-			lastRetrieved = current;
-			current = previous;
+			E rtn = previous.data;
+			lastRetrieved = previous;
+			next = previous;
 			previousIndex--;
 			nextIndex--;
-			next = previous;
 			previous = (LinkedList<E>.ListNode) get(previousIndex);
+			
 			return rtn;
 		}
 
@@ -190,7 +249,7 @@ public class LinkedList<E> extends AbstractSequentialList  {
 			
 			
 			// TODO Set the last element returned by last call previous() or next()
-			current.data = e;
+			lastRetrieved.data = e;
 			
 		}
 
