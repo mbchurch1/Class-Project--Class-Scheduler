@@ -70,7 +70,7 @@ public class FacultyDirectory {
 	 * @param email Faculties email
 	 * @param password Faculties password
 	 * @param repeatPassword Faculties repeated password
-	 * @param maxCredits Faculties max credits.
+	 * @param maxCourses Faculties max credits.
 	 * @return true if added
 	 * @throws IllegalArgumentException if the parameterized password is invalid, the
 	 * 		hash algorithm is invalid, or the repeat password does not match the 

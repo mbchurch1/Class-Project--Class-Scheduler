@@ -10,7 +10,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
  * @author John Firlet
  * @author Will Goodwin
  */
-public class Faculty extends User implements Comparable<Faculty>{
+public class Faculty extends User implements Comparable<Faculty> {
 	
 	
 	/** Faculty max courses */

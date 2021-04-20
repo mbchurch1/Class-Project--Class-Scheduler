@@ -94,7 +94,7 @@ public class FacultyRecordIO {
 	 * Writes a list of Faculty records to a file
 	 * 
 	 * @param fileName  file to write faculty records to
-	 * @param studentDirectory list of faculties to write to fileName
+	 * @param facultyDirectory list of faculties to write to fileName
 	 * @throws IOException if cannot write to file
 	 */
 	public static void writeFacultyRecords(String fileName, SortedList<Faculty> facultyDirectory) throws IOException {
