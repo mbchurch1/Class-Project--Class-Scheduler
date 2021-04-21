@@ -193,9 +193,9 @@ public class FacultyDirectoryTest {
 		assertTrue(fd.removeFaculty("nbrady"));
 		String[][] facultyDirectory = fd.getFacultyDirectory();
 		assertEquals(7, facultyDirectory.length);
-		assertEquals("Lacey", facultyDirectory[5][0]);
-		assertEquals("Walls", facultyDirectory[5][1]);
-		assertEquals("lwalls", facultyDirectory[5][2]);
+		assertEquals("Lacey", facultyDirectory[6][0]);
+		assertEquals("Walls", facultyDirectory[6][1]);
+		assertEquals("lwalls", facultyDirectory[6][2]);
 	}
 	
 	

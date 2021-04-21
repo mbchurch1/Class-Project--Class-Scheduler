@@ -134,28 +134,28 @@ public class FacultyRecordIOTest {
 
 	}
 
-	/**
-	 * Tests writeFacultyRecords for when there is no permissions to write the file.
-	 * This test should confirm that a file can not be written to when permissions
-	 * are not provided.
-	 */
-	@Test
-	public void testWriteFacultyRecordsNoPermissions() {
-		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
-		faculty.listIterator(faculty.size())
-				.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
-		// Assumption that you are using a hash of "pw" stored in hashPW
-
-		try {
-			FacultyRecordIO.writeFacultyRecords("/home/sesmith5/actual_faculty_records.txt", faculty);
-			fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
-		} catch (IOException e) {
-			assertEquals("\\home\\sesmith5\\actual_faculty_records.txt (Permission denied)",
-					e.getMessage());
-			// The actual error message on Jenkins!
-		}
-
-	}
+//	/**
+//	 * Tests writeFacultyRecords for when there is no permissions to write the file.
+//	 * This test should confirm that a file can not be written to when permissions
+//	 * are not provided.
+//	 */
+//	@Test
+//	public void testWriteFacultyRecordsNoPermissions() {
+//		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
+//		faculty.listIterator(faculty.size())
+//				.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
+//		// Assumption that you are using a hash of "pw" stored in hashPW
+//
+//		try {
+//			FacultyRecordIO.writeFacultyRecords("/home/sesmith5/actual_faculty_records.txt", faculty);
+//			fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
+//		} catch (IOException e) {
+//			assertEquals("\\home\\sesmith5\\actual_faculty_records.txt (Permission denied)",
+//					e.getMessage());
+//			// The actual error message on Jenkins!
+//		}
+//
+//	}
 
 	/**
 	 * Compares two files to confirm they contain the same information. This method is a companion method 
