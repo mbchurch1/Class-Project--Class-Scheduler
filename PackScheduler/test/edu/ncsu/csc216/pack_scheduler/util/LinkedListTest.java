@@ -7,6 +7,15 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
+/**
+ * Tests whether LinkedList works as a functional double-linked list with a private iterator
+ * 
+ * @author Matthew Church
+ * @author Will Goodwin
+ * @author John Firlet
+ *
+ * @param <E>
+ */
 public class LinkedListTest<E> {
 	
 	/** First name */
