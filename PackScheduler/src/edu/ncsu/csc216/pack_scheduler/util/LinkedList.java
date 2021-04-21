@@ -46,10 +46,15 @@ public class LinkedList<E> extends AbstractSequentialList  {
 	@Override
 	public void add(int index, Object element) {
 		
-		
-		// TODO Auto-generated method stub
-		super.add(index, element);
+		this.listIterator(index).add((E) element);
+		add(element);
 		size++;
+		
+		//ListIterator<E> i = listIterator(index);
+		//LinkedListIterator linkedIterator = new LinkedListIterator(index);
+		// TODO Auto-generated method stub
+		//super.add(index, element);
+		
 	}
 
 
@@ -223,10 +228,16 @@ public class LinkedList<E> extends AbstractSequentialList  {
 				throw new NullPointerException("Cannot set a null element.");
 			}
 			
+			ListNode temp = new ListNode(e, previous, next);
+			previous.next = temp;
+			next.prev = temp;
+
+			previousIndex++;
+			lastRetrieved = next;
+			
+			//nextIndex++;
 			// TODO Auto-generated method stub
 			
-			
-			lastRetrieved = null;
 		}
 		
 		
