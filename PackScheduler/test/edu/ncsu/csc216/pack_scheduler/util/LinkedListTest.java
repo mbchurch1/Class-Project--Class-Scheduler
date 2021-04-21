@@ -24,6 +24,9 @@ public class LinkedListTest<E> {
 	/** Student maximum credits */
 	private static final int STUDENT_MAX_CREDITS = 15;
 
+	/**
+	 * Tests whether size can be returned from LinkedList 
+	 */
 	@Test
 	public void testSize() {
 		LinkedList<E> list = new LinkedList<E>();
@@ -40,6 +43,9 @@ public class LinkedListTest<E> {
 //		fail("Not yet implemented");
 //	}
 	
+	/**
+	 * Tests adding student objects to the LinkedList
+	 */
 	@SuppressWarnings("unchecked")
 	@Test 
 	public void testAddStudentObject() {
@@ -80,6 +86,9 @@ public class LinkedListTest<E> {
 //		fail("Not yet implemented");
 //	}
 	
+	/**
+	 * Tests setting the value of elements in the LinkedList
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testSet() {
