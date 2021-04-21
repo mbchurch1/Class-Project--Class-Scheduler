@@ -62,6 +62,14 @@ public class LinkedListTest<E> {
 		list.add(1, s3);
 		assertEquals(2, list.size());
 		assertEquals(s3, list.get(1));
+		assertEquals(s1, list.get(0));
+		
+		Student s4 = new Student("Rob", "Roberts", "rroberts", "thisemail@gmail.com", "NotWay!", 15);
+		list.add(0, s4);
+		assertEquals(3, list.size());
+		assertEquals(s4, list.get(0));
+		assertEquals(s3, list.get(2));
+		assertEquals(s1, list.get(1));
 	}
 
 	@Test

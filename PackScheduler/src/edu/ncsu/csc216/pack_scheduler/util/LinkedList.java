@@ -35,8 +35,10 @@ public class LinkedList<E> extends AbstractSequentialList  {
 	 * Constructor for LinkedList
 	 */
 	public LinkedList() {
-		front = new ListNode(null, null, null);
-		back = new ListNode(null, null, null);
+		dummyFront = new ListNode(null, null, dummyBack);
+		dummyBack = new ListNode(null, dummyFront, null);
+		front = dummyFront;
+		back = dummyBack;
 		front.next = back;
 		back.prev = front;
 		size = 0;
@@ -143,6 +145,8 @@ public class LinkedList<E> extends AbstractSequentialList  {
             for (int i = 0; i < index; i++) {
                 next = next.next;
                 nextIndex++;
+                previous = previous.next;
+                previousIndex++;
 //                if (i < index - 1) {
 //                    previous = previous.next;
 //                    previousIndex++;
