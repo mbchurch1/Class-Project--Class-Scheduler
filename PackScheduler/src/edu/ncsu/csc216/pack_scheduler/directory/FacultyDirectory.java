@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
 import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
-import edu.ncsu.csc217.collections.list.SortedList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
+
 
 /**
  * Maintains a directory of all faculties enrolled at NC State.
@@ -23,7 +25,7 @@ import edu.ncsu.csc217.collections.list.SortedList;
 public class FacultyDirectory {
 	
 	/** List of faculties in the directory */
-	private SortedList<Faculty> facultyDirectory;
+	private LinkedList<Faculty> facultyDirectory;
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	
@@ -39,7 +41,7 @@ public class FacultyDirectory {
 	 * list are list unless saved by the user.
 	 */
 	public void newFacultyDirectory() {
-		facultyDirectory = new SortedList<Faculty>();
+		facultyDirectory = new LinkedList<Faculty>();
 	}
 	
 	/**
@@ -108,12 +110,13 @@ public class FacultyDirectory {
 		}
 		
 		for (int i = 0; i < facultyDirectory.size(); i++) {
-			User s = facultyDirectory.get(i);
+			User s = facultyDirectory.listIterator(i).next();
 			if (s.getId().equals(faculty.getId())) {
 				return false;
 			}
 		}
-		return facultyDirectory.add(faculty);
+		facultyDirectory.listIterator(facultyDirectory.size()).add(faculty);
+		return true;
 	}
 	
 	/**
@@ -125,7 +128,7 @@ public class FacultyDirectory {
 	 */
 	public boolean removeFaculty(String facultyId) {
 		for (int i = 0; i < facultyDirectory.size(); i++) {
-			User s = facultyDirectory.get(i);
+			User s = facultyDirectory.listIterator(i).next();
 			if (s.getId().equals(facultyId)) {
 				facultyDirectory.remove(i);
 				return true;
@@ -141,7 +144,7 @@ public class FacultyDirectory {
 	public String[][] getFacultyDirectory() {
 		String [][] directory = new String[facultyDirectory.size()][3];
 		for (int i = 0; i < facultyDirectory.size(); i++) {
-			User s = facultyDirectory.get(i);
+			User s = facultyDirectory.listIterator(i).next();
 			directory[i][0] = s.getFirstName();
 			directory[i][1] = s.getLastName();
 			directory[i][2] = s.getId();
@@ -172,7 +175,7 @@ public class FacultyDirectory {
 	public Faculty getFacultyById(String id) {
 		Faculty tempFaculty = null;
 		for(int i = 0; i < facultyDirectory.size(); i++) {
-			tempFaculty = facultyDirectory.get(i);
+			tempFaculty = facultyDirectory.listIterator(i).next();
 			if(tempFaculty.getId().equals(id)) {
 				return tempFaculty;
 			} else {

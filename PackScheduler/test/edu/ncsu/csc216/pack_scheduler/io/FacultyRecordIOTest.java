@@ -2,21 +2,20 @@ package edu.ncsu.csc216.pack_scheduler.io;
 
 import static org.junit.Assert.*;
 
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
-import edu.ncsu.csc217.collections.list.SortedList;
 /**
  * Tests FacultyRecordIO
+ * 
  * @author Matthew Church
  * @author Will Goodwin
  * @author John Firlet
@@ -50,13 +49,16 @@ public class FacultyRecordIOTest {
 	/** String array of sorted valid faculty for testing */
 	private String[] sortedValidFaculty = { validFaculty3, validFaculty6, validFaculty2, validFaculty5, validFaculty1,
 			validFaculty4, validFaculty7, validFaculty0, };
-	
+
 	/** sets up a hashed password for testing */
 	private String hashPW;
 	/** hash algorithm used in storing passwords */
 	private static final String HASH_ALGORITHM = "SHA-256";
+
 	/**
-	 * Hashes the password for storage. Throws a NoSuchAlgorithmException if the algorithm can't be found.
+	 * Hashes the password for storage. Throws a NoSuchAlgorithmException if the
+	 * algorithm can't be found.
+	 * 
 	 * @throws Exception if the password was unable to be hashed
 	 */
 	@Before
@@ -75,14 +77,14 @@ public class FacultyRecordIOTest {
 		}
 	}
 
-	
 	/**
-	 * Tests ReadFacultyRecords for the correct number read in, and that the faculty were read in correctly.
+	 * Tests ReadFacultyRecords for the correct number read in, and that the faculty
+	 * were read in correctly.
 	 */
 	@Test
 	public void testReadFacultyRecords() {
 		try {
-			SortedList<Faculty> faculty = FacultyRecordIO.readFacultyRecords(validTestFile);
+			LinkedList<Faculty> faculty = FacultyRecordIO.readFacultyRecords(validTestFile);
 			assertEquals(8, faculty.size());
 
 			for (int i = 0; i < validFaculty.length; i++) {
@@ -92,14 +94,14 @@ public class FacultyRecordIOTest {
 			fail("Unexpected error reading " + validTestFile);
 		}
 	}
-	
+
 	/**
-	 * Tests that ReadFacultyRecords when passing in an invalid file.
-	 * This should result in no faculty being added to the directory.
+	 * Tests that ReadFacultyRecords when passing in an invalid file. This should
+	 * result in no faculty being added to the directory.
 	 */
 	@Test
 	public void testReadInvalidFacultyRecords() {
-		SortedList<Faculty> faculty;
+		LinkedList<Faculty> faculty;
 		try {
 			faculty = FacultyRecordIO.readFacultyRecords(invalidTestFile);
 			assertEquals(0, faculty.size());
@@ -107,7 +109,7 @@ public class FacultyRecordIOTest {
 			fail("Unexpected FileNotFoundException");
 		}
 	}
-	
+
 //	/**
 //	 * Tests WriteFacultyRecords, ensuring that it properly writes the records to the designated file.
 //	 * It uses the companion method, checkFiles, to ensure that the Faculty record file written to in 
@@ -129,30 +131,30 @@ public class FacultyRecordIOTest {
 //		checkFiles("test-files/expected_faculty_records.txt", "test-files/actual_faculty_records.txt");
 //
 //	}
-	
+
 	/**
-	 * Tests writeFacultyRecords for when there is no permissions to write the file. This test 
-	 * should confirm that a file can not be written to when permissions are not provided. 
+	 * Tests writeFacultyRecords for when there is no permissions to write the file.
+	 * This test should confirm that a file can not be written to when permissions
+	 * are not provided.
 	 */
 	@Test
 	public void testWriteFacultyRecordsNoPermissions() {
-	    SortedList<Faculty> faculty = new SortedList<Faculty>();
-	    faculty.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
-	    //Assumption that you are using a hash of "pw" stored in hashPW
-	    
-	    try {
-	    	FacultyRecordIO.writeFacultyRecords("/home/sesmith5/actual_faculty_records.txt", faculty);
-	        fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
-	    } catch (IOException e) {
-	        assertEquals("\\home\\sesmith5\\actual_faculty_records.txt (The system cannot find the path specified)", e.getMessage());
-	        //The actual error message on Jenkins!
-	    }
-	    
+		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
+		faculty.listIterator(faculty.size())
+				.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
+		// Assumption that you are using a hash of "pw" stored in hashPW
+
+		try {
+			FacultyRecordIO.writeFacultyRecords("/home/sesmith5/actual_faculty_records.txt", faculty);
+			fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
+		} catch (IOException e) {
+			assertEquals("\\home\\sesmith5\\actual_faculty_records.txt (The system cannot find the path specified)",
+					e.getMessage());
+			// The actual error message on Jenkins!
+		}
+
 	}
-	
-	
-	
-	
+
 //	/**
 //	 * Compares two files to confirm they contain the same information. This method is a companion method 
 //	 * that helps ensure that writeStudentFiles is writing the correct information to file by comparing 
