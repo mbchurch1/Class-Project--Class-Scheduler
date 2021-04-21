@@ -47,21 +47,28 @@ public class LinkedList<E> extends AbstractSequentialList  {
 	public void add(int index, Object element) {
 		
 		this.listIterator(index).add((E) element);
-		add(element);
 		size++;
 		
+	}
+		//add(element);
 		//ListIterator<E> i = listIterator(index);
 		//LinkedListIterator linkedIterator = new LinkedListIterator(index);
 		// TODO Auto-generated method stub
 		//super.add(index, element);
 		
-	}
+	
 
 
 	public E set(int index, Object element) {
 		
-		//TODO Implement set
-		return null;
+		//TODO Need to check if element is duplicate
+//		if(LinkedList.contains((E) element)) {
+//			throw new IllegalArgumentException("Duplicate element.");
+//		}
+		
+		this.listIterator(index).set((E) element);
+	
+		return (E) element;
 	}
 
 	@Override
@@ -201,10 +208,10 @@ public class LinkedList<E> extends AbstractSequentialList  {
 			if(lastRetrieved == null) {
 				throw new IllegalStateException("Invalid operation.");
 			}
-				
-				
+			
 			// TODO Auto-generated method stub
 			
+			lastRetrieved = null;
 		}
 
 		@Override
@@ -216,9 +223,19 @@ public class LinkedList<E> extends AbstractSequentialList  {
 				throw new NullPointerException("Cannot set a null element.");
 			}
 			
+			if(lastRetrieved == previous) {
+				previous = (LinkedList<E>.ListNode) e;
+				previous.data = e;
+			} else {
+				next = (LinkedList<E>.ListNode) e;
+				next.data = e;
+			}
+			
+			lastRetrieved.data = e;
+			
 			
 			// TODO Set the last element returned by last call previous() or next()
-			lastRetrieved.data = e;
+			
 			
 		}
 
@@ -232,15 +249,11 @@ public class LinkedList<E> extends AbstractSequentialList  {
 			previous.next = temp;
 			next.prev = temp;
 
+			nextIndex++;
 			previousIndex++;
-			lastRetrieved = next;
-			
-			//nextIndex++;
-			// TODO Auto-generated method stub
+			lastRetrieved = null;
 			
 		}
-		
-		
 		
 	}
 	
@@ -269,9 +282,6 @@ public class LinkedList<E> extends AbstractSequentialList  {
 			this.next = next;
 		}
 	
-	
-	
 	}
-	
 	
 }
