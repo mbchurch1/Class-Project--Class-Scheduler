@@ -1,6 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-import java.awt.List;
+//import java.awt.List;
 import java.util.AbstractSequentialList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
  * @author Will Goodwin
  * @author John Firlet
  *
- * @param <E>
+ * @param <E> LinkedList of generic objects
  */
 public class LinkedList<E> extends AbstractSequentialList<E>  {
 
@@ -35,6 +35,9 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 	 * Constructor for LinkedList
 	 */
 	public LinkedList() {
+		dummyFront = null;
+		dummyBack = null;
+		
 		dummyFront = new ListNode(null, null, dummyBack);
 		dummyBack = new ListNode(null, dummyFront, null);
 		front = dummyFront;
@@ -67,6 +70,10 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 
 	/**
 	 * Set method to set an element at a given index
+	 * 
+	 * @param index  Index of element to set
+	 * @param element  Element to set to 
+	 * @return element  Returns the element that is set
 	 */
 	public E set(int index, Object element) {
 		
@@ -140,8 +147,8 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
             previous = dummyFront;
             //Need to traverse through to index
             next = dummyFront.next;
-            //Traversing next to point to index & previous to point to index - 1
-            //TODO: May need a check in here so that it doesn't traverser out of bounds
+            //   Traversing next to point to index & previous to point to index - 1
+            //   May need a check in here so that it doesn't traverser out of bounds
             //   Bounds are indicated when previous.data == null and next.data == null
             //   But since the iterator starts at these spots, I'm not sure when the check should factor in
             for (int i = 0; i < index; i++) {
