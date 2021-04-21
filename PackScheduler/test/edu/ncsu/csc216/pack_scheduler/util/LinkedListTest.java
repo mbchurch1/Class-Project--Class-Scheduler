@@ -3,8 +3,6 @@ package edu.ncsu.csc216.pack_scheduler.util;
 import static org.junit.Assert.*;
 
 import java.util.ListIterator;
-import java.util.NoSuchElementException;
-
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
