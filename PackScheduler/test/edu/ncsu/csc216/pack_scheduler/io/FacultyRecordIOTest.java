@@ -2,10 +2,12 @@ package edu.ncsu.csc216.pack_scheduler.io;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -88,7 +90,7 @@ public class FacultyRecordIOTest {
 			assertEquals(8, faculty.size());
 
 			for (int i = 0; i < validFaculty.length; i++) {
-				assertEquals(sortedValidFaculty[i], faculty.get(i).toString());
+				assertEquals(validFaculty[i], faculty.get(i).toString());
 			}
 		} catch (FileNotFoundException e) {
 			fail("Unexpected error reading " + validTestFile);
@@ -110,27 +112,27 @@ public class FacultyRecordIOTest {
 		}
 	}
 
-//	/**
-//	 * Tests WriteFacultyRecords, ensuring that it properly writes the records to the designated file.
-//	 * It uses the companion method, checkFiles, to ensure that the Faculty record file written to in 
-//	 * this method matched a known standard Faculty record file, thus checking that writeFacultyRecords
-//	 * is functioning properly.
-//	 */
-//	@Test
-//	public void testWriteFacultyRecords() {
-//		SortedList<Faculty> faculty = new SortedList<Faculty>();
-//		faculty.add(new Faculty("Brent", "Brewer", "bbrewer", "sem.semper@orcisem.co.uk", hashPW, 1));
-//		faculty.add(new Faculty("Fiona", "Meadows", "fmeadow", "pharetra.sed@et.org", hashPW, 3));
-//		faculty.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
-//		try {
-//			FacultyRecordIO.writeFacultyRecords("test-files/actual_faculty_records.txt", faculty);
-//		} catch (IOException e) {
-//			fail("Cannot write to course records file");
-//		}
-//
-//		checkFiles("test-files/expected_faculty_records.txt", "test-files/actual_faculty_records.txt");
-//
-//	}
+	/**
+	 * Tests WriteFacultyRecords, ensuring that it properly writes the records to the designated file.
+	 * It uses the companion method, checkFiles, to ensure that the Faculty record file written to in 
+	 * this method matched a known standard Faculty record file, thus checking that writeFacultyRecords
+	 * is functioning properly.
+	 */
+	@Test
+	public void testWriteFacultyRecords() {
+		LinkedList<Faculty> faculty = new LinkedList<Faculty>();
+		faculty.add(new Faculty("Brent", "Brewer", "bbrewer", "sem.semper@orcisem.co.uk", hashPW, 1));
+		faculty.add(new Faculty("Fiona", "Meadows", "fmeadow", "pharetra.sed@et.org", hashPW, 3));
+		faculty.add(new Faculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", hashPW, 2));
+		try {
+			FacultyRecordIO.writeFacultyRecords("test-files/test2_faculty_records.txt", faculty);
+		} catch (IOException e) {
+			fail("Cannot write to course records file");
+		}
+
+		checkFiles("test-files/test_faculty_records.txt", "test-files/test2_faculty_records.txt");
+
+	}
 
 	/**
 	 * Tests writeFacultyRecords for when there is no permissions to write the file.
@@ -148,41 +150,41 @@ public class FacultyRecordIOTest {
 			FacultyRecordIO.writeFacultyRecords("/home/sesmith5/actual_faculty_records.txt", faculty);
 			fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
 		} catch (IOException e) {
-			assertEquals("\\home\\sesmith5\\actual_faculty_records.txt (The system cannot find the path specified)",
+			assertEquals("\\home\\sesmith5\\actual_faculty_records.txt (Permission denied)",
 					e.getMessage());
 			// The actual error message on Jenkins!
 		}
 
 	}
 
-//	/**
-//	 * Compares two files to confirm they contain the same information. This method is a companion method 
-//	 * that helps ensure that writeStudentFiles is writing the correct information to file by comparing 
-//	 * contents of a sample file against a file in which the structure of the contents is known.
-//	 * 
-//	 * @param expFile the expected file
-//	 * @param actFile program output file
-//	 */
-//	private void checkFiles(String expFile, String actFile) {
-//		try {
-//			Scanner expScanner = new Scanner(new FileInputStream(expFile));
-//			Scanner actScanner = new Scanner(new FileInputStream(actFile));
-//			while (expScanner.hasNextLine() && actScanner.hasNextLine()) {
-//				String exp = expScanner.nextLine();
-//				String act = actScanner.nextLine();
-//				assertEquals("Expected: " + exp + "Actual: " + act, exp, act);
-//			}
-//			if (expScanner.hasNextLine()) {
-//				fail("The expected results expect another line " + expScanner.nextLine());
-//			}
-//			if (actScanner.hasNextLine()) {
-//				fail("The actual results has an extra, unexpected line: " + actScanner.nextLine());
-//			}
-//			expScanner.close();
-//			actScanner.close();
-//		} catch (IOException e) {
-//			fail("Error reading file");
-//		}
-//	}
+	/**
+	 * Compares two files to confirm they contain the same information. This method is a companion method 
+	 * that helps ensure that writeStudentFiles is writing the correct information to file by comparing 
+	 * contents of a sample file against a file in which the structure of the contents is known.
+	 * 
+	 * @param expFile the expected file
+	 * @param actFile program output file
+	 */
+	private void checkFiles(String expFile, String actFile) {
+		try {
+			Scanner expScanner = new Scanner(new FileInputStream(expFile));
+			Scanner actScanner = new Scanner(new FileInputStream(actFile));
+			while (expScanner.hasNextLine() && actScanner.hasNextLine()) {
+				String exp = expScanner.nextLine();
+				String act = actScanner.nextLine();
+				assertEquals("Expected: " + exp + "Actual: " + act, exp, act);
+			}
+			if (expScanner.hasNextLine()) {
+				fail("The expected results expect another line " + expScanner.nextLine());
+			}
+			if (actScanner.hasNextLine()) {
+				fail("The actual results has an extra, unexpected line: " + actScanner.nextLine());
+			}
+			expScanner.close();
+			actScanner.close();
+		} catch (IOException e) {
+			fail("Error reading file");
+		}
+	}
 
 }
