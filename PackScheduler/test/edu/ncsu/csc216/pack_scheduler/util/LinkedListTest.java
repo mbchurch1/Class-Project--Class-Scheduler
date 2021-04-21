@@ -14,7 +14,8 @@ import edu.ncsu.csc216.pack_scheduler.user.Student;
  * @author Will Goodwin
  * @author John Firlet
  *
- * @param <E>
+ * @param <E> the object to store
+ * 
  */
 public class LinkedListTest<E> {
 	
