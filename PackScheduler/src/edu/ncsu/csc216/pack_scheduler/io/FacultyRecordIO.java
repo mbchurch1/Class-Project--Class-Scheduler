@@ -10,7 +10,8 @@ import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
-import edu.ncsu.csc217.collections.list.SortedList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
+
 
 /**
  * Reads Faculty records from text files.  Writes a set of Faculty records to a file.
@@ -27,22 +28,22 @@ public class FacultyRecordIO {
 	 * @throws FileNotFoundException  if the file does not exist
 	 * @return an SortedList of Faculty records
 	 */
-	public static SortedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
+	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 			Scanner fileReader = new Scanner(new FileInputStream(fileName));
-			SortedList<Faculty> faculties = new SortedList<Faculty>();
+			LinkedList<Faculty> faculties = new LinkedList<Faculty>();
 			while(fileReader.hasNextLine()) {
 				try {
 					Faculty faculty = processFaculty(fileReader.nextLine()); 
 					boolean duplicate = false;
 					for (int i = 0; i < faculties.size(); i++) {
-						User otherFaculty = faculties.get(i);
+						User otherFaculty = faculties.listIterator(i).next();
 						if (faculty.equals(otherFaculty)) {
 							duplicate = true;
 							break;
 						}
 					}
 					if (!duplicate) {
-						faculties.add(faculty);
+						faculties.listIterator(faculties.size()).add(faculty);
 					}
 		         } catch(IllegalArgumentException e) {
 		        	 //This line is an invalid Faculity record, so it gets skipped
@@ -97,7 +98,7 @@ public class FacultyRecordIO {
 	 * @param facultyDirectory list of faculties to write to fileName
 	 * @throws IOException if cannot write to file
 	 */
-	public static void writeFacultyRecords(String fileName, SortedList<Faculty> facultyDirectory) throws IOException {
+	public static void writeFacultyRecords(String fileName, LinkedList<Faculty> facultyDirectory) throws IOException {
 		PrintStream fileWriter = new PrintStream(new File(fileName));
 
 		for (int i = 0; i < facultyDirectory.size(); i++) {
