@@ -141,7 +141,7 @@ public class Faculty extends User implements Comparable<Faculty> {
 			return false;
 		Faculty other = (Faculty) obj;
 		
-		return maxCourses != other.maxCourses;
+		return maxCourses == other.maxCourses;
 			
 		
 	}
