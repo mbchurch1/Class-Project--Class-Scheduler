@@ -242,7 +242,8 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 			next = previous;
 			previousIndex--;
 			nextIndex--;
-			previous = (LinkedList<E>.ListNode) get(previousIndex);
+			previous = previous.prev;
+			//previous = (LinkedList<E>.ListNode) get(previousIndex);
 			
 			return rtn;
 		}
@@ -318,10 +319,6 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 			}
 			
 			lastRetrieved.data = e;
-			
-			
-			// TODO Set the last element returned by last call previous() or next()
-			
 			
 		}
 
