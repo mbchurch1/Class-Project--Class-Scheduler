@@ -7,9 +7,6 @@ import java.util.NoSuchElementException;
 
 //import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList.ListNode;
 
-
-
-
 /**
  * LinkedList class that provides functionality for all standard list methods
  * 
@@ -89,38 +86,6 @@ public class LinkedList<E> extends AbstractSequentialList  {
 		
 		
 		public LinkedListIterator(int index) {
-			
-			if(index < 0 || index > size) {
-				throw new IndexOutOfBoundsException("Index out of bounds.");
-			}
-			//previous = (LinkedList<E>.ListNode) get(index - 1);
-			//next = (LinkedList<E>.ListNode) next();
-			
-			previousIndex = -1;
-			nextIndex = 0;
-			//Need to traverse through to index - 1
-			previous = dummyFront;
-			//Need to traverse through to index
-			next = dummyFront.next;
-			//Traversing next to point to index & previous to point to index - 1
-			//TODO: May need a check in here so that it doesn't traverser out of bounds
-			//   Bounds are indicated when previous.data == null and next.data == null
-			//   But since the iterator starts at these spots, I'm not sure when the check should factor in
-			for (int i = 0; i < index; i++) {
-				next = next.next;
-				nextIndex++;
-				if (i < index - 1) {
-					previous = previous.next;
-					previousIndex++;
-				}
-			}
-			
-//			previousIndex = previousIndex();
-//			nextIndex = nextIndex();
-			lastRetrieved = null;
-			   
-			}
-
 
             if(index < 0 || index > size) {
                 throw new IndexOutOfBoundsException("Index out of bounds.");
@@ -172,7 +137,6 @@ public class LinkedList<E> extends AbstractSequentialList  {
 //			lastRetrieved = null;
 //			   
 //			}
->>>>>>> 3226ea21e52cb2a7b03581a656d4d58cf4ce093c
 		
 		@Override
 		public boolean hasNext() {
