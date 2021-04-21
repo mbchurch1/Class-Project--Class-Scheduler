@@ -100,15 +100,16 @@ public class LinkedListTest<E> {
 //			assertEquals("Invalid element.", (e.getMessage()));
 //		}
 		
-		list.set(0, s4);
+		iterator.set((E) s4);
 		assertEquals(2, list.size());
 		assertEquals(s4, list.get(0));
-		assertEquals(1, iterator.nextIndex());
+		assertEquals(0, iterator.nextIndex());
 		assertTrue(iterator.hasNext());
 		
 		Student s5 = new Student("Ned", "Flanders", "nflanders", "neighbor@gmail.com", "AndAHotPlate!", 13);
 		iterator.next();
-		list.set(1, s5);
+		iterator.set((E) s5);
+		//list.set(1, s5);
 		assertEquals(2, list.size());
 		assertEquals(s5, list.get(1));
 		assertEquals(0, iterator.previousIndex());

@@ -311,10 +311,10 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 			}
 			
 			if(lastRetrieved == previous) {
-				previous = (LinkedList<E>.ListNode) e;
+				//previous = (LinkedList<E>.ListNode) e;
 				previous.data = e;
 			} else {
-				next = (LinkedList<E>.ListNode) e;
+				//next = (LinkedList<E>.ListNode) e;
 				next.data = e;
 			}
 			
