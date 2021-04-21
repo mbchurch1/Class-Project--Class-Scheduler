@@ -27,15 +27,15 @@ public class LinkedListTest<E> {
 		assertEquals(0, list.size());
 	}
 
-	@Test
-	public void testLinkedList() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testLinkedList() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testAddIntObject() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testAddIntObject() {
+//		fail("Not yet implemented");
+//	}
 	
 	@SuppressWarnings("unchecked")
 	@Test 
@@ -72,9 +72,22 @@ public class LinkedListTest<E> {
 		assertEquals(s1, list.get(1));
 	}
 
+//	@Test
+//	public void testListIteratorInt() {
+//		fail("Not yet implemented");
+//	}
+	
 	@Test
-	public void testListIteratorInt() {
-		fail("Not yet implemented");
+	public void testSet() {
+		LinkedList<E> list = new LinkedList<E>();
+		Student s1 = new Student(FIRST_NAME, LAST_NAME, STUDENT_ID, STUDENT_EMAIL, STUDENT_PASSWORD, STUDENT_MAX_CREDITS);
+		list.add(0, s1);
+		Student s3 = new Student("Bob", "LastnameBob", "blastnamebob", "junk@gmail.com", "NotReal!", 14);
+		list.add(1, s3);
+		
+		//E element1 = list.previous();
+		
+		//LinkedListIterator iterator = new LinkedListIterator(1);
 	}
 
 }
