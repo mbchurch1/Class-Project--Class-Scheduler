@@ -43,7 +43,7 @@ public class FacultyRecordIO {
 						}
 					}
 					if (!duplicate) {
-						faculties.listIterator(faculties.size()).add(faculty);
+						faculties.add(faculty);
 					}
 		         } catch(IllegalArgumentException e) {
 		        	 //This line is an invalid Faculity record, so it gets skipped
