@@ -2,6 +2,9 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
@@ -77,6 +80,7 @@ public class LinkedListTest<E> {
 //		fail("Not yet implemented");
 //	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testSet() {
 		LinkedList<E> list = new LinkedList<E>();
@@ -85,6 +89,30 @@ public class LinkedListTest<E> {
 		Student s3 = new Student("Bob", "LastnameBob", "blastnamebob", "junk@gmail.com", "NotReal!", 14);
 		list.add(1, s3);
 		
+		Student s4 = new Student("Rob", "Roberts", "rroberts", "thisemail@gmail.com", "NotWay!", 15);
+		
+		ListIterator<E> iterator = list.listIterator(1);
+		iterator.previous();
+		
+//		try {
+//			iterator.previous();
+//		} catch (NoSuchElementException e) {
+//			assertEquals("Invalid element.", (e.getMessage()));
+//		}
+		
+		list.set(0, s4);
+		assertEquals(2, list.size());
+		assertEquals(s4, list.get(0));
+		assertEquals(1, iterator.nextIndex());
+		assertTrue(iterator.hasNext());
+		
+		Student s5 = new Student("Ned", "Flanders", "nflanders", "neighbor@gmail.com", "AndAHotPlate!", 13);
+		iterator.next();
+		list.set(1, s5);
+		assertEquals(2, list.size());
+		assertEquals(s5, list.get(1));
+		assertEquals(0, iterator.previousIndex());
+		assertTrue(iterator.hasPrevious());
 		//E element1 = list.previous();
 		
 		//LinkedListIterator iterator = new LinkedListIterator(1);
