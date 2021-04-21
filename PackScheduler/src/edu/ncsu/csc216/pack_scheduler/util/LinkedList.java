@@ -51,6 +51,8 @@ public class LinkedList<E> extends AbstractSequentialList  {
 	@Override
 	public void add(int index, Object element) {
 		
+		//TODO need to add a check for duplicates
+		
 		this.listIterator(index).add((E) element);
 		size++;
 		
@@ -271,11 +273,19 @@ public class LinkedList<E> extends AbstractSequentialList  {
 				throw new IllegalStateException("Invalid operation.");
 			}
 			
+			if(lastRetrieved == previous) {
+				previous = previous.prev;
+				previousIndex--;
+			} else {
+				next = next.next;
+			}
+			
 			// TODO Auto-generated method stub
 			
 			lastRetrieved = null;
 			size--;
 		}
+
 
 		/**
 		 * Sets the lastRetrieved node to the element passed in
