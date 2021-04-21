@@ -50,7 +50,7 @@ public class LinkedListTest<E> {
 		Student s2 = null;
 		
 		try {
-			list.add(s2);
+			list.add(1, s2);
 			fail("Cannot add a null element to the list");
 		} catch (NullPointerException e) {
 			assertEquals("Cannot set a null element.", e.getMessage());
