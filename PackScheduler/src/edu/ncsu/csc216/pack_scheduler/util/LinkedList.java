@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
  *
  * @param <E>
  */
-public class LinkedList<E> extends AbstractSequentialList  {
+public class LinkedList<E> extends AbstractSequentialList<E>  {
 
 	
 	/** Front field for front of the list */
