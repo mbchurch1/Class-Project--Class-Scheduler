@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
 
 /**
  * Creates the Faculty object, provides Faculty object getters and setters,
@@ -11,72 +12,84 @@ package edu.ncsu.csc216.pack_scheduler.user;
  * @author Will Goodwin
  */
 public class Faculty extends User implements Comparable<Faculty> {
-	
-	
+
 	/** Faculty max courses */
 	private int maxCourses;
+	/** Faculty member's schedule */
+	private FacultySchedule schedule;
 	/** minimum courses faculty can have */
 	public static final int MIN_COURSES = 1;
 	/** max courses a faculty can have */
 	public static final int MAX_COURSES = 3;
-	
-	
+
 	/**
 	 * Creates the Faculty object based on the details of the necessary parameters
-	 * for a Faculty object
+	 * for a Faculty object. Also creates a new faculty schedule with the faculty ID.
 	 * 
-	 * @param firstName   faculty first name
-	 * @param lastName    faculty last name
-	 * @param id          faculty id
-	 * @param email       faculty email
-	 * @param hashPW      faculty password in SHA-256 encryption
-	 * @param maxCourses  faculty max courses
+	 * @param firstName  faculty first name
+	 * @param lastName   faculty last name
+	 * @param id         faculty id
+	 * @param email      faculty email
+	 * @param hashPW     faculty password in SHA-256 encryption
+	 * @param maxCourses faculty max courses
 	 */
 	public Faculty(String firstName, String lastName, String id, String email, String hashPW, int maxCourses) {
-		super(firstName, lastName, id, email, hashPW); 
+		super(firstName, lastName, id, email, hashPW);
 		setMaxCourses(maxCourses);
+		schedule = new FacultySchedule(id);
 	}
 
 	/**
 	 * Creates a faculty object with the full max courses of 3
 	 * 
-	 * @param firstName   faculty first name
-	 * @param lastName    faculty last name
-	 * @param id          faculty id
-	 * @param email       faculty email
-	 * @param hashPW      faculty password in SHA-256 encryption
+	 * @param firstName faculty first name
+	 * @param lastName  faculty last name
+	 * @param id        faculty id
+	 * @param email     faculty email
+	 * @param hashPW    faculty password in SHA-256 encryption
 	 */
 	public Faculty(String firstName, String lastName, String id, String email, String hashPW) {
 		this(firstName, lastName, id, email, hashPW, MAX_COURSES);
 	}
-	
 
 	/**
 	 * Sets the faculy max courses
 	 * 
-	 * @param maxCourses  max courses to set
-	 * @throws IllegalArgumentException if courses are less than 1 and greater than 3
+	 * @param maxCourses max courses to set
+	 * @throws IllegalArgumentException if courses are less than 1 and greater than
+	 *                                  3
 	 */
 	public void setMaxCourses(int maxCourses) {
-		if(maxCourses < MIN_COURSES || maxCourses > MAX_COURSES) {
+		if (maxCourses < MIN_COURSES || maxCourses > MAX_COURSES) {
 			throw new IllegalArgumentException("Invalid max courses.");
 		}
 		this.maxCourses = maxCourses;
-		
+
 	}
-	
-	
+
 	/**
 	 * Returns the max courses of faculty
 	 * 
-	 * @return maxCourses  Returns max courses
+	 * @return maxCourses Returns max courses
 	 */
 	public int getMaxCourses() {
 		return maxCourses;
 	}
+	/**
+	 * Returns the faculty member's schedule.
+	 * @return a Faculty Schedule object with the member's schedule
+	 */
+	public FacultySchedule getSchedule() {
+		return schedule;
+	}
+	/**
+	 * Reurns true if the faculty's scheduled courses are more than the max amount of courses.
+	 * @return true if the scheduled courses are greater than the max courses. 
+	 */
+	public boolean isOverloaded() {
+		return schedule.getNumScheduledCourses() > maxCourses;
+	}
 
-
-	
 	/**
 	 * Compares two Faculties first name, last name or ID to sort the Faculty list.
 	 * Overrides the compareTo in the added library. Throws a NullPointerException
@@ -86,8 +99,8 @@ public class Faculty extends User implements Comparable<Faculty> {
 	 * @param f the Faculty to compare
 	 * @throws NullPointerException     if f is null
 	 * @throws IllegalArgumentException if f is not a valid Faculty object
-	 * @return comparable An int signifying order of the two Faculties, positive if s
-	 *         is higher, negative if the original is higher.
+	 * @return comparable An int signifying order of the two Faculties, positive if
+	 *         s is higher, negative if the original is higher.
 	 */
 	@Override
 	public int compareTo(Faculty f) {
@@ -110,7 +123,6 @@ public class Faculty extends User implements Comparable<Faculty> {
 		return comparable;
 	}
 
-
 	/**
 	 * Generates a hashCode for Faculty using all fields.
 	 * 
@@ -123,7 +135,6 @@ public class Faculty extends User implements Comparable<Faculty> {
 		result = prime * result + maxCourses;
 		return result;
 	}
-
 
 	/**
 	 * Compares a given object to this object for equality in all fields.
@@ -140,12 +151,10 @@ public class Faculty extends User implements Comparable<Faculty> {
 		if (getClass() != obj.getClass())
 			return false;
 		Faculty other = (Faculty) obj;
-		
-		return maxCourses == other.maxCourses;
-			
-		
-	}
 
+		return maxCourses == other.maxCourses;
+
+	}
 
 	/**
 	 * Returns a string of the faculties first and last name, id number, email,
@@ -159,6 +168,4 @@ public class Faculty extends User implements Comparable<Faculty> {
 				+ maxCourses;
 	}
 
-	
-	
 }
