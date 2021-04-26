@@ -122,7 +122,14 @@ public class LinkedListRecursive<E> {
 	public boolean contains(E element) {
 		
 		//TODO 
-		return false;
+		if(isEmpty()) {
+			return false;
+		} else {
+			LinkedListRecursive duplicate = new LinkedListRecursive();
+			LinkedListRecursive.ListNode duplicateCheck = duplicate.new ListNode(front.data, front.next);
+			return duplicateCheck.contains(element);
+		}
+		
 	}
 	
 	
@@ -136,7 +143,7 @@ public class LinkedListRecursive<E> {
 	 * @author John Firlet
 	 *
 	 */
-	public class ListNode { 
+	private class ListNode { 
 
 		/**Private data field for the current ListNode  */
 		public E data;
@@ -224,8 +231,13 @@ public class LinkedListRecursive<E> {
 		 */
 		public boolean contains(E element) {
 			
-			//TODO 
-			return false;
+			if(this.data.equals(element)) {
+				return true;
+			} else {
+				
+				return this.next.contains(element);
+			}
+		
 		}
 		
 	}
