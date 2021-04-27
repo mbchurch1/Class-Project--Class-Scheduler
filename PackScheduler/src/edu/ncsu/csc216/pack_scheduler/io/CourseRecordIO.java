@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
 import edu.ncsu.csc217.collections.list.SortedList;
 
@@ -19,6 +21,9 @@ import edu.ncsu.csc217.collections.list.SortedList;
  * @author Sarah Heckman
  */
 public class CourseRecordIO {
+	
+	
+	
 	/**
 	 * Reads course records from a file and generates a list of valid Courses. Any
 	 * invalid Courses are ignored. If the file to read cannot be found or the
@@ -56,6 +61,8 @@ public class CourseRecordIO {
 	}
 
 	private static Course readCourse(String nextLine) {
+		RegistrationManager newManager = RegistrationManager.getInstance();
+		
 		Scanner scan = new Scanner(nextLine);
 		scan.useDelimiter(",");
 		String name = null;
@@ -93,16 +100,24 @@ public class CourseRecordIO {
 		if ("A".equals(meetingDays)) {
 			arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
 			if (arrangedCourse.getInstructorId() != null) {
-				FacultySchedule arrangedAdd = new FacultySchedule(instructorId);
-				arrangedAdd.addCourseToSchedule(arrangedCourse);
+				if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
+					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
+					faculty.getSchedule().addCourseToSchedule(arrangedCourse);
+				}
+//				FacultySchedule arrangedAdd = new FacultySchedule(instructorId);
+//				arrangedAdd.addCourseToSchedule(arrangedCourse);
 			}
 			return arrangedCourse;
 		} else {
 			onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays,
 					startTime, endTime);
 			if (onCampus.getInstructorId() != null) {
-				FacultySchedule campusAdd = new FacultySchedule(instructorId);
-				campusAdd.addCourseToSchedule(arrangedCourse);
+				if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
+					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
+					faculty.getSchedule().addCourseToSchedule(onCampus);
+				}
+//				FacultySchedule campusAdd = new FacultySchedule(instructorId);
+//				campusAdd.addCourseToSchedule(arrangedCourse);
 			}
 			return onCampus;
 		}
