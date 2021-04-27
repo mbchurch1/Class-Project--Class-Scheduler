@@ -11,8 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
-
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
@@ -418,6 +419,98 @@ public class RegistrationManagerTest {
 		
 		manager.logout();
 	}
+	
+	/**
+	 * Tests adding a course, removing a course, and resetting a faculty's FacultySchedule
+	 */
+	@Test
+	public void testAddRemoveResetFacultyToCourse() {
+//		Faculty - (String firstName, String lastName, String id, String email, String password,
+//				String repeatPassword, int maxCourses)
+//		private static final String FIRST_NAME = "Fac";
+//		/** Test last name */
+//		private static final String LAST_NAME = "Ulty";
+//		/** Test id */
+//		private static final String ID = "fulty";
+//		/** Test email */
+//		private static final String EMAIL = "fulty@ncsu.edu";
+//		/** Test password */
+//		private static final String PASSWORD = "pw";
+//		/** Test max credits */
+//		private static final int MAX_COURSES = 3;
+		
+//		Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap,
+//				String meetingDays, int startTime, int endTime)
+//	    /** Course name */
+//	    private static final String NAME = "CSC216";
+//	    /** Course title */
+//	    private static final String TITLE = "Software Development Fundamentals";
+//	    /** Course section */
+//	    private static final String SECTION = "001";
+//	    /** Course credits */
+//	    private static final int CREDITS = 3;
+//	    /** Course instructor id */
+//	    private static final String INSTRUCTOR_ID = "sesmith5";
+//	    /** Max number of students accepted for enrollment in the Course */
+//	    private static final int ENROLLMENT_CAP = 50;
+//	    /** Course meeting days */
+//	    private static final String MEETING_DAYS = "MW";
+//	    /** Course start time */
+//	    private static final int START_TIME = 1330;
+//	    /** Course end time */
+//	    private static final int END_TIME = 1445;
+		
+		//TS tests may require that the faculty member be contained within RegistrationManager.getFacultyDirectory -->
+		//   if so, I can use the below to add a Faculty to the FacultyDirectory, then pass that into the addFacutyToCourse() method
+		//manager.getFacultyDirectory().addFaculty("Fac", "Ulty", "fulty", "fulty@ncsu.edu", "pw", "pw", 3);
+		
+		Course course = new Course("CSC216", "Software Development Fundamentals", "001", 3, null, 50, "MW", 1330, 1445);
+		Faculty faculty = new Faculty("Fac", "Ulty", "fulty", "fulty@ncsu.edu", "pw", 3);
+		RegistrationManager newManager = RegistrationManager.getInstance();
+		
+		newManager.login(registrarUsername, registrarPassword);
+		assertTrue(newManager.addFacultyToCourse(course, faculty));
+		assertEquals(1, faculty.getSchedule().getNumScheduledCourses());
+		
+		StudentDirectory directory = newManager.getStudentDirectory();
+		directory.loadStudentsFromFile("test-files/student_records.txt");
+		
+		newManager.logout();
+		newManager.login("efrost", "pw");
+		assertFalse(newManager.addFacultyToCourse(course, faculty));
+		
+		newManager.logout();
+		newManager.login(registrarUsername, registrarPassword);
+		assertTrue(newManager.removeFacultyFromCourse(course, faculty));
+		Course course2 = new Course("CSC216", "Software Development Fundamentals", "001", 3, "notNull3", 50, "MW", 1330, 1445);
+		try {
+			newManager.addFacultyToCourse(course2, faculty);
+			fail("Course2 already has an instructor, so it cannot be added to faculty's schedule.");
+		} catch (IllegalArgumentException e) {
+			assertEquals("The course cannot be added to this faculty member's schedule.", e.getMessage());
+			assertEquals(0, faculty.getSchedule().getNumScheduledCourses());
+		}
+		
+		newManager.addFacultyToCourse(course, faculty);
+		assertEquals(1, faculty.getSchedule().getNumScheduledCourses());
+		newManager.logout();
+		newManager.login("efrost", "pw");
+		assertFalse(newManager.removeFacultyFromCourse(course, faculty));
+		
+		newManager.logout();
+		newManager.login(registrarUsername, registrarPassword);
+		assertEquals(1, faculty.getSchedule().getNumScheduledCourses());
+		newManager.resetFacultySchedule(faculty);
+		assertEquals(0, faculty.getSchedule().getNumScheduledCourses());
+		
+		newManager.addFacultyToCourse(course, faculty);
+		assertEquals(1, faculty.getSchedule().getNumScheduledCourses());
+		newManager.logout();
+		newManager.login("efrost", "pw");
+		newManager.resetFacultySchedule(faculty);
+		assertEquals(1, faculty.getSchedule().getNumScheduledCourses());
+	}
+	
 	
 //	/**
 //	 * Tests whether enrollStudentInCourse() properly detects a Student vs.
