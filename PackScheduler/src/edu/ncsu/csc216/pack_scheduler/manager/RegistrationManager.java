@@ -244,6 +244,51 @@ public class RegistrationManager {
 	        return false; 
 	    }
 	}
+	
+	/**
+	 * Adds a Course to a Faculty object's FacultySchedule
+	 * @param c the course that is being attempted to be added to faculty's FacultySchedule
+	 * @param faculty the faculty member to which the course is attempting to be added
+	 * @throws IllegalArgumentException if the course cannot be added to the faculty member's schedule
+	 * @return true if the Course is added to the faculty member's FacultySchedule 
+	 */
+	public boolean addFacultyToCourse(Course c, Faculty faculty) {
+		if (currentUser != null && currentUser.equals(registrar)) {
+			try {
+				return faculty.getSchedule().addCourseToSchedule(c);
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException("The course cannot be added to this faculty member's schedule.");
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	
+	/**
+	 * Removes Course from a Faculty object's FacultySchedule
+	 * @param c the course that is being attempted to be removed from faculty's FacultySchedule
+	 * @param faculty the faculty member to which the course is attempting to be removed
+	 * @return true if the Course is removed from the faculty member's FacultySchedule 
+	 */
+	public boolean removeFacultyFromCourse(Course c, Faculty faculty) {
+		if (currentUser != null && currentUser.equals(registrar)) {
+			return faculty.getSchedule().removeCourseFromSchedule(c);
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Resets the faculty object's FacultySchedule to contain zero Courses
+	 * @param faculty the faculty member whose FactultySchedule is being reset
+	 */
+	public void resetFacultySchedule(Faculty faculty) {
+		if (currentUser != null && currentUser.equals(registrar)) {
+			faculty.getSchedule().resetSchedule();
+		} 
+	}
+	
 
 	/**
 	 * Resets the logged in student's schedule by dropping them
