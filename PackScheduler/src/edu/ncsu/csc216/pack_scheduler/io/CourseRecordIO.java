@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -87,14 +88,25 @@ public class CourseRecordIO {
 		} catch (NoSuchElementException e) {
 			throw new IllegalArgumentException("Invalid course record");
 		}
+		Course arrangedCourse = null;
+		Course onCampus = null;
 		if ("A".equals(meetingDays)) {
-			Course arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
+			arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
+			if (arrangedCourse.getInstructorId() != null) {
+				FacultySchedule arrangedAdd = new FacultySchedule(instructorId);
+				arrangedAdd.addCourseToSchedule(arrangedCourse);
+			}
 			return arrangedCourse;
 		} else {
-			Course onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays, startTime,
-					endTime);
+			onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays,
+					startTime, endTime);
+			if (onCampus.getInstructorId() != null) {
+				FacultySchedule campusAdd = new FacultySchedule(instructorId);
+				campusAdd.addCourseToSchedule(arrangedCourse);
+			}
 			return onCampus;
 		}
+
 	}
 
 	/**
