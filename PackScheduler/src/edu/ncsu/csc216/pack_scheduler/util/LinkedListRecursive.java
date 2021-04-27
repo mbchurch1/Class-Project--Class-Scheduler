@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+
+
 /**
  * 
  * LinkedListRecursive class that creates a custom implementation of a recursive linked list 
@@ -48,8 +50,15 @@ public class LinkedListRecursive<E> {
 	 * @return True or false if element can be added
 	 */
 	public boolean add(E element) {
-		//TODO
-		return false;	
+		if(element == null || contains(element)) {
+			throw new IllegalArgumentException("Cannot add element.");
+		} else {
+			add(size, element);
+			size++;
+			return true;
+		}
+		
+			
 	}
 	
 	/**
@@ -59,7 +68,24 @@ public class LinkedListRecursive<E> {
 	 * @param element Element to be added
 	 */
 	public void add(int index, E element) {
-		//TODO
+		if(index < 0 || index > size) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
+		if(contains(element)) {
+			throw new IllegalArgumentException("Duplicate element.");
+		}
+		if(element == null) {
+			throw new NullPointerException("Element is null.");
+		}
+		if(index == 0) {
+			front = new ListNode(element, front);
+			size++;
+		} else {
+			LinkedListRecursive addElement = new LinkedListRecursive();
+			LinkedListRecursive.ListNode addElementNode = addElement.new ListNode(front.data, front.next);
+			addElementNode.add(index, element);
+			size++;
+		}
 		
 	}
 
@@ -70,9 +96,13 @@ public class LinkedListRecursive<E> {
 	 * @return e Element to be returned at the given index
 	 */
 	public E get(int index) {
-		
-		//TODO
-		return null;
+		if(index < 0 || index > size) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
+		LinkedListRecursive getElement = new LinkedListRecursive();
+		LinkedListRecursive.ListNode getElementNode = getElement.new ListNode(front.data, front.next);
+		return (E) getElementNode.get(index);
+
 	}
 	
 	/**
@@ -82,8 +112,18 @@ public class LinkedListRecursive<E> {
 	 * @return true or false if element can be removed
 	 */
 	public boolean remove(E element) {
+		if(element == null) {
+			throw new NullPointerException("Element is null.");
+		}
+		if(isEmpty()) {
+			return false;
+		}
+		if(element == front.data) {
+			front = front.next;
+			size--;
+			return true;
+		}
 		
-		//TODO
 		return false;
 	}
 	
@@ -94,9 +134,22 @@ public class LinkedListRecursive<E> {
 	 * @return e Returns the element that was removed
 	 */
 	public E remove(int index) {
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
 		
-		//TODO
-		return null;
+		if(index == 0) {
+			E temp = front.data;
+			front = front.next;
+			size--;
+			return temp;
+		} else {
+			LinkedListRecursive removeElement = new LinkedListRecursive();
+			LinkedListRecursive.ListNode removeElementNode = removeElement.new ListNode(front.data, front.next);
+			return (E) removeElementNode.remove(index);
+		}
+		
+		
 	}
 	
 	/**
@@ -107,9 +160,17 @@ public class LinkedListRecursive<E> {
 	 * @return e Element that was previously set to
 	 */
 	public E set(int index, E element) {
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException("Invalid index.");
+		}
+		if(element == null) {
+			throw new NullPointerException("Element is null.");
+		}
+		LinkedListRecursive setElement = new LinkedListRecursive();
+		LinkedListRecursive.ListNode setElementNode = setElement.new ListNode(front.data, front.next);
+		return (E) setElementNode.set(index, element);
 		
-		//TODO
-		return null;
+		
 	}
 	
 	
@@ -170,8 +231,11 @@ public class LinkedListRecursive<E> {
 		 */
 		public void add(int index, E element) {
 			
-			//TODO
-			
+			if(index > 0) {
+				add(index - 1, element);
+			}
+			this.next.data = this.data;
+			this.data = element;
 		}
 	
 		/**
@@ -183,6 +247,11 @@ public class LinkedListRecursive<E> {
 		public E get(int index) {
 			
 			//TODO
+			if(index > 0) {
+				
+				get(index - 1);
+			}
+			
 			return null;
 		}
 		
@@ -195,6 +264,7 @@ public class LinkedListRecursive<E> {
 		public E remove(int index) {
 			
 			//TODO
+			size--;
 			return null;
 		}
 		
