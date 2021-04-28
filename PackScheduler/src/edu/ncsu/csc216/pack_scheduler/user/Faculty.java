@@ -61,7 +61,7 @@ public class Faculty extends User implements Comparable<Faculty> {
 	 */
 	public void setMaxCourses(int maxCourses) {
 		if (maxCourses < MIN_COURSES || maxCourses > MAX_COURSES) {
-			throw new IllegalArgumentException("Invalid max courses.");
+			throw new IllegalArgumentException("Invalid max courses");
 		}
 		this.maxCourses = maxCourses;
 

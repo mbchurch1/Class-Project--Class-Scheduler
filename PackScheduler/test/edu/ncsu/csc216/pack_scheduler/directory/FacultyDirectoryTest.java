@@ -180,7 +180,7 @@ public class FacultyDirectoryTest {
 		try {
 			fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 0);
 		} catch (IllegalArgumentException e) {
-			assertEquals("Invalid max courses.", e.getMessage());
+			assertEquals("Invalid max courses", e.getMessage());
 		}
 		
 		fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 1);
