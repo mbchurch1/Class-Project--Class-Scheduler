@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc217.collections.list.SortedList;
@@ -61,6 +62,7 @@ public class CourseRecordIO {
 
 	private static Course readCourse(String nextLine) {
 		RegistrationManager newManager = RegistrationManager.getInstance();
+		FacultyDirectory fd = newManager.getFacultyDirectory();
 		
 		Scanner scan = new Scanner(nextLine);
 		scan.useDelimiter(",");
@@ -98,28 +100,56 @@ public class CourseRecordIO {
 		Course onCampus = null;
 		if ("A".equals(meetingDays)) {
 			arrangedCourse = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDays);
-			if (instructorId != null) {
-				if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
-					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
-					faculty.getSchedule().addCourseToSchedule(arrangedCourse);
-					arrangedCourse.setInstructorId(instructorId);
-				}
+			//check if a Valid Faculty matches instructorId 
+			if (fd.getFacultyById(instructorId) != null) {
+				fd.getFacultyById(instructorId).getSchedule().addCourseToSchedule(arrangedCourse);
+			}
+			
+//			if (instructorId != null) {
+//				if (fd.getFacultyById(instructorId) != null) {
+//					arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
+//				}
+//				arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
+				//if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
+//					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
+//					faculty.getSchedule().addCourseToSchedule(arrangedCourse);
+//					arrangedCourse.setInstructorId(instructorId);
+					//arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
+				//}
 //				FacultySchedule arrangedAdd = new FacultySchedule(instructorId);
 //				arrangedAdd.addCourseToSchedule(arrangedCourse);
-			}
+			//}
 			return arrangedCourse;
 		} else {
 			onCampus = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDays,
 					startTime, endTime);
-			if (instructorId != null) {
-				if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
-					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
-					faculty.getSchedule().addCourseToSchedule(onCampus);
-					onCampus.setInstructorId(instructorId);
-				}
-//				FacultySchedule campusAdd = new FacultySchedule(instructorId);
-//				campusAdd.addCourseToSchedule(arrangedCourse);
+			//check if a Valid Faculty matches instructorId 
+			if (fd.getFacultyById(instructorId) != null) {
+				fd.getFacultyById(instructorId).getSchedule().addCourseToSchedule(onCampus);
 			}
+			
+//			if (fd.getFacultyById(instructorId) != null) {
+//				onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays,
+//						startTime, endTime);
+//			}
+//			if (instructorId != null) {
+//				FacultyDirectory fd2 = new FacultyDirectory();
+//				if (fd2.getFacultyById(instructorId) != null) {
+//					onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays,
+//							startTime, endTime);
+//				}
+////				onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays,
+////						startTime, endTime);
+//				//if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
+////					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
+////					faculty.getSchedule().addCourseToSchedule(onCampus);
+////					onCampus.setInstructorId(instructorId);
+//					//onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays,
+//					//startTime, endTime);
+//				//}
+////				FacultySchedule campusAdd = new FacultySchedule(instructorId);
+////				campusAdd.addCourseToSchedule(arrangedCourse);
+//			}
 			return onCampus;
 		}
 
