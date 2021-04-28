@@ -12,6 +12,8 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
+import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
 import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 
@@ -42,7 +44,14 @@ public class FacultyScheduleTest {
 			fail("Unable to reset files");
 		}
 		
+//		FacultyDirectory fd = RegistrationManager.getInstance().getFacultyDirectory();
+//		fd.loadFacultyFromFile("test-files/faculty_records_extended.txt");
+		
 		catalog = new CourseCatalog();
+		//catalog.loadCoursesFromFile --> catalog = CourseRecordIO.readCourseRecords(fileName);
+		//since a FacultyDirectory has not been popuklated by anything yet, this should just return 
+		//the Course object with a null instructorId
+		// --> catalog should be comprised of Course objects each with null instructorId
 		catalog.loadCoursesFromFile("test-files/course_records.txt");
 	}
 	
