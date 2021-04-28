@@ -14,6 +14,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -57,10 +59,15 @@ public class CourseRecordIOTest {
 	private final String validCourse11 = "CSC226,Discrete Mathematics for Computer Scientists,001,3,tmbarnes,10,MWF,935,1025";
 	/** Expected results for valid courses in course_records.txt - line 13 */
 	private final String validCourse12 = "CSC230,C and Software Tools,001,3,dbsturgi,10,MW,1145,1300";
+	/** Expected results for valid courses in course_records.txt - line 14 */
+	private final String validCourse13 = "CSC316,Data Structures and Algorithms,001,3,jtking,10,MW,830,945";
 
 	/** Array to hold expected results */
 	private final String[] validCourses = { validCourse1, validCourse2, validCourse3, validCourse4, validCourse5,
-			validCourse6, validCourse7, validCourse8, validCourse9, validCourse10, validCourse11, validCourse12 };
+			validCourse6, validCourse7, validCourse8, validCourse9, validCourse10, validCourse11, validCourse12, validCourse13 };
+	
+	private final String[] validCourses2 = { validCourse1, validCourse2, validCourse3, validCourse4, validCourse7, validCourse8, 
+			validCourse9, validCourse10, validCourse11, validCourse12, validCourse13 };
 
 	/**
 	 * Resets course_records.txt for use in other tests.
@@ -86,11 +93,14 @@ public class CourseRecordIOTest {
 	@Test
 	public void testReadValidCourseRecords() {
 		try {
-			SortedList<Course> courses = CourseRecordIO.readCourseRecords(validTestFile);
-			assertEquals(13, courses.size());
+			RegistrationManager newManager = RegistrationManager.getInstance();
+			FacultyDirectory fd = newManager.getFacultyDirectory();
+			fd.loadFacultyFromFile("test-files/faculty_records_extended.txt");
+			SortedList<Course> courses = CourseRecordIO.readCourseRecords("test-files/course_records_valid_records_2.txt");
+			assertEquals(11, courses.size());
 
-			for (int i = 0; i < validCourses.length; i++) {
-				assertEquals(validCourses[i], courses.get(i).toString());
+			for (int i = 0; i < validCourses2.length; i++) {
+				assertEquals(validCourses2[i], courses.get(i).toString());
 			}
 		} catch (FileNotFoundException e) {
 			fail("Unexpected error reading " + validTestFile);
