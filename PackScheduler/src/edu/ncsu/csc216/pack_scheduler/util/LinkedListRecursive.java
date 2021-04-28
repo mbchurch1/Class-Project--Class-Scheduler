@@ -107,7 +107,7 @@ public class LinkedListRecursive<E> {
 	 */
 	public boolean remove(E element) {
 		if (element == null) {
-			throw new NullPointerException("Element is null.");
+			return false;
 		}
 		if (isEmpty()) {
 			return false;

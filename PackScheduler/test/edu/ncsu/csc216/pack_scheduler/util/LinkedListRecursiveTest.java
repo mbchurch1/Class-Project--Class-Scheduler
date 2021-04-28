@@ -159,12 +159,7 @@ public class LinkedListRecursiveTest {
 		assertTrue(g.remove(a));
 		assertEquals("h", g.get(0));
 		//assertFalse(g.remove(c));
-		try {
-			g.remove(null);
-			fail("This should throw an NPE");
-		} catch (NullPointerException e) {
-			assertEquals("Element is null.", e.getMessage());
-		}
+		assertFalse(g.remove(null));
 	}
 
 	/**

@@ -11,7 +11,6 @@ import java.util.Scanner;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
 import edu.ncsu.csc217.collections.list.SortedList;
 
 /**
@@ -98,23 +97,25 @@ public class CourseRecordIO {
 		Course arrangedCourse = null;
 		Course onCampus = null;
 		if ("A".equals(meetingDays)) {
-			arrangedCourse = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays);
-			if (arrangedCourse.getInstructorId() != null) {
+			arrangedCourse = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDays);
+			if (instructorId != null) {
 				if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
 					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
 					faculty.getSchedule().addCourseToSchedule(arrangedCourse);
+					arrangedCourse.setInstructorId(instructorId);
 				}
 //				FacultySchedule arrangedAdd = new FacultySchedule(instructorId);
 //				arrangedAdd.addCourseToSchedule(arrangedCourse);
 			}
 			return arrangedCourse;
 		} else {
-			onCampus = new Course(name, title, section, creditHours, instructorId, enrollmentCap, meetingDays,
+			onCampus = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDays,
 					startTime, endTime);
-			if (onCampus.getInstructorId() != null) {
+			if (instructorId != null) {
 				if(newManager.getFacultyDirectory().getFacultyById(instructorId) != null) {
 					Faculty faculty = newManager.getFacultyDirectory().getFacultyById(instructorId);
 					faculty.getSchedule().addCourseToSchedule(onCampus);
+					onCampus.setInstructorId(instructorId);
 				}
 //				FacultySchedule campusAdd = new FacultySchedule(instructorId);
 //				campusAdd.addCourseToSchedule(arrangedCourse);
