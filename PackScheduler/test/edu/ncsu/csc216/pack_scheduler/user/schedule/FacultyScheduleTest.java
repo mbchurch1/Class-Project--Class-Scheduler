@@ -153,7 +153,9 @@ public class FacultyScheduleTest {
 	 */
 	@Test
 	public void testRemoveCourseFromSchedule() {
-		FacultySchedule schedule = new FacultySchedule("sesmith5");
+//		FacultySchedule schedule = new FacultySchedule("sesmith5");
+		Faculty f = new Faculty("Sarah", "Heckman", "sesmith5", "sesmith5@ncsu.edu", "pw", 2);
+		FacultySchedule schedule = f.getSchedule();
 		
 		//Attempt to remove from empty schedule
 		try {
@@ -203,7 +205,9 @@ public class FacultyScheduleTest {
 	 */
 	@Test
 	public void testResetSchedule() {
-		FacultySchedule schedule = new FacultySchedule("sesmith5");
+//		FacultySchedule schedule = new FacultySchedule("sesmith5");
+		Faculty f = new Faculty("Sarah", "Heckman", "sesmith5", "sesmith5@ncsu.edu", "pw", 2);
+		FacultySchedule schedule = f.getSchedule();
 		
 		//Add some courses and reset schedule
 		schedule.addCourseToSchedule(catalog.getCourseFromCatalog("CSC216", "001"));
