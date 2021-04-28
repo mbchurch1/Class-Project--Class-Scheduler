@@ -253,7 +253,7 @@ public class RegistrationManager {
 	 * @return true if the Course is added to the faculty member's FacultySchedule 
 	 */
 	public boolean addFacultyToCourse(Course c, Faculty faculty) {
-		if (currentUser != null && currentUser == registrar) {
+		if (currentUser != null && currentUser.equals(registrar)) {
 			try {
 				return faculty.getSchedule().addCourseToSchedule(c);
 			} catch (IllegalArgumentException e) {
