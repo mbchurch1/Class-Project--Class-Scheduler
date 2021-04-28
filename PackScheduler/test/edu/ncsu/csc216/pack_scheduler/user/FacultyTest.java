@@ -314,7 +314,7 @@ public class FacultyTest {
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertNull(f);
-			assertEquals("Invalid max courses.", e.getMessage());
+			assertEquals("Invalid max courses", e.getMessage());
 		}
 		// Testing invalid max courses with a value of 4
 		f = null;
@@ -324,7 +324,7 @@ public class FacultyTest {
 			fail("Max courses are too high.");
 		} catch (IllegalArgumentException e) {
 			assertNull(a);
-			assertEquals("Invalid max courses.", e.getMessage());
+			assertEquals("Invalid max courses", e.getMessage());
 		}
 	}
 
