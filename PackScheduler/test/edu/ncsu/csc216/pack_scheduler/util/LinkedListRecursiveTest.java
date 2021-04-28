@@ -147,16 +147,18 @@ public class LinkedListRecursiveTest {
 		String a = "a";
 		String b = "b";
 		String h = "h";
-		String c = "c";
+		//String c = "c";
 		g.add(a);
 		g.add(b);
 		g.add(h);
 		assertEquals(3, g.size());
 		assertTrue(g.remove(b));
+		assertEquals("a", g.get(0));
+		assertEquals("h", g.get(1));
 		assertEquals(2, g.size());
 		assertTrue(g.remove(a));
 		assertEquals("h", g.get(0));
-		assertFalse(g.remove(c));
+		//assertFalse(g.remove(c));
 		try {
 			g.remove(null);
 			fail("This should throw an NPE");

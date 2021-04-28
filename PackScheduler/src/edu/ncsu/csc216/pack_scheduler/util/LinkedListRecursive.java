@@ -266,9 +266,9 @@ public class LinkedListRecursive<E> {
 		 * @return True or false if element can be removed
 		 */
 		public boolean remove(E element) {
-			if (this.data == element) {
-				if (this.next == null) {
-					this.data = null;
+			if (this.next.data == element) {
+				if (this.next.next == null) {
+					this.next = null;
 					return true;
 				} else {
 					this.next = this.next.next;
