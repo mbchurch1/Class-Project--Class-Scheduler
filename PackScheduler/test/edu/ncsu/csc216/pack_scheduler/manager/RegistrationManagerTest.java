@@ -117,6 +117,13 @@ public class RegistrationManagerTest {
 		manager.getStudentDirectory().addStudent("Bob", "Boats", "bboats", "bb@ncsu.edu", "mypass", "mypass", 15);
 
 		assertFalse(manager.login("bboats", "mypass"));
+		
+		manager.logout();
+		//Test logging in as Faculty
+		Faculty faculty = new Faculty("Fac", "Ulty", "fulty", "fulty@ncsu.edu", "pw", 3);
+		manager.getFacultyDirectory().addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 3);
+		manager.login("fulty2", "pw");
+		//assertEquals(faculty, manager.getCurrentUser());
 	}
 
 	/**
