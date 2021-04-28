@@ -365,14 +365,14 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 		/** Previous node on the list */
 		public ListNode prev;
 		
-		/**
-		 * ListNode constructor
-		 * 
-		 * @param data Data to be used for constructing a ListNode
-		 */
-		public ListNode(E data) {
-			this(data, null, null);
-		}
+//		/**
+//		 * ListNode constructor
+//		 * 
+//		 * @param data Data to be used for constructing a ListNode
+//		 */
+//		public ListNode(E data) {
+//			this(data, null, null);
+//		}
 		
 		/**
 		 * ListNode constructor for the iterator
