@@ -13,8 +13,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
+
 /**
- * tests FacultyDirectory 
+ * tests FacultyDirectory
+ * 
  * @author Matthew Church
  * @author Will Goodwin
  * @author John Firlet
@@ -38,8 +40,7 @@ public class FacultyDirectoryTest {
 	private static final String PASSWORD = "pw";
 	/** Test max credits */
 	private static final int MAX_COURSES = 3;
-	
-	
+
 	/**
 	 * Resets course_records.txt for use in other tests.
 	 * 
@@ -57,8 +58,7 @@ public class FacultyDirectoryTest {
 			fail("Unable to reset files");
 		}
 	}
-	
-	
+
 	/**
 	 * Tests FacultyDirectory() to make sure it's initialized as an empty list
 	 */
@@ -91,11 +91,10 @@ public class FacultyDirectoryTest {
 			fail("Unexpected error reading " + validTestFile);
 		}
 	}
-	
-	
+
 	/**
-	 * Tests FacultyDirectory.loadFacultyFromFile() to ensure that it only
-	 * loads valid faculty records to the directory
+	 * Tests FacultyDirectory.loadFacultyFromFile() to ensure that it only loads
+	 * valid faculty records to the directory
 	 */
 	@Test
 	public void testLoadFacultyFromFile() {
@@ -114,8 +113,7 @@ public class FacultyDirectoryTest {
 			fail("Unexpected error reading " + validTestFile);
 		}
 	}
-	
-	
+
 	/**
 	 * Tests FacultyDirectory.addFaculty() to ensure that it only adds valid faculty
 	 * records to the directory based on parameters such as password
@@ -176,25 +174,30 @@ public class FacultyDirectoryTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals("Passwords do not match", e.getMessage());
 		}
-		
-		//Test adding a Faculty with 0 max credits
+
+		// Test adding a Faculty with 0 max credits
 		fd.newFacultyDirectory();
-		fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 0);
+		try {
+			fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 0);
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid max courses.", e.getMessage());
+		}
+		
+		fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 1);
 		String[][] facultyDirectory2 = fd.getFacultyDirectory();
-		assertEquals(1, facultyDirectory2.length);
+
 		assertEquals("Fac", facultyDirectory2[0][0]);
 		assertEquals("Ulty", facultyDirectory2[0][1]);
 		assertEquals("fulty2", facultyDirectory2[0][2]);
-		
-		//Test adding a duplicate Faculty to the previous FD
-		assertFalse(fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 0));
+
+		// Test adding a duplicate Faculty to the previous FD
+		assertFalse(fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 1));
 		assertEquals(1, facultyDirectory2.length);
 	}
-	
-	
+
 	/**
-	 * Tests FacultyDirectory.removeFaculty() to ensure that it can remove faculty records
-	 * from the directory and the remaining records will be unaffected
+	 * Tests FacultyDirectory.removeFaculty() to ensure that it can remove faculty
+	 * records from the directory and the remaining records will be unaffected
 	 */
 	@Test
 	public void testRemoveFaculty() {
@@ -210,8 +213,7 @@ public class FacultyDirectoryTest {
 		assertEquals("Brady", facultyDirectory[6][1]);
 		assertEquals("nbrady", facultyDirectory[6][2]);
 	}
-	
-	
+
 //	/**
 //	 * Tests FacultyDirectory.saveFacultyDirectory() to ensure that following editing the 
 //	 * directory, the directory can be accurately saved when compared to the expected directory
@@ -228,8 +230,7 @@ public class FacultyDirectoryTest {
 //		fd.saveFacultyDirectory("test-files/actual_faculty_records.txt");
 //		checkFiles("test-files/expected_faculty_records.txt", "test-files/actual_faculty_records.txt");
 //	}
-	
-	
+
 	/**
 	 * Test the getFacultyByID
 	 */
@@ -246,10 +247,6 @@ public class FacultyDirectoryTest {
 		assertEquals(f1.toString(), f.toString());
 		assertNull(fd2.getFacultyById("Matt"));
 	}
-
-
-
-	
 
 //	/**
 //	 * Helper method to compare two files for the same contents
