@@ -1,10 +1,9 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
-
-
 /**
  * 
- * LinkedListRecursive class that creates a custom implementation of a recursive linked list 
+ * LinkedListRecursive class that creates a custom implementation of a recursive
+ * linked list
  * 
  * @author Matthew Church
  * @author Will Goodwin
@@ -13,12 +12,12 @@ package edu.ncsu.csc216.pack_scheduler.util;
  * @param <E> LinkedListRecursive of generic objects
  */
 public class LinkedListRecursive<E> {
-	
+
 	/** Front field for front of the list */
 	private ListNode front;
 	/** Size of the list */
 	private int size;
-	
+
 	/**
 	 * Constructor for LinkedListRecursive
 	 */
@@ -26,23 +25,25 @@ public class LinkedListRecursive<E> {
 		front = null;
 		size = 0;
 	}
-	
+
 	/**
 	 * Returns true if the list equals zero
+	 * 
 	 * @return true or false if size of the list equals zero
 	 */
 	public boolean isEmpty() {
 		return size == 0;
 	}
-	
+
 	/**
 	 * Size method to return the size of the LinkedListRecursive
-	 * @return size  Size of the list
+	 * 
+	 * @return size Size of the list
 	 */
 	public int size() {
 		return size;
 	}
-	
+
 	/**
 	 * Add method to check if an element can be added to the list
 	 * 
@@ -50,38 +51,38 @@ public class LinkedListRecursive<E> {
 	 * @return True or false if element can be added
 	 */
 	public boolean add(E element) {
-		if(element == null || contains(element)) {
+		if (element == null || contains(element)) {
 			throw new IllegalArgumentException("Cannot add element.");
 		} else {
 			add(size, element);
 			return true;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Adds the element to the given index
 	 * 
-	 * @param index Index of where to add the element
+	 * @param index   Index of where to add the element
 	 * @param element Element to be added
 	 */
 	public void add(int index, E element) {
-		if(index < 0 || index > size) {
+		if (index < 0 || index > size) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
-		if(contains(element)) {
+		if (contains(element)) {
 			throw new IllegalArgumentException("Duplicate element.");
 		}
-		if(element == null) {
+		if (element == null) {
 			throw new NullPointerException("Element is null.");
 		}
-		if(index == 0) {
+		if (index == 0) {
 			front = new ListNode(element, front);
 			size++;
 		} else {
 			front.add(index, element);
 			size++;
 		}
-		
+
 	}
 
 	/**
@@ -91,13 +92,13 @@ public class LinkedListRecursive<E> {
 	 * @return e Element to be returned at the given index
 	 */
 	public E get(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException(index + " out of bounds for list of size " + size);
-        }
-        
-        return front.get(index);
-    }
-	
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException(index + " out of bounds for list of size " + size);
+		}
+
+		return front.get(index);
+	}
+
 	/**
 	 * Returns true or false if element can be removed
 	 * 
@@ -105,21 +106,21 @@ public class LinkedListRecursive<E> {
 	 * @return true or false if element can be removed
 	 */
 	public boolean remove(E element) {
-		if(element == null) {
+		if (element == null) {
 			throw new NullPointerException("Element is null.");
 		}
-		if(isEmpty()) {
+		if (isEmpty()) {
 			return false;
 		}
-		if(element == front.data) {
+		if (element == front.data) {
 			front = front.next;
 			size--;
 			return true;
 		}
-		
+		size--;
 		return front.remove(element);
 	}
-	
+
 	/**
 	 * Removes the element at the given index
 	 * 
@@ -127,11 +128,11 @@ public class LinkedListRecursive<E> {
 	 * @return e Returns the element that was removed
 	 */
 	public E remove(int index) {
-		if(index < 0 || index >= size) {
+		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
-		
-		if(index == 0) {
+
+		if (index == 0) {
 			E temp = front.data;
 			front = front.next;
 			size--;
@@ -140,30 +141,28 @@ public class LinkedListRecursive<E> {
 
 			return front.remove(index);
 		}
-		
-		
+
 	}
-	
+
 	/**
 	 * Sets the element to the index given
 	 * 
-	 * @param index Index of the element to set
-	 * @param element Element to set 
+	 * @param index   Index of the element to set
+	 * @param element Element to set
 	 * @return e Element that was previously set to
 	 */
 	public E set(int index, E element) {
-		if(index < 0 || index >= size) {
+		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
-		if(element == null) {
+		if (element == null) {
 			throw new NullPointerException("Element is null.");
 		}
-		
+
 		return front.set(index, element);
-		
+
 	}
-	
-	
+
 	/**
 	 * Contains method to determine if an element is a duplicate
 	 * 
@@ -171,19 +170,16 @@ public class LinkedListRecursive<E> {
 	 * @return True or false if the element is a duplicate
 	 */
 	public boolean contains(E element) {
-		
-		if(isEmpty()) {
+
+		if (isEmpty()) {
 			return false;
 		} else {
 
 			return front.contains(element);
 		}
-		
+
 	}
-	
-	
-	
-	
+
 	/**
 	 * ListNode inner class to create ListNodes for the LinkedList class
 	 * 
@@ -192,14 +188,13 @@ public class LinkedListRecursive<E> {
 	 * @author John Firlet
 	 *
 	 */
-	private class ListNode { 
+	private class ListNode {
 
-		/**Private data field for the current ListNode  */
+		/** Private data field for the current ListNode */
 		public E data;
-		/** Next node on the list   */
+		/** Next node on the list */
 		public ListNode next;
-	
-		
+
 		/**
 		 * ListNode constructor for the iterator
 		 * 
@@ -210,28 +205,28 @@ public class LinkedListRecursive<E> {
 			this.data = data;
 			this.next = next;
 		}
-		
+
 		/**
 		 * Adds the element at the given index
 		 * 
-		 * @param index Index of the element to add
+		 * @param index   Index of the element to add
 		 * @param element Element to add at the given index
 		 */
 		public void add(int index, E element) {
-            if (index == 1) {
-                if (this.next.next == null) {
-                    this.next = new ListNode(element, null);
-                    
-                } else {
-                    ListNode newNode = new ListNode(element, this.next.next);
-                    this.next = newNode;
-                }
-            } else {
-                this.next.add(index - 1, element);
-            }
+			if (index == 1) {
+				if (this.next == null) {
+					this.next = new ListNode(element, null);
 
-        }
-	
+				} else {
+					ListNode newNode = new ListNode(element, this.next);
+					this.next = newNode;
+				}
+			} else {
+				this.next.add(index - 1, element);
+			}
+
+		}
+
 		/**
 		 * Returns the element at the given index
 		 * 
@@ -239,13 +234,13 @@ public class LinkedListRecursive<E> {
 		 * @return e Element to be returned at the given index
 		 */
 		public E get(int index) {
-            if (index == 0) {
-                return this.data;
-            } else {
-                return this.next.get(index - 1);
-            }
-        }
-		
+			if (index == 0) {
+				return this.data;
+			} else {
+				return this.next.get(index - 1);
+			}
+		}
+
 		/**
 		 * Removes an element at a given index
 		 * 
@@ -253,7 +248,7 @@ public class LinkedListRecursive<E> {
 		 * @return e Element that was removed
 		 */
 		public E remove(int index) {
-			if(index == 0) {
+			if (index == 0) {
 				E rtn = this.data;
 				this.data = this.next.data;
 				size--;
@@ -261,9 +256,9 @@ public class LinkedListRecursive<E> {
 			} else {
 				return this.next.remove(index - 1);
 			}
-			
+
 		}
-		
+
 		/**
 		 * Returns true or false if an element can be removed from the list
 		 * 
@@ -271,23 +266,28 @@ public class LinkedListRecursive<E> {
 		 * @return True or false if element can be removed
 		 */
 		public boolean remove(E element) {
-			if(this.data == element) {
-				this.data = this.next.data;
-				return true;
+			if (this.data == element) {
+				if (this.next == null) {
+					this.data = null;
+					return true;
+				} else {
+					this.next = this.next.next;
+					return true;
+				}
 			} else {
 				return this.next.remove(element);
 			}
 		}
-		
+
 		/**
 		 * Sets an element at the given index
-		 *  
-		 * @param index Index of the element to set
+		 * 
+		 * @param index   Index of the element to set
 		 * @param element Element to set at the given index
 		 * @return e Element that was previously set to
 		 */
 		public E set(int index, E element) {
-			if(index == 0) {
+			if (index == 0) {
 				E rtn = this.data;
 				this.data = element;
 				return rtn;
@@ -295,7 +295,7 @@ public class LinkedListRecursive<E> {
 				return this.next.set(index - 1, element);
 			}
 		}
-		
+
 		/**
 		 * Contains method to determine if an element is a duplicate
 		 * 
@@ -303,17 +303,17 @@ public class LinkedListRecursive<E> {
 		 * @return True or false if the element is a duplicate
 		 */
 		public boolean contains(E element) {
-			if(this.data.equals(element)) {
+			if (this.data.equals(element)) {
 				return true;
-			} else if(this.next == null) {
+			} else if (this.next == null) {
 				return false;
 			} else {
-				
+
 				return this.next.contains(element);
 			}
-		
+
 		}
-		
+
 	}
 
 }

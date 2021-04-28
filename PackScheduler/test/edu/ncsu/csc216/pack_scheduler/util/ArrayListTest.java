@@ -73,7 +73,7 @@ public class ArrayListTest {
 	 */
 	@Test
 	public void testGrowArray() {
-		ArrayList list = new ArrayList();
+		ArrayList<String> list = new ArrayList<String>();
 		list.add(0, "Test1");
 		list.add(1, "Test2");
 		list.add(2, "Test3");
