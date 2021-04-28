@@ -176,6 +176,19 @@ public class FacultyDirectoryTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals("Passwords do not match", e.getMessage());
 		}
+		
+		//Test adding a Faculty with 0 max credits
+		fd.newFacultyDirectory();
+		fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 0);
+		String[][] facultyDirectory2 = fd.getFacultyDirectory();
+		assertEquals(1, facultyDirectory2.length);
+		assertEquals("Fac", facultyDirectory2[0][0]);
+		assertEquals("Ulty", facultyDirectory2[0][1]);
+		assertEquals("fulty2", facultyDirectory2[0][2]);
+		
+		//Test adding a duplicate Faculty to the previous FD
+		assertFalse(fd.addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 0));
+		assertEquals(1, facultyDirectory2.length);
 	}
 	
 	

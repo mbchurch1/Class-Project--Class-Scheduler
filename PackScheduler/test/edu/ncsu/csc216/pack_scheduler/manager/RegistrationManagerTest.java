@@ -123,7 +123,11 @@ public class RegistrationManagerTest {
 		Faculty faculty = new Faculty("Fac", "Ulty", "fulty", "fulty@ncsu.edu", "pw", 3);
 		manager.getFacultyDirectory().addFaculty("Fac", "Ulty", "fulty2", "fulty@ncsu.edu", "pw", "pw", 3);
 		manager.login("fulty2", "pw");
-		//assertEquals(faculty, manager.getCurrentUser());
+		String[][] facultyDirectory = manager.getFacultyDirectory().getFacultyDirectory();
+		assertEquals(1, facultyDirectory.length);
+		assertEquals("Fac", facultyDirectory[0][0]);
+		assertEquals("Ulty", facultyDirectory[0][1]);
+		assertEquals("fulty2", facultyDirectory[0][2]);
 	}
 
 	/**
