@@ -99,19 +99,29 @@ public class LinkedListTest<E> {
 	/**
 	 * Tests setting the value of elements in the LinkedList
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Test
 	public void testSet() {
-		LinkedList<E> list = new LinkedList<E>();
-		Student s1 = new Student(FIRST_NAME, LAST_NAME, STUDENT_ID, STUDENT_EMAIL, STUDENT_PASSWORD, STUDENT_MAX_CREDITS);
-		list.add(0, s1);
-		Student s3 = new Student("Bob", "LastnameBob", "blastnamebob", "junk@gmail.com", "NotReal!", 14);
-		list.add(1, s3);
+		LinkedList<String> fruit = new LinkedList<String>();
+		fruit.add("orange");
+		fruit.add("banana");
+		fruit.add("apple");
+		fruit.add("kiwi");
+		fruit.set(1, "strawberry");
+		assertEquals("orange", fruit.get(0));
+		assertEquals("strawberry", fruit.get(1));
+		assertEquals("apple", fruit.get(2));
+		assertEquals("kiwi", fruit.get(3));
+//		LinkedList<E> list = new LinkedList<E>();
+//		Student s1 = new Student(FIRST_NAME, LAST_NAME, STUDENT_ID, STUDENT_EMAIL, STUDENT_PASSWORD, STUDENT_MAX_CREDITS);
+//		list.add(0, s1);
+//		Student s3 = new Student("Bob", "LastnameBob", "blastnamebob", "junk@gmail.com", "NotReal!", 14);
+//		list.add(1, s3);
+//		
+//		Student s4 = new Student("Rob", "Roberts", "rroberts", "thisemail@gmail.com", "NotWay!", 15);
 		
-		Student s4 = new Student("Rob", "Roberts", "rroberts", "thisemail@gmail.com", "NotWay!", 15);
-		
-		ListIterator<E> iterator = list.listIterator(1);
-		iterator.previous();
+//		ListIterator<E> iterator = list.listIterator(1);
+//		iterator.previous();
 		
 //		try {
 //			iterator.previous();
@@ -119,23 +129,38 @@ public class LinkedListTest<E> {
 //			assertEquals("Invalid element.", (e.getMessage()));
 //		}
 		
-		iterator.set((E) s4);
-		assertEquals(2, list.size());
-		assertEquals(s4, list.get(0));
-		assertEquals(0, iterator.nextIndex());
-		assertTrue(iterator.hasNext());
-		
-		Student s5 = new Student("Ned", "Flanders", "nflanders", "neighbor@gmail.com", "AndAHotPlate!", 13);
-		iterator.next();
-		iterator.set((E) s5);
-		//list.set(1, s5);
-		assertEquals(2, list.size());
-		assertEquals(s5, list.get(1));
-		assertEquals(0, iterator.previousIndex());
-		assertTrue(iterator.hasPrevious());
+		//iterator.set((E) s4);
+//		assertEquals(2, list.size());
+//		assertEquals(s4, list.get(0));
+//		assertEquals(0, iterator.nextIndex());
+//		assertTrue(iterator.hasNext());
+//		
+//		Student s5 = new Student("Ned", "Flanders", "nflanders", "neighbor@gmail.com", "AndAHotPlate!", 13);
+//		iterator.next();
+//		iterator.set((E) s5);
+//		//list.set(1, s5);
+//		assertEquals(2, list.size());
+//		assertEquals(s5, list.get(1));
+//		assertEquals(0, iterator.previousIndex());
+//		assertTrue(iterator.hasPrevious());
 		//E element1 = list.previous();
 		
 		//LinkedListIterator iterator = new LinkedListIterator(1);
 	}
-
+	/**
+	 * Tests remove
+	 */
+	@Test
+	public void testRemove() {
+		LinkedList<String> fruit = new LinkedList<String>();
+		fruit.add("orange");
+		fruit.add("banana");
+		fruit.add("apple");
+		fruit.add("kiwi");
+		fruit.remove(1);
+		assertEquals(3, fruit.size());
+		assertEquals("orange", fruit.get(0));
+		assertEquals("apple", fruit.get(1));
+		assertEquals("kiwi", fruit.get(2));
+	}
 }
