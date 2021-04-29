@@ -49,7 +49,7 @@ public class FacultyScheduleTest {
 		
 		catalog = new CourseCatalog();
 		//catalog.loadCoursesFromFile --> catalog = CourseRecordIO.readCourseRecords(fileName);
-		//since a FacultyDirectory has not been popuklated by anything yet, this should just return 
+		//since a FacultyDirectory has not been populated by anything yet, this should just return 
 		//the Course object with a null instructorId
 		// --> catalog should be comprised of Course objects each with null instructorId
 		catalog.loadCoursesFromFile("test-files/course_records.txt");

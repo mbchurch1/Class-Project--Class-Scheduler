@@ -303,14 +303,26 @@ public class LinkedListRecursive<E> {
 		 * @return True or false if the element is a duplicate
 		 */
 		public boolean contains(E element) {
-			if (this.data.equals(element)) {
-				return true;
-			} else if (this.next == null) {
-				return false;
-			} else {
-
-				return this.next.contains(element);
+			//new code from wsg at 9:00pm - looks like it works fine but can revert to below code later if needed
+			ListNode current = front;
+			for (int i = 0; i < size; i++) {
+				if (current.data.equals(element)) {
+					return true;
+				} else if (i == (size - 1)){
+					return false;
+				} else {
+					current = current.next;
+				}
 			}
+			return false;
+//			if (this.data.equals(element)) {
+//				return true;
+//			} else if (this.next == null) {
+//				return false;
+//			} else {
+//
+//				return this.next.contains(element);
+//			}
 
 		}
 
