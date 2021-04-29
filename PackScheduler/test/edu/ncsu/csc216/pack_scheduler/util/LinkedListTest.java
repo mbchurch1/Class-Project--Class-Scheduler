@@ -56,10 +56,10 @@ public class LinkedListTest<E> {
 	/**
 	 * Tests adding student objects to the LinkedList
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Test 
 	public void testAddStudentObject() {
-		LinkedList<E> list = new LinkedList<E>();
+		LinkedList<Student> list = new LinkedList<Student>();
 		Student s1 = new Student(FIRST_NAME, LAST_NAME, STUDENT_ID, STUDENT_EMAIL, STUDENT_PASSWORD, STUDENT_MAX_CREDITS);
 		
 		list.add(0, s1);
