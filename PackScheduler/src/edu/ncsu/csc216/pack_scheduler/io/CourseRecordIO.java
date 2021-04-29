@@ -103,6 +103,9 @@ public class CourseRecordIO {
 			//check if a Valid Faculty matches instructorId 
 			if (fd.getFacultyById(instructorId) != null) {
 				fd.getFacultyById(instructorId).getSchedule().addCourseToSchedule(arrangedCourse);
+				return arrangedCourse;
+			} else {
+				return arrangedCourse;	
 			}
 			
 //			if (instructorId != null) {
@@ -119,13 +122,16 @@ public class CourseRecordIO {
 //				FacultySchedule arrangedAdd = new FacultySchedule(instructorId);
 //				arrangedAdd.addCourseToSchedule(arrangedCourse);
 			//}
-			return arrangedCourse;
+			
 		} else {
 			onCampus = new Course(name, title, section, creditHours, null, enrollmentCap, meetingDays,
 					startTime, endTime);
 			//check if a Valid Faculty matches instructorId 
 			if (fd.getFacultyById(instructorId) != null) {
 				fd.getFacultyById(instructorId).getSchedule().addCourseToSchedule(onCampus);
+				return onCampus;
+			} else {
+				return onCampus;
 			}
 			
 //			if (fd.getFacultyById(instructorId) != null) {
@@ -150,7 +156,7 @@ public class CourseRecordIO {
 ////				FacultySchedule campusAdd = new FacultySchedule(instructorId);
 ////				campusAdd.addCourseToSchedule(arrangedCourse);
 //			}
-			return onCampus;
+			
 		}
 
 	}

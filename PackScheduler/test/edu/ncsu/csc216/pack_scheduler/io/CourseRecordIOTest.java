@@ -93,9 +93,9 @@ public class CourseRecordIOTest {
 	@Test
 	public void testReadValidCourseRecords() {
 		try {
-			RegistrationManager newManager = RegistrationManager.getInstance();
-			FacultyDirectory fd = newManager.getFacultyDirectory();
-			fd.loadFacultyFromFile("test-files/faculty_records_extended.txt");
+			//RegistrationManager newManager = RegistrationManager.getInstance();
+			//FacultyDirectory fd = newManager.getFacultyDirectory();
+			//fd.loadFacultyFromFile("test-files/faculty_records_extended.txt");
 			SortedList<Course> courses = CourseRecordIO.readCourseRecords("test-files/course_records_valid_records_2.txt");
 			assertEquals(11, courses.size());
 
