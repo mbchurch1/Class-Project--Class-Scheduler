@@ -46,6 +46,23 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 		back.prev = front;
 		size = 0;
 	}
+
+
+//	/**
+//	 * Constructor for LinkedList
+//	 */
+//	public LinkedList() {
+//		dummyFront = null;
+//		dummyBack = null;
+//		
+//		dummyFront = new ListNode(null, null, dummyBack);
+//		dummyBack = new ListNode(null, dummyFront, null);
+//		front = dummyFront;
+//		back = dummyBack;
+//		front.next = back;
+//		back.prev = front;
+//		size = 0;
+//	}
 	
 
 	/**
@@ -96,6 +113,9 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 	 */
 	@Override
 	public E set(int index, E element) {
+		if (this.contains(element)) {
+			throw new IllegalArgumentException("Cannot add  a duplicate element");
+		}
 		
 		return super.set(index, element);
 	}
@@ -294,13 +314,8 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 			if(lastRetrieved == null) {
 				throw new IllegalStateException("Invalid operation.");
 			}
-			
-			if(lastRetrieved == previous) {
-				previous = previous.prev;
-				previousIndex--;
-			} else {
-				next = next.next;
-			}
+			previous.next = next;
+			next.prev = previous.prev;
 			
 			
 			lastRetrieved = null;
@@ -326,7 +341,7 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 			if(lastRetrieved == previous) {
 				//previous = (LinkedList<E>.ListNode) e;
 				previous.data = e;
-			} else {
+			} else if (lastRetrieved == next) {
 				//next = (LinkedList<E>.ListNode) e;
 				next.data = e;
 			}
