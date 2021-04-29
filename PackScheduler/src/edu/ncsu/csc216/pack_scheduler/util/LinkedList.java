@@ -54,7 +54,9 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 	@Override
 	public void add(int index, Object element) {
 		
-		//TODO need to add a check for duplicates
+		if (this.contains(element)) {
+			throw new IllegalArgumentException("Cannot add a duplicate element");
+		}
 		
 		this.listIterator(index).add((E) element);
 		size++;
@@ -343,7 +345,6 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 			if(e == null) {
 				throw new NullPointerException("Cannot set a null element.");
 			}
-			
 			ListNode temp = new ListNode(e, previous, next);
 			previous.next = temp;
 			next.prev = temp;
