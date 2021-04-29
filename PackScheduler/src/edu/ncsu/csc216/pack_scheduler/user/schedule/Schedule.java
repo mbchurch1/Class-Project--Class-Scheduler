@@ -153,6 +153,9 @@ public class Schedule {
 		if (course == null) {
 			return false;
 		}
+		if(schedule.size() == 0) {
+			return true;
+		}
 		for (int i = 0; i < schedule.size(); i++) {
 
 			if (schedule.get(i).isDuplicate(course)) {
