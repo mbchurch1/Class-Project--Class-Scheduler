@@ -520,7 +520,11 @@ public class RegistrationManagerTest {
 		assertEquals(1, faculty.getSchedule().getNumScheduledCourses());
 		newManager.logout();
 		newManager.login("efrost", "pw");
-		assertFalse(newManager.removeFacultyFromCourse(course, faculty));
+		try {
+		newManager.removeFacultyFromCourse(course, faculty);
+		} catch (IllegalArgumentException e) {
+			assertEquals("User is not registrar.", e.getMessage());
+		}
 		
 		newManager.logout();
 		newManager.login(registrarUsername, registrarPassword);
