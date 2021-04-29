@@ -12,8 +12,6 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
-import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
 import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 
@@ -28,7 +26,6 @@ public class FacultyScheduleTest {
 
 	/**
 	 * Resets course_records.txt for use in other tests.
-	 * @throws Exception if test files arent able to be reset
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -44,14 +41,7 @@ public class FacultyScheduleTest {
 			fail("Unable to reset files");
 		}
 		
-//		FacultyDirectory fd = RegistrationManager.getInstance().getFacultyDirectory();
-//		fd.loadFacultyFromFile("test-files/faculty_records_extended.txt");
-		
 		catalog = new CourseCatalog();
-		//catalog.loadCoursesFromFile --> catalog = CourseRecordIO.readCourseRecords(fileName);
-		//since a FacultyDirectory has not been populated by anything yet, this should just return 
-		//the Course object with a null instructorId
-		// --> catalog should be comprised of Course objects each with null instructorId
 		catalog.loadCoursesFromFile("test-files/course_records.txt");
 	}
 	
@@ -153,9 +143,7 @@ public class FacultyScheduleTest {
 	 */
 	@Test
 	public void testRemoveCourseFromSchedule() {
-//		FacultySchedule schedule = new FacultySchedule("sesmith5");
-		Faculty f = new Faculty("Sarah", "Heckman", "sesmith5", "sesmith5@ncsu.edu", "pw", 2);
-		FacultySchedule schedule = f.getSchedule();
+		FacultySchedule schedule = new FacultySchedule("sesmith5");
 		
 		//Attempt to remove from empty schedule
 		try {
@@ -205,9 +193,7 @@ public class FacultyScheduleTest {
 	 */
 	@Test
 	public void testResetSchedule() {
-//		FacultySchedule schedule = new FacultySchedule("sesmith5");
-		Faculty f = new Faculty("Sarah", "Heckman", "sesmith5", "sesmith5@ncsu.edu", "pw", 2);
-		FacultySchedule schedule = f.getSchedule();
+		FacultySchedule schedule = new FacultySchedule("sesmith5");
 		
 		//Add some courses and reset schedule
 		schedule.addCourseToSchedule(catalog.getCourseFromCatalog("CSC216", "001"));
