@@ -273,6 +273,9 @@ public class RegistrationManager {
 	 * @return true if the Course is removed from the faculty member's FacultySchedule 
 	 */
 	public boolean removeFacultyFromCourse(Course c, Faculty faculty) {
+		if (currentUser != registrar) {
+			throw new IllegalArgumentException("User is not registrar.");
+		}
 		if (currentUser != null && currentUser.equals(registrar)) {
 			return faculty.getSchedule().removeCourseFromSchedule(c);
 		} else {
@@ -285,6 +288,9 @@ public class RegistrationManager {
 	 * @param faculty the faculty member whose FactultySchedule is being reset
 	 */
 	public void resetFacultySchedule(Faculty faculty) {
+		if (currentUser != registrar) {
+			throw new IllegalArgumentException("User is not registrar.");
+		}
 		if (currentUser != null && currentUser.equals(registrar)) {
 			faculty.getSchedule().resetSchedule();
 		} 
