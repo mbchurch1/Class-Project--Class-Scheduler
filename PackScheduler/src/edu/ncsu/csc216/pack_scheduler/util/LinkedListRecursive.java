@@ -318,7 +318,7 @@ public class LinkedListRecursive<E> {
 			for (int i = 0; i < size; i++) {
 				if (current.data.equals(element)) {
 					return true;
-				} else if (i == (size - 1)){
+				} else if (i == size - 1f){
 					return false;
 				} else {
 					current = current.next;

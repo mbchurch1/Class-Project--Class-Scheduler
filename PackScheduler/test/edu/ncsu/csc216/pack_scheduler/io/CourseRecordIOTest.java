@@ -41,10 +41,10 @@ public class CourseRecordIOTest {
 	 * a duplicate of line 2 b/c of how we defined Course.equals().)
 	 */
 	private final String validCourse4 = "CSC216,Software Development Fundamentals,001,3,sesmith5,10,TH,1330,1445";
-	/** Expected results for valid courses in course_records.txt - line 6 */
-	private final String validCourse5 = "CSC216,Software Development Fundamentals,002,3,ixdoming,10,MW,1330,1445";
-	/** Expected results for valid courses in course_records.txt - line 7 */
-	private final String validCourse6 = "CSC216,Software Development Fundamentals,601,3,jctetter,10,A";
+//	/** Expected results for valid courses in course_records.txt - line 6 */
+//	private final String validCourse5 = "CSC216,Software Development Fundamentals,002,3,ixdoming,10,MW,1330,1445";
+//	/** Expected results for valid courses in course_records.txt - line 7 */
+//	private final String validCourse6 = "CSC216,Software Development Fundamentals,601,3,jctetter,10,A";
 	/**
 	 * Adding expected results for CSC217 Lab courses
 	 */
@@ -62,10 +62,10 @@ public class CourseRecordIOTest {
 	/** Expected results for valid courses in course_records.txt - line 14 */
 	private final String validCourse13 = "CSC316,Data Structures and Algorithms,001,3,jtking,10,MW,830,945";
 
-	/** Array to hold expected results */
-	private final String[] validCourses = { validCourse1, validCourse2, validCourse3, validCourse4, validCourse5,
-			validCourse6, validCourse7, validCourse8, validCourse9, validCourse10, validCourse11, validCourse12, validCourse13 };
-	
+//	/** Array to hold expected results */
+//	private final String[] validCourses = { validCourse1, validCourse2, validCourse3, validCourse4, validCourse5,
+//			validCourse6, validCourse7, validCourse8, validCourse9, validCourse10, validCourse11, validCourse12, validCourse13 };
+	/** Array to hold another expected result */
 	private final String[] validCourses2 = { validCourse1, validCourse2, validCourse3, validCourse4, validCourse7, validCourse8, 
 			validCourse9, validCourse10, validCourse11, validCourse12, validCourse13 };
 

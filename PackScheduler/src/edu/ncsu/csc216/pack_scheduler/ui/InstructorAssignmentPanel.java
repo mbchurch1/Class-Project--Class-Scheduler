@@ -192,7 +192,7 @@ public class InstructorAssignmentPanel  extends JPanel implements ActionListener
 		
 		//Set up Faculty Directory table
 		facultyTableModel = new FacultyDirectoryTableModel();
-		tableFaculty = new JTable(facultyTableModel){
+		tableFaculty = new JTable(facultyTableModel) {
 			private static final long serialVersionUID = 1L;
 			
 			/**
@@ -488,6 +488,7 @@ public class InstructorAssignmentPanel  extends JPanel implements ActionListener
 		
 		/**
 		 * Returns the column name at the given index.
+		 * @param col the column
 		 * @return the column name at the given column.
 		 */
 		public String getColumnName(int col) {
@@ -496,6 +497,8 @@ public class InstructorAssignmentPanel  extends JPanel implements ActionListener
 
 		/**
 		 * Returns the data at the given {row, col} index.
+		 * @param row the row of the data
+		 * @param  col the column of the data
 		 * @return the data at the given location.
 		 */
 		public Object getValueAt(int row, int col) {
@@ -508,7 +511,7 @@ public class InstructorAssignmentPanel  extends JPanel implements ActionListener
 		 * Sets the given value to the given {row, col} location.
 		 * @param value Object to modify in the data.
 		 * @param row location to modify the data.
-		 * @param column location to modify the data.
+		 * @param col location to modify the data.
 		 */
 		public void setValueAt(Object value, int row, int col) {
 			data[row][col] = value;
@@ -565,6 +568,7 @@ public class InstructorAssignmentPanel  extends JPanel implements ActionListener
 		
 		/**
 		 * Returns the column name at the given index.
+		 * @param col the column
 		 * @return the column name at the given column.
 		 */
 		public String getColumnName(int col) {
@@ -573,6 +577,8 @@ public class InstructorAssignmentPanel  extends JPanel implements ActionListener
 
 		/**
 		 * Returns the data at the given {row, col} index.
+		 * @param row location to modify the data.
+		 * @param col location to modify the data.
 		 * @return the data at the given location.
 		 */
 		public Object getValueAt(int row, int col) {
@@ -585,7 +591,7 @@ public class InstructorAssignmentPanel  extends JPanel implements ActionListener
 		 * Sets the given value to the given {row, col} location.
 		 * @param value Object to modify in the data.
 		 * @param row location to modify the data.
-		 * @param column location to modify the data.
+		 * @param col location to modify the data.
 		 */
 		public void setValueAt(Object value, int row, int col) {
 			data[row][col] = value;
