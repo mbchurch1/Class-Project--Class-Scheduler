@@ -112,24 +112,24 @@ public class LinkedListTest<E> {
 		assertEquals("strawberry", fruit.get(1));
 		assertEquals("apple", fruit.get(2));
 		assertEquals("kiwi", fruit.get(3));
-//		LinkedList<E> list = new LinkedList<E>();
+//		LinkedList<Student> list = new LinkedList<Student>();
 //		Student s1 = new Student(FIRST_NAME, LAST_NAME, STUDENT_ID, STUDENT_EMAIL, STUDENT_PASSWORD, STUDENT_MAX_CREDITS);
 //		list.add(0, s1);
 //		Student s3 = new Student("Bob", "LastnameBob", "blastnamebob", "junk@gmail.com", "NotReal!", 14);
 //		list.add(1, s3);
 //		
 //		Student s4 = new Student("Rob", "Roberts", "rroberts", "thisemail@gmail.com", "NotWay!", 15);
-		
+//		
 //		ListIterator<E> iterator = list.listIterator(1);
 //		iterator.previous();
-		
+//		
 //		try {
 //			iterator.previous();
 //		} catch (NoSuchElementException e) {
 //			assertEquals("Invalid element.", (e.getMessage()));
 //		}
-		
-		//iterator.set((E) s4);
+//		
+//		iterator.set((E) s4);
 //		assertEquals(2, list.size());
 //		assertEquals(s4, list.get(0));
 //		assertEquals(0, iterator.nextIndex());
@@ -143,7 +143,7 @@ public class LinkedListTest<E> {
 //		assertEquals(s5, list.get(1));
 //		assertEquals(0, iterator.previousIndex());
 //		assertTrue(iterator.hasPrevious());
-		//E element1 = list.previous();
+//		E element1 = list.previous();
 		
 		//LinkedListIterator iterator = new LinkedListIterator(1);
 	}
@@ -162,5 +162,30 @@ public class LinkedListTest<E> {
 		assertEquals("orange", fruit.get(0));
 		assertEquals("apple", fruit.get(1));
 		assertEquals("kiwi", fruit.get(2));
+	}
+	/**
+	 * tests LinkedListIterator functions
+	 */
+	@Test
+	public void testIteratorFunctions() {
+		LinkedList<String> fruit = new LinkedList<String>();
+		fruit.add("orange");
+		fruit.add("banana");
+		fruit.add("apple");
+		fruit.add("kiwi");
+		fruit.remove(1);
+		try {
+			fruit.add(2, "kiwi");
+			fail("this should throw");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add a duplicate element", e.getMessage());
+		}
+		ListIterator<String> a = fruit.listIterator(0);
+		assertEquals("orange", a.next());
+		assertEquals(null, a.previous());
+		ListIterator<String> b = fruit.listIterator(1);
+		assertEquals("apple", b.next());
+		assertEquals(2, b.nextIndex());
+		assertEquals(1, b.previousIndex());
 	}
 }
