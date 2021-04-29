@@ -155,6 +155,9 @@ public class LinkedListRecursive<E> {
 		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
+		if (contains(element)) {
+			throw new IllegalArgumentException("Duplicate element.");
+		}
 		if (element == null) {
 			throw new NullPointerException("Element is null.");
 		}
