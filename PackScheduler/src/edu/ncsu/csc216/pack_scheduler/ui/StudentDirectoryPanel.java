@@ -215,22 +215,21 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadStudentList) {
-			
+			String fileName = getFileName(true);
 			try {
-				studentDirectory.loadStudentsFromFile(getFileName(true));
+				studentDirectory.loadStudentsFromFile(fileName);
 				studentDirectoryTableModel.updateData();
 				scrollStudentDirectory.revalidate();
 				scrollStudentDirectory.repaint();
 				studentDirectoryTableModel.fireTableDataChanged();
-			} catch (IllegalArgumentException | IllegalStateException iae) {
+			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnSaveStudentList) {
-			
+			String fileName = getFileName(false);
 			try {
-				String fileName = getFileName(false);
 				studentDirectory.saveStudentDirectory(fileName);
-			} catch (IllegalArgumentException | IllegalStateException iae) {
+			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
 			}
 		} else if (e.getSource() == btnNewStudentList) {
@@ -317,7 +316,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		}
 		if (returnVal != JFileChooser.APPROVE_OPTION) {
 			//Error or user canceled, either way no file name.
-			throw new IllegalStateException("Canceled action.");
+			throw new IllegalStateException();
 		}
 		File catalogFile = fc.getSelectedFile();
 		return catalogFile.getAbsolutePath();
@@ -365,7 +364,6 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		
 		/**
 		 * Returns the column name at the given index.
-		 * @param col column index
 		 * @return the column name at the given column.
 		 */
 		public String getColumnName(int col) {
@@ -374,8 +372,6 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 
 		/**
 		 * Returns the data at the given {row, col} index.
-		 * @param row row index
-		 * @param col column index
 		 * @return the data at the given location.
 		 */
 		public Object getValueAt(int row, int col) {
@@ -388,7 +384,7 @@ public class StudentDirectoryPanel extends JPanel implements ActionListener {
 		 * Sets the given value to the given {row, col} location.
 		 * @param value Object to modify in the data.
 		 * @param row location to modify the data.
-		 * @param col location to modify the data.
+		 * @param column location to modify the data.
 		 */
 		public void setValueAt(Object value, int row, int col) {
 			data[row][col] = value;
