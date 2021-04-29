@@ -248,12 +248,19 @@ public class LinkedListRecursive<E> {
 		 * @return e Element that was removed
 		 */
 		public E remove(int index) {
-			if (index == 0) {
-				E rtn = this.data;
-				this.data = this.next.data;
+			if (index == 1) {
+				E rtn = this.next.data;
+				this.next = this.next.next;
 				size--;
 				return rtn;
-			} else {
+			}
+//			if (index == 0) {
+//				E rtn = this.data;
+//				this.data = this.next.data;
+//				size--;
+//				return rtn;
+//			} 
+			else {
 				return this.next.remove(index - 1);
 			}
 

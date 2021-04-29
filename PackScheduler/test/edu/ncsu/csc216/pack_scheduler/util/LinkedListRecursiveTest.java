@@ -160,6 +160,22 @@ public class LinkedListRecursiveTest {
 		assertEquals("h", g.get(0));
 		//assertFalse(g.remove(c));
 		assertFalse(g.remove(null));
+		
+		LinkedListRecursive<String> g2 = new LinkedListRecursive<String>();
+		assertEquals(0, g2.size());
+		String orange = "orange";
+		String banana = "banana";
+		String apple = "apple";
+		String kiwi = "kiwi";
+		g2.add(orange);
+		g2.add(banana);
+		g2.add(apple);
+		g2.add(kiwi);
+		assertEquals(4, g2.size());
+		assertEquals(banana, g2.get(1));
+		assertEquals(banana, g2.remove(1));
+		assertEquals(3, g2.size());
+		assertEquals(kiwi, g2.get(2));
 	}
 
 	/**
