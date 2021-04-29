@@ -2,12 +2,14 @@ package edu.ncsu.csc216.pack_scheduler.directory;
 
 import static org.junit.Assert.*;
 
+import java.io.FileInputStream;
 //import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 //import java.util.Scanner;
+import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -209,27 +211,27 @@ public class FacultyDirectoryTest {
 		assertTrue(fd.removeFaculty("nbrady"));
 		String[][] facultyDirectory = fd.getFacultyDirectory();
 		assertEquals(7, facultyDirectory.length);
-		assertEquals("Norman", facultyDirectory[6][0]);
-		assertEquals("Brady", facultyDirectory[6][1]);
-		assertEquals("nbrady", facultyDirectory[6][2]);
+		assertEquals("Lacey", facultyDirectory[6][0]);
+		assertEquals("Walls", facultyDirectory[6][1]);
+		assertEquals("lwalls", facultyDirectory[6][2]);
 	}
 
-//	/**
-//	 * Tests FacultyDirectory.saveFacultyDirectory() to ensure that following editing the 
-//	 * directory, the directory can be accurately saved when compared to the expected directory
-//	 */
-//	@Test
-//	public void testSaveFacultyDirectory() {
-//		FacultyDirectory fd = new FacultyDirectory();
-//
-//		// Add a faculty
-//		fd.addFaculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", 2);
-//		fd.addFaculty("Fiona", "Meadows", "fmeadow", "pharetra.sed@et.org", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", 3);
-//		fd.addFaculty("Brent", "Brewer", "bbrewer", "sem.semper@orcisem.co.uk", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", "0ÉRú±\"ÃùuŸ¦Ù\\7X²F´þâ9•{-OîFâapÄ", 1);
-//		assertEquals(3, fd.getFacultyDirectory().length);
-//		fd.saveFacultyDirectory("test-files/actual_faculty_records.txt");
-//		checkFiles("test-files/expected_faculty_records.txt", "test-files/actual_faculty_records.txt");
-//	}
+	/**
+	 * Tests FacultyDirectory.saveFacultyDirectory() to ensure that following editing the 
+	 * directory, the directory can be accurately saved when compared to the expected directory
+	 */
+	@Test
+	public void testSaveFacultyDirectory() {
+		FacultyDirectory fd = new FacultyDirectory();
+
+		// Add a faculty
+		fd.addFaculty("Ashely", "Witt", "awitt", "mollis@Fuscealiquetmagna.net", "pw", "pw", 2);
+		fd.addFaculty("Fiona", "Meadows", "fmeadow", "pharetra.sed@et.org", "pw", "pw", 3);
+		fd.addFaculty("Brent", "Brewer", "bbrewer", "sem.semper@orcisem.co.uk", "pw", "pw", 1);
+		assertEquals(3, fd.getFacultyDirectory().length);
+		fd.saveFacultyDirectory("test-files/actual_faculty_records.txt");
+		checkFiles("test-files/expected_faculty_records.txt", "test-files/actual_faculty_records.txt");
+	}
 
 	/**
 	 * Test the getFacultyByID
@@ -248,26 +250,26 @@ public class FacultyDirectoryTest {
 		assertNull(fd2.getFacultyById("Matt"));
 	}
 
-//	/**
-//	 * Helper method to compare two files for the same contents
-//	 * 
-//	 * @param expFile expected output
-//	 * @param actFile actual output
-//	 */
-//	private void checkFiles(String expFile, String actFile) {
-//		try {
-//			Scanner expScanner = new Scanner(new FileInputStream(expFile));
-//			Scanner actScanner = new Scanner(new FileInputStream(actFile));
-//
-//			while (expScanner.hasNextLine()) {
-//				assertEquals(expScanner.nextLine(), actScanner.nextLine());
-//			}
-//
-//			expScanner.close();
-//			actScanner.close();
-//		} catch (IOException e) {
-//			fail("Error reading files.");
-//		}
-//	}
+	/**
+	 * Helper method to compare two files for the same contents
+	 * 
+	 * @param expFile expected output
+	 * @param actFile actual output
+	 */
+	private void checkFiles(String expFile, String actFile) {
+		try {
+			Scanner expScanner = new Scanner(new FileInputStream(expFile));
+			Scanner actScanner = new Scanner(new FileInputStream(actFile));
+
+			while (expScanner.hasNextLine()) {
+				assertEquals(expScanner.nextLine(), actScanner.nextLine());
+			}
+
+			expScanner.close();
+			actScanner.close();
+		} catch (IOException e) {
+			fail("Error reading files.");
+		}
+	}
 
 }

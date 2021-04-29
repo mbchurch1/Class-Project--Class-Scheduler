@@ -498,7 +498,11 @@ public class RegistrationManagerTest {
 		
 		newManager.logout();
 		newManager.login("efrost", "pw");
-		assertFalse(newManager.addFacultyToCourse(course, faculty));
+		try {
+			newManager.addFacultyToCourse(course, faculty);
+		} catch (IllegalArgumentException e) {
+			assertEquals("Cannot add a course to a faculty's schedule if not logged in as Registrar.", e.getMessage());
+		}
 		
 		newManager.logout();
 		newManager.login(registrarUsername, registrarPassword);

@@ -260,7 +260,7 @@ public class RegistrationManager {
 				throw new IllegalArgumentException("The course cannot be added to this faculty member's schedule.");
 			}
 		} else {
-			return false;
+			throw new IllegalArgumentException("Cannot add a course to a faculty's schedule if not logged in as Registrar.");
 		}
 	}
 	

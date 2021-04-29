@@ -68,23 +68,34 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 		
 	
 
+	///**
+//	 * Set method to set an element at a given index
+//	 * 
+//	 * @param index  Index of element to set
+//	 * @param element  Element to set to 
+//	 * @return element  Returns the element that is set
+//	 */
+//	public E set(int index, Object element) {
+//		
+//		//TODO Need to check if element is duplicate
+////		if(LinkedList.contains((E) element)) {
+////			throw new IllegalArgumentException("Duplicate element.");
+////		}
+//		
+//		this.listIterator(index).set((E) element);
+//	
+//		return (E) element;
+//	}
 	/**
-	 * Set method to set an element at a given index
-	 * 
+	 * Method from AbstractSequentialList
 	 * @param index  Index of element to set
 	 * @param element  Element to set to 
 	 * @return element  Returns the element that is set
 	 */
-	public E set(int index, Object element) {
+	@Override
+	public E set(int index, E element) {
 		
-		//TODO Need to check if element is duplicate
-//		if(LinkedList.contains((E) element)) {
-//			throw new IllegalArgumentException("Duplicate element.");
-//		}
-		
-		this.listIterator(index).set((E) element);
-	
-		return (E) element;
+		return super.set(index, element);
 	}
 
 	/**
@@ -188,6 +199,7 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 //			   
 //			}
 		
+		
 		/**
 		 * Checks to see if the list has a next ListNode
 		 * @return true or false if list has a next ListNode
@@ -288,7 +300,6 @@ public class LinkedList<E> extends AbstractSequentialList<E>  {
 				next = next.next;
 			}
 			
-			// TODO Auto-generated method stub
 			
 			lastRetrieved = null;
 			size--;
